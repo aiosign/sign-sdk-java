@@ -12,8 +12,9 @@ import lombok.NoArgsConstructor;
 
 /**
  * 获取token的参数对象
+ *
  * @author modificial
- * @description
+ * @version $Id: $Id
  * @since 2020/5/11
  */
 @EqualsAndHashCode(callSuper = true)
@@ -31,17 +32,23 @@ public class TokenRequest extends AbstractSignRequest<TokenResponse> {
     /**
      * 授权类型固定为client_credentials
      */
-    private String grantType="client_credentials";
+    private String grantType = "client_credentials";
 
-    public TokenRequest(String appId,String appSecret){
-        this.appId=appId;
-        this.appSecret=appSecret;
+    /**
+     * <p>Constructor for TokenRequest.</p>
+     *
+     * @param appId     a {@link java.lang.String} object.
+     * @param appSecret a {@link java.lang.String} object.
+     */
+    public TokenRequest(String appId, String appSecret) {
+        this.appId = appId;
+        this.appSecret = appSecret;
     }
 
     /**
+     * {@inheritDoc}
+     * <p>
      * 返回请求的必要参数信息
-     *
-     * @return
      */
     @Override
     @JsonIgnore

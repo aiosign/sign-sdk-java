@@ -8,6 +8,7 @@ import java.io.Serializable;
  * 合同信息
  *
  * @author modificial
+ * @version $Id: $Id
  * @since 2020/4/8
  */
 @Data

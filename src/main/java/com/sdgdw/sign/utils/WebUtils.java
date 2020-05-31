@@ -1,7 +1,6 @@
 package com.sdgdw.sign.utils;
 
 import com.sdgdw.sign.base.FileItem;
-import com.sdgdw.sign.exception.SignException;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.net.ssl.*;
@@ -21,6 +20,7 @@ import java.util.Set;
  * 网络工具类。
  *
  * @author modificial
+ * @version $Id: $Id
  */
 @Slf4j
 public class WebUtils {
@@ -105,7 +105,7 @@ public class WebUtils {
      * @param proxyHost      代理host，传null表示不使用代理
      * @param proxyPort      代理端口，传0表示不使用代理
      * @return 响应字符串
-     * @throws IOException
+     * @throws java.io.IOException
      */
     public static String doPost(String url, Map<String, String> params, String charset,
                                 int connectTimeout, int readTimeout, String proxyHost,
@@ -130,7 +130,7 @@ public class WebUtils {
      * @param proxyHost      代理host，传null表示不使用代理
      * @param proxyPort      代理端口，传0表示不使用代理
      * @return 响应字符串
-     * @throws IOException
+     * @param sign a {@link java.lang.String} object.
      */
     public static String doPost(String url, String ctype, byte[] content, int connectTimeout,
                                 int readTimeout, String proxyHost, int proxyPort,String sign) {
@@ -176,11 +176,15 @@ public class WebUtils {
 
     /**
      * post请求，请求头为application/json,不使用代理
-     * @param url
-     * @param content
-     * @param connectTimeout
-     * @param readTimeout
-     * @return
+     *
+     * @param url            a {@link java.lang.String} object.
+     * @param content        a {@link java.lang.String} object.
+     * @param connectTimeout a int.
+     * @param readTimeout    a int.
+     * @param proxyHost      a {@link java.lang.String} object.
+     * @param proxyPort      a {@link java.lang.Integer} object.
+     * @param sign           a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
      */
     public static String doPostJson(String url, String content, int connectTimeout, int readTimeout,String proxyHost,Integer proxyPort,String sign) {
         return doPost(url, "application/json", content.getBytes(StandardCharsets.UTF_8),
@@ -199,7 +203,7 @@ public class WebUtils {
      * @param proxyHost      代理host，传null表示不使用代理
      * @param proxyPort      代理端口，传0表示不使用代理
      * @return 响应字符串
-     * @throws IOException
+     * @throws java.io.IOException
      */
     public static String doPost(String url, Map<String, String> params,
                                 Map<String, FileItem> fileParams, String charset,
@@ -225,7 +229,6 @@ public class WebUtils {
                 conn.setConnectTimeout(connectTimeout);
                 conn.setReadTimeout(readTimeout);
             } catch (IOException e) {
-                Map<String, String> map = getParamsFromUrl(url);
                 throw e;
             }
 
@@ -259,7 +262,6 @@ public class WebUtils {
                 out.write(endBoundaryBytes);
                 rsp = getResponseAsString(conn);
             } catch (IOException e) {
-                Map<String, String> map = getParamsFromUrl(url);
                 throw e;
             }
 
@@ -321,11 +323,11 @@ public class WebUtils {
      * @param params  请求参数
      * @param charset 字符集，如UTF-8, GBK, GB2312
      * @return 响应字符串
-     * @throws IOException
+     * @throws java.io.IOException
      */
     public static String doGet(String url, Map<String, String> params, String charset) throws IOException {
         HttpURLConnection conn = null;
-        String rsp = null;
+        String rsp;
         try {
             String ctype = "application/x-www-form-urlencoded;charset=" + charset;
             String query = buildQuery(params, charset);
@@ -350,30 +352,50 @@ public class WebUtils {
         return rsp;
     }
 
-    public static HttpURLConnection getConnection(URL url, String method, String ctype,String sign) {
+    /**
+     * <p>getConnection.</p>
+     *
+     * @param url    a {@link java.net.URL} object.
+     * @param method a {@link java.lang.String} object.
+     * @param ctype  a {@link java.lang.String} object.
+     * @param sign   a {@link java.lang.String} object.
+     * @return a {@link java.net.HttpURLConnection} object.
+     */
+    public static HttpURLConnection getConnection(URL url, String method, String ctype, String sign) {
         try {
-            return getConnection(url, method, ctype, null,sign);
+            return getConnection(url, method, ctype, null, sign);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    /**
+     * <p>getConnection.</p>
+     *
+     * @param url       a {@link java.net.URL} object.
+     * @param method    a {@link java.lang.String} object.
+     * @param ctype     a {@link java.lang.String} object.
+     * @param proxyHost a {@link java.lang.String} object.
+     * @param proxyPort a int.
+     * @param sign      a {@link java.lang.String} object.
+     * @return a {@link java.net.HttpURLConnection} object.
+     */
     public static HttpURLConnection getConnection(URL url, String method, String ctype,
-                                                  String proxyHost, int proxyPort,String sign) {
+                                                  String proxyHost, int proxyPort, String sign) {
         Proxy proxy = new Proxy(Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
         try {
-            return getConnection(url, method, ctype, proxy,sign);
+            return getConnection(url, method, ctype, proxy, sign);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    private static HttpURLConnection getConnection(URL url, String method, String ctype, Proxy proxy,String sign) throws IOException {
-        HttpURLConnection conn = null;
+    private static HttpURLConnection getConnection(URL url, String method, String ctype, Proxy proxy, String sign) throws IOException {
+        HttpURLConnection conn;
         if ("https".equals(url.getProtocol())) {
-            HttpsURLConnection connHttps = null;
+            HttpsURLConnection connHttps;
             if (proxy != null) {
                 connHttps = (HttpsURLConnection) url.openConnection(proxy);
             } else {
@@ -386,7 +408,6 @@ public class WebUtils {
             }
             conn = connHttps;
         } else {
-            conn = null;
             if (proxy != null) {
                 conn = (HttpURLConnection) url.openConnection(proxy);
             } else {
@@ -428,6 +449,14 @@ public class WebUtils {
         return new URL(strUrl);
     }
 
+    /**
+     * <p>buildQuery.</p>
+     *
+     * @param params  a {@link java.util.Map} object.
+     * @param charset a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
+     * @throws java.io.IOException if any.
+     */
     public static String buildQuery(Map<String, String> params, String charset) throws IOException {
         if (params == null || params.isEmpty()) {
             return null;
@@ -455,6 +484,13 @@ public class WebUtils {
         return query.toString();
     }
 
+    /**
+     * <p>getResponseAsString.</p>
+     *
+     * @param conn a {@link java.net.HttpURLConnection} object.
+     * @return a {@link java.lang.String} object.
+     * @throws java.io.IOException if any.
+     */
     protected static String getResponseAsString(HttpURLConnection conn) throws IOException {
         String charset = getResponseCharset(conn.getContentType());
         //此时设置KeepAlive超时所需数据结构才刚初始化完整，可以通过反射修改
@@ -468,7 +504,7 @@ public class WebUtils {
             if (StringUtils.isEmpty(msg)) {
                 String errorMsg=conn.getResponseCode() + ":" + conn.getResponseMessage();
                 log.error("调用api发生错误，错误信息为{}",errorMsg);
-               return null;
+                return null;
             } else {
                 log.error("调用api发生错误，错误信息为{}",msg);
                 return null;
@@ -581,7 +617,7 @@ public class WebUtils {
             map = splitUrlQuery(url.substring(url.indexOf('?') + 1));
         }
         if (map == null) {
-            map = new HashMap<String, String>();
+            map = new HashMap<>();
         }
         return map;
     }
@@ -596,10 +632,10 @@ public class WebUtils {
         Map<String, String> result = new HashMap<String, String>();
 
         String[] pairs = query.split("&");
-        if (pairs != null && pairs.length > 0) {
+        if (pairs.length > 0) {
             for (String pair : pairs) {
                 String[] param = pair.split("=", 2);
-                if (param != null && param.length == 2) {
+                if (param.length == 2) {
                     result.put(param[0], param[1]);
                 }
             }

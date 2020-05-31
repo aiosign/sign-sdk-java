@@ -14,6 +14,9 @@ import lombok.NoArgsConstructor;
 
 /**
  * 模板删除参数
+ *
+ * @author Administrator
+ * @version $Id: $Id
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -26,6 +29,9 @@ public class TemplateDeleteRequest extends AbstractSignRequest<TemplateDeleteRes
      */
     private String templateId;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @JsonIgnore
     public RequestInfo<TemplateDeleteResponse> getRequestInfo() {

@@ -1,11 +1,8 @@
 package com.sdgdw.sign;
 
-import com.sdgdw.sign.client.SignClient;
-import com.sdgdw.sign.client.support.DefaultSignClient;
 import com.sdgdw.sign.module.request.*;
 import com.sdgdw.sign.module.response.*;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -23,7 +20,7 @@ public class TemplateTest extends AbstractSignTest {
     public void query() {
         TemplateQueryRequest templateQueryRequest =new TemplateQueryRequest();
         // 模板id
-        templateQueryRequest.setTemplateId("699307492530343124");
+        templateQueryRequest.setTemplateId("e939a7bbb7a9dc26d4e14f1f4c28d20b");
         TemplateQueryResponse execute = signClient.execute(templateQueryRequest);
         log.info("响应状态：{}",execute.getResultCode());
         log.info("响应信息：{}",execute.getResultMessage());
@@ -37,7 +34,7 @@ public class TemplateTest extends AbstractSignTest {
     public void delete() {
         TemplateDeleteRequest templateDeleteRequest =new TemplateDeleteRequest();
         // 模板id
-        templateDeleteRequest.setTemplateId("699307492530343124");
+        templateDeleteRequest.setTemplateId("e939a7bbb7a9dc26d4e14f1f4c28d20b");
         TemplateDeleteResponse execute = signClient.execute(templateDeleteRequest);
         log.info("响应状态：{}",execute.getResultCode());
         log.info("响应信息：{}",execute.getResultMessage());
@@ -51,9 +48,9 @@ public class TemplateTest extends AbstractSignTest {
     public void add() {
         TemplateAddRequest templateAddRequest =new TemplateAddRequest();
         // 文件id
-        templateAddRequest.setFileId("0002d1510e15f5bd6139782700ce49e2");
+        templateAddRequest.setFileId("135630e7111720a0924e003102d8efe2");
         // 模板名称
-        templateAddRequest.setName("测试");
+        templateAddRequest.setName("测试模板");
         TemplateAddResponse execute = signClient.execute(templateAddRequest);
         log.info("响应状态：{}",execute.getResultCode());
         log.info("响应信息：{}",execute.getResultMessage());
@@ -67,7 +64,7 @@ public class TemplateTest extends AbstractSignTest {
     public void lock() {
         TemplateLockRequest templateLockRequest =new TemplateLockRequest();
         // 模板id
-        templateLockRequest.setTemplateId("699307492530343124");
+        templateLockRequest.setTemplateId("e939a7bbb7a9dc26d4e14f1f4c28d20b");
         TemplateLockResponse execute = signClient.execute(templateLockRequest);
         log.info("响应状态：{}",execute.getResultCode());
         log.info("响应信息：{}",execute.getResultMessage());
@@ -81,7 +78,7 @@ public class TemplateTest extends AbstractSignTest {
     public void unlock() {
         TemplateUnlockRequest templateUnlockRequest =new TemplateUnlockRequest();
         // 模板id
-        templateUnlockRequest.setTemplateId("699307492530343124");
+        templateUnlockRequest.setTemplateId("e939a7bbb7a9dc26d4e14f1f4c28d20b");
         TemplateUnlockResponse execute = signClient.execute(templateUnlockRequest);
         log.info("响应状态：{}",execute.getResultCode());
         log.info("响应信息：{}",execute.getResultMessage());

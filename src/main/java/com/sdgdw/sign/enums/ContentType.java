@@ -4,8 +4,9 @@ import com.sdgdw.sign.utils.StringUtils;
 
 /**
  * 请求头类型
+ *
  * @author modificial
- * @description
+ * @version $Id: $Id
  * @since 2020/5/11
  */
 public enum ContentType {
@@ -27,37 +28,55 @@ public enum ContentType {
     XML("application/xml");
     private String value;
 
-    private ContentType(String value) {
+    ContentType(String value) {
         this.value = value;
     }
 
-    @Override
-    public String toString() {
-        return this.value;
-    }
-
+    /**
+     * <p>isDefault.</p>
+     *
+     * @param contentType a {@link java.lang.String} object.
+     * @return a boolean.
+     */
     public static boolean isDefault(String contentType) {
         return null == contentType || isFormUrlEncoed(contentType);
     }
 
+    /**
+     * <p>isFormUrlEncoed.</p>
+     *
+     * @param contentType a {@link java.lang.String} object.
+     * @return a boolean.
+     */
     public static boolean isFormUrlEncoed(String contentType) {
         return FORM_URLENCODED.toString().equals(contentType);
     }
 
+    /**
+     * <p>get.</p>
+     *
+     * @param body a {@link java.lang.String} object.
+     * @return a {@link com.sdgdw.sign.enums.ContentType} object.
+     */
     public static ContentType get(String body) {
         ContentType contentType = null;
         if (StringUtils.hasText(body)) {
             char firstChar = body.charAt(0);
-            switch(firstChar) {
-                case '<':
-                    contentType = XML;
-                    break;
-                case '[':
-                case '{':
-                    contentType = JSON;
+            if (firstChar == '<') {
+                contentType = XML;
+            } else {
+                contentType = JSON;
             }
         }
 
         return contentType;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return this.value;
     }
 }

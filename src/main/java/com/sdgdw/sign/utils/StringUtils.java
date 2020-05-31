@@ -8,6 +8,7 @@ import java.util.Map;
  * 字符串工具类。
  *
  * @author carver.gu
+ * @version $Id: $Id
  * @since 1.0, Sep 12, 2009
  */
 public abstract class StringUtils {
@@ -42,6 +43,9 @@ public abstract class StringUtils {
 
     /**
      * 检查对象是否为数字型字符串,包含负数开头的。
+     *
+     * @param obj a {@link java.lang.Object} object.
+     * @return a boolean.
      */
     public static boolean isNumeric(Object obj) {
         if (obj == null) {
@@ -68,6 +72,9 @@ public abstract class StringUtils {
 
     /**
      * 检查指定的字符串列表是否不为空。
+     *
+     * @param values a {@link java.lang.String} object.
+     * @return a boolean.
      */
     public static boolean areNotEmpty(String... values) {
         boolean result = true;
@@ -83,6 +90,7 @@ public abstract class StringUtils {
     /**
      * Trim <i>all</i> whitespace from the given {@code String}:
      * leading, trailing, and in between characters.
+     *
      * @param str the {@code String} to check
      * @return the trimmed {@code String}
      * @see java.lang.Character#isWhitespace
@@ -102,8 +110,12 @@ public abstract class StringUtils {
         }
         return sb.toString();
     }
+
     /**
      * 把通用字符编码的字符串转化为汉字编码。
+     *
+     * @param unicode a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
      */
     public static String unicodeToChinese(String unicode) {
         StringBuilder out = new StringBuilder();
@@ -117,6 +129,9 @@ public abstract class StringUtils {
 
     /**
      * 过滤不可见字符
+     *
+     * @param input a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
      */
     public static String stripNonValidXMLCharacters(String input) {
         if (input == null || ("".equals(input))) {
@@ -136,6 +151,14 @@ public abstract class StringUtils {
         return out.toString();
     }
 
+    /**
+     * <p>leftPad.</p>
+     *
+     * @param str     a {@link java.lang.String} object.
+     * @param size    a int.
+     * @param padChar a char.
+     * @return a {@link java.lang.String} object.
+     */
     public static String leftPad(String str, int size, char padChar) {
         if (str == null) {
             return null;
@@ -149,6 +172,14 @@ public abstract class StringUtils {
         }
     }
 
+    /**
+     * <p>leftPad.</p>
+     *
+     * @param str    a {@link java.lang.String} object.
+     * @param size   a int.
+     * @param padStr a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
+     */
     public static String leftPad(String str, int size, String padStr) {
         if (str == null) {
             return null;
@@ -239,6 +270,13 @@ public abstract class StringUtils {
         return false;
     }
 
+    /**
+     * <p>convert2Map.</p>
+     *
+     * @param str   a {@link java.lang.String} object.
+     * @param delim a {@link java.lang.String} object.
+     * @return a {@link java.util.Map} object.
+     */
     public static Map<String, String> convert2Map(String str, String delim) {
         if (isEmpty(str)) {
             return Collections.emptyMap();

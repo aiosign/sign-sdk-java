@@ -6,8 +6,9 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 回收token返回值
+ *
  * @author modificial
- * @description
+ * @version $Id: $Id
  * @since 2020/5/12
  */
 @EqualsAndHashCode(callSuper = true)

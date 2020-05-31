@@ -14,8 +14,9 @@ import lombok.NoArgsConstructor;
 
 /**
  * 文件id
+ *
  * @author modificial
- * @description
+ * @version $Id: $Id
  * @since 2020/4/21
  */
 @EqualsAndHashCode(callSuper = true)
@@ -28,6 +29,9 @@ public class FileIdentityRequest extends AbstractSignRequest<SignCheckResponse> 
      */
     private String fileId;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @JsonIgnore
     public RequestInfo<SignCheckResponse> getRequestInfo() {

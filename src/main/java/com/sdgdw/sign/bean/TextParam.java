@@ -6,7 +6,9 @@ import java.io.Serializable;
 
 /**
  * 文本域信息
+ *
  * @author modificial
+ * @version $Id: $Id
  * @since 2020/4/9
  */
 @Data

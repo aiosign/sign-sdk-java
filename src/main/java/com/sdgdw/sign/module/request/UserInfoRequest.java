@@ -13,6 +13,7 @@ import lombok.EqualsAndHashCode;
  * 用户详情信息返回
  *
  * @author modificial
+ * @version $Id: $Id
  * @since 2020/4/1
  */
 @EqualsAndHashCode(callSuper = true)
@@ -24,11 +25,11 @@ public class UserInfoRequest extends AbstractSignRequest<UserInfoResponse> {
 	 */
 	private String userId;
 
-	/**
-	 * 返回请求的必要参数信息
-	 *
-	 * @return
-	 */
+    /**
+     * {@inheritDoc}
+     * <p>
+     * 返回请求的必要参数信息
+     */
 	@Override
 	@JsonIgnore
 	public RequestInfo<UserInfoResponse> getRequestInfo() {

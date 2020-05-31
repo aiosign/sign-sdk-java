@@ -7,13 +7,27 @@ import java.util.*;
  * bean转map工具类
  *
  * @author modificial
+ * @version $Id: $Id
  * @since 2019/12/29
  */
 public abstract class BeanMapUtils {
+    /**
+     * <p>convertToMap.</p>
+     *
+     * @param obj a {@link java.lang.Object} object.
+     * @return a {@link java.util.Map} object.
+     */
     public static Map<String, String> convertToMap(Object obj) {
         return convertToMap(obj, false);
     }
 
+    /**
+     * <p>convertToMap.</p>
+     *
+     * @param obj a {@link java.lang.Object} object.
+     * @param convertNull a boolean.
+     * @return a {@link java.util.Map} object.
+     */
     public static Map<String, String> convertToMap(Object obj, boolean convertNull) {
         if (obj == null) {
             return null;

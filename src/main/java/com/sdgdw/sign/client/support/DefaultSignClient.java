@@ -7,10 +7,10 @@ import com.sdgdw.sign.base.FileItem;
 import com.sdgdw.sign.base.RequestInfo;
 import com.sdgdw.sign.client.SignClient;
 import com.sdgdw.sign.enums.ContentType;
-import com.sdgdw.sign.exception.SignException;
 import com.sdgdw.sign.utils.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -21,11 +21,12 @@ import java.util.Optional;
  * 默认的签章客户端实现
  *
  * @author modificial
- * @description
+ * @version $Id: $Id
  * @since 2020/5/11
  */
 @Data
 @AllArgsConstructor
+@Slf4j
 public class DefaultSignClient implements SignClient {
     /**
      * 默认连接超时时间
@@ -71,11 +72,12 @@ public class DefaultSignClient implements SignClient {
     /**
      * 构造器
      *
-     * @param rootUri   网关地址前缀
-     * @param proxyHost 代理主机
-     * @param proxyPort 代理端口
-     * @param appId     应用id
-     * @param appSecret 应用秘钥
+     * @param rootUri     网关地址前缀
+     * @param proxyHost   代理主机
+     * @param proxyPort   代理端口
+     * @param appId       应用id
+     * @param appSecret   应用秘钥
+     * @param checkResult a boolean.
      */
     public DefaultSignClient(String rootUri, String proxyHost, Integer proxyPort, String appId, String appSecret,boolean checkResult) {
         this(rootUri, CONNECT_TIME_OUT, READ_TIME_OUT, proxyHost, proxyPort, appId, appSecret,checkResult);
@@ -93,10 +95,9 @@ public class DefaultSignClient implements SignClient {
     }
 
     /**
-     * 执行http请求，并返回数据
+     * {@inheritDoc}
      *
-     * @param signRequest
-     * @return
+     * 执行http请求，并返回数据
      */
     @Override
     public <T extends AbstractSignResponse> T execute(AbstractSignRequest<T> signRequest) {
@@ -107,15 +108,11 @@ public class DefaultSignClient implements SignClient {
         try {
             //发起请求，解析结果
             T t = requestForResult(requestInfo);
-            //如果需要对结果进行校验，校验后返回
-            if(checkResult){
-                checkResult(t);
-            }
             return t;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        throw new SignException("5001", "调用api发生错误");
+        throw new RuntimeException("调用api发生错误");
     }
 
     /**
@@ -129,9 +126,12 @@ public class DefaultSignClient implements SignClient {
         String result = null;
         String apiUrl = rootUri + requestInfo.getApiUri();
         //如果需要传递token
-        if(requestInfo.isNeedToken()){
+        if(requestInfo.isNeedToken()) {
             String token = TokenManager.getToken(this);
-            apiUrl=apiUrl.concat("?access_token=").concat(token);
+            if (StringUtils.isEmpty(token)) {
+                throw new RuntimeException("获取token失败");
+            }
+            apiUrl = apiUrl.concat("?access_token=").concat(token);
         }
         switch (requestInfo.getMethod()) {
             case POST:
@@ -157,29 +157,14 @@ public class DefaultSignClient implements SignClient {
             default:
                 break;
         }
+        log.info("当前请求地址为{},返回结果为{}", apiUrl, result);
         Assert.hasText(result, "调用api失败");
         ObjectMapper objectMapper = ObjectMapperHolder.INSTANCE.getInstance();
         try {
             objectMapper.readTree(result);
         } catch (IOException e) {
-            throw new SignException("5001", "返回的数据不是json");
+            throw new RuntimeException("返回的数据不是json");
         }
         return objectMapper.readValue(result, requestInfo.getResponseType());
-    }
-
-    /**
-     * 对返回的结果进行检测
-     *
-     * @param response
-     */
-    public void checkResult(AbstractSignResponse response) {
-        boolean success = response.isSuccess();
-        if (success) {
-            return;
-        } else if (response.isGatewaySuccess()) {
-            throw new SignException(response.getResultCode(), response.getResultMessage());
-        } else {
-            throw new SignException(response.getReturnCode(), response.getReturnMessage());
-        }
     }
 }

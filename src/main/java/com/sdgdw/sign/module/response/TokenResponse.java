@@ -6,8 +6,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
+ * <p>TokenResponse class.</p>
+ *
  * @author modificial
- * @description
+ * @version $Id: $Id
  * @since 2020/5/11
  */
 @EqualsAndHashCode(callSuper = true)

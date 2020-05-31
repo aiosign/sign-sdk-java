@@ -22,7 +22,7 @@ public class CertTest extends AbstractSignTest {
     public void apply() {
         UserIdentityRequest userIdentityRequest = new UserIdentityRequest();
         // 用户id
-        userIdentityRequest.setUserId("00710519812799483904");
+        userIdentityRequest.setUserId("00716661208384163840");
         UserCertPrepareResponse execute = signClient.execute(userIdentityRequest);
         log.info("响应状态：{}",execute.getResultCode());
         log.info("响应信息：{}",execute.getResultMessage());
@@ -36,7 +36,7 @@ public class CertTest extends AbstractSignTest {
     public void certinfo() {
         CertQueryRequest certQueryRequest = new CertQueryRequest();
         // 预处理id
-        certQueryRequest.setPrepareId("cfec48ddc84c4934bfbad9b294ea2f4d");
+        certQueryRequest.setPrepareId("59ed94d642b04f2d928bc0cfdaa46a52");
         UserCertResponse execute = signClient.execute(certQueryRequest);
         log.info("响应状态：{}",execute.getResultCode());
         log.info("响应信息：{}",execute.getResultMessage());

@@ -4,45 +4,47 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
  * 请求方法类型
- * @author Arjen Poutsma
- * @author Juergen Hoeller
- * @since 3.0
+ *
+ * @author modificial
+ * @version $Id: $Id
  */
 public enum HttpMethod {
+    /**
+     * 请求方法
+     */
 
-	GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE;
-
-
-	private static final Map<String, HttpMethod> mappings = new HashMap<>(16);
-
-	static {
-		for (HttpMethod httpMethod : values()) {
-			mappings.put(httpMethod.name(), httpMethod);
-		}
-	}
+    GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE;
 
 
-	/**
-	 * Resolve the given method value to an {@code HttpMethod}.
-	 * @param method the method value as a String
-	 * @return the corresponding {@code HttpMethod}, or {@code null} if not found
-	 * @since 4.2.4
-	 */
+    /** Constant <code>MAPPINGS</code> */
+    private static final Map<String, HttpMethod> MAPPINGS = new HashMap<>(16);
+
+    static {
+        for (HttpMethod httpMethod : values()) {
+            MAPPINGS.put(httpMethod.name(), httpMethod);
+        }
+    }
+
+
+    /**
+     * 字符串转为枚举类型
+     *
+     * @param method 请求方法
+     * @return a {@link com.sdgdw.sign.enums.HttpMethod} object.
+     */
 	public static HttpMethod resolve(String method) {
-		return (method != null ? mappings.get(method) : null);
-	}
+        return (method != null ? MAPPINGS.get(method) : null);
+    }
 
 
-	/**
-	 * Determine whether this {@code HttpMethod} matches the given
-	 * method value.
-	 * @param method the method value as a String
-	 * @return {@code true} if it matches, {@code false} otherwise
-	 * @since 4.2.4
-	 */
-	public boolean matches(String method) {
+    /**
+     * 给定的方法是否匹配
+     *
+     * @param method 请求方法
+     * @return a boolean.
+     */
+    public boolean matches(String method) {
 		return (this == resolve(method));
 	}
 

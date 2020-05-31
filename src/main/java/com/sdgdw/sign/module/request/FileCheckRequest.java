@@ -16,7 +16,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * <p>FileCheckRequest class.</p>
+ *
  * @author yangyouwang
+ * @version $Id: $Id
  * @description 文件验签请求
  * @since 2020/5/20
  */
@@ -32,6 +35,9 @@ public class FileCheckRequest extends AbstractSignRequest<SignCheckResponse> {
     private FileItem fileItem;
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @JsonIgnore
     public RequestInfo<SignCheckResponse> getRequestInfo() {

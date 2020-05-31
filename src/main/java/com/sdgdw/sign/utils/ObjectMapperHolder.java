@@ -12,8 +12,9 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * ObjectMapper单例模式实现
+ *
  * @author modificial
- * @description
+ * @version $Id: $Id
  * @since 2020/5/11
  */
 public enum ObjectMapperHolder {
@@ -43,7 +44,7 @@ public enum ObjectMapperHolder {
     /**
      * 获取单例的ObjectMapper
      *
-     * @return
+     * @return a {@link com.fasterxml.jackson.databind.ObjectMapper} object.
      */
     public ObjectMapper getInstance() {
         return objectMapper;

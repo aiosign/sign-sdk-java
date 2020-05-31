@@ -1,7 +1,6 @@
 package com.sdgdw.sign.utils;
 
 import com.sdgdw.sign.client.support.DefaultSignClient;
-import com.sdgdw.sign.exception.SignException;
 import com.sdgdw.sign.module.request.RevokeTokenRequest;
 import com.sdgdw.sign.module.request.TokenRequest;
 import com.sdgdw.sign.module.response.TokenResponse;
@@ -14,15 +13,17 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * <p>TokenManager class.</p>
+ *
  * @author modificial
- * @description
+ * @version $Id: $Id
  * @since 2020/5/11
  */
 public class TokenManager {
     /**
      * 用于缓存map,key->appid,value->access_token
      */
-    private static Map<DefaultSignClient, String> accessTokens;
+    private static final Map<DefaultSignClient, String> accessTokens;
 
     /**
      * 利用有过期时间的map，token有效期为7200秒，这里设置为7000秒，7000秒后token自动过期
@@ -39,7 +40,8 @@ public class TokenManager {
     /**
      * 获取token
      *
-     * @return
+     * @param defaultSignClient a {@link com.sdgdw.sign.client.support.DefaultSignClient} object.
+     * @return a {@link java.lang.String} object.
      */
     public static String getToken(DefaultSignClient defaultSignClient) {
         String appId = defaultSignClient.getAppId();
@@ -49,9 +51,6 @@ public class TokenManager {
             return token;
         } else {
             token = doGetToken(defaultSignClient);
-            if (StringUtils.isEmpty(token)) {
-                throw new SignException("5002", "获取token失败");
-            }
             accessTokens.put(defaultSignClient, token);
             return token;
         }

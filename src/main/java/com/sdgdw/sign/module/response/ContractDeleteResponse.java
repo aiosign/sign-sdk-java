@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
  * 合同删除返回参数
  *
  * @author modificial
+ * @version $Id: $Id
  * @since 2020/4/3
  */
 @EqualsAndHashCode(callSuper = true)

@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
  * 印章查询返回参数
  *
  * @author modificial
+ * @version $Id: $Id
  * @since 2020/4/1
  */
 @EqualsAndHashCode(callSuper = true)
@@ -53,9 +54,9 @@ public class SealQueryResponse  extends AbstractSignResponse {
 		 * 印章状态
 		 */
 		private String status;
-		/**
-		 * 印章状态
-		 */
+        /**
+         * 印章描述信息
+         */
 		private String description;
 	}
 

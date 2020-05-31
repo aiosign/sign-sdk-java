@@ -3,7 +3,6 @@ package com.sdgdw.sign.module.request;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sdgdw.sign.base.AbstractSignRequest;
 import com.sdgdw.sign.base.RequestInfo;
-import com.sdgdw.sign.base.ResponseCode;
 import com.sdgdw.sign.enums.ContentType;
 import com.sdgdw.sign.enums.HttpMethod;
 import com.sdgdw.sign.module.response.UserPersonalRegisterResponse;
@@ -16,6 +15,7 @@ import lombok.NoArgsConstructor;
  * 个人用户注册请求对象
  *
  * @author modificial
+ * @version $Id: $Id
  * @since 2020/4/1
  */
 @EqualsAndHashCode(callSuper = true)
@@ -60,9 +60,9 @@ public class UserPersonalRegisterRequest extends AbstractSignRequest<UserPersona
 	private String description;
 
 	/**
+	 * {@inheritDoc}
+	 * <p>
 	 * 返回请求的必要参数信息
-	 *
-	 * @return
 	 */
 	@Override
 	@JsonIgnore

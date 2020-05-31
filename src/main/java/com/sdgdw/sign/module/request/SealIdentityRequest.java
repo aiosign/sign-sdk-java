@@ -13,7 +13,9 @@ import lombok.NoArgsConstructor;
 
 /**
  * 印章id
+ *
  * @author modificial
+ * @version $Id: $Id
  * @since 2020/4/11
  */
 @EqualsAndHashCode(callSuper = true)
@@ -27,6 +29,9 @@ public class SealIdentityRequest extends AbstractSignRequest<SealQueryResponse> 
      */
     private String sealId;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @JsonIgnore
     public RequestInfo<SealQueryResponse> getRequestInfo() {

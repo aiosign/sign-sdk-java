@@ -1,8 +1,6 @@
 package com.sdgdw.sign;
 
 
-import com.sdgdw.sign.client.SignClient;
-import com.sdgdw.sign.client.support.DefaultSignClient;
 import com.sdgdw.sign.module.request.UserInfoRequest;
 import com.sdgdw.sign.module.request.UserPersonalLockRequest;
 import com.sdgdw.sign.module.request.UserPersonalRegisterRequest;
@@ -12,7 +10,6 @@ import com.sdgdw.sign.module.response.UserPersonalLockResponse;
 import com.sdgdw.sign.module.response.UserPersonalRegisterResponse;
 import com.sdgdw.sign.module.response.UserPersonalUnLockResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
 import org.junit.Test;
 /**
  * @author yangyouwang
@@ -28,7 +25,7 @@ public class UserPersonalTest extends AbstractSignTest {
     public void register() {
         UserPersonalRegisterRequest userPersonalLockRequest = new UserPersonalRegisterRequest();
         // 姓名
-        userPersonalLockRequest.setUserName("测试");
+        userPersonalLockRequest.setUserName("测试001");
         // 地区编码
         userPersonalLockRequest.setAreaCode("370101");
         // 手机号
@@ -36,11 +33,11 @@ public class UserPersonalTest extends AbstractSignTest {
         // 证件类型
         userPersonalLockRequest.setIdType("111");
         // 证件号
-        userPersonalLockRequest.setIdNumber("371525199302311457");
+        userPersonalLockRequest.setIdNumber("371525199309870986");
         // 邮箱地址
         userPersonalLockRequest.setMail("1562310354@qq.com");
         // 描述
-        userPersonalLockRequest.setDescription("测试");
+        userPersonalLockRequest.setDescription("测试001");
         UserPersonalRegisterResponse execute = signClient.execute(userPersonalLockRequest);
         log.info("响应状态：{}",execute.getResultCode());
         log.info("响应信息：{}",execute.getResultMessage());
@@ -54,7 +51,7 @@ public class UserPersonalTest extends AbstractSignTest {
     public void lock() {
         UserPersonalLockRequest userPersonalLockRequest =new UserPersonalLockRequest();
         // 用户id
-        userPersonalLockRequest.setUserId("00708331277820514304");
+        userPersonalLockRequest.setUserId("00716661208384163840");
         UserPersonalLockResponse execute = signClient.execute(userPersonalLockRequest);
         log.info("响应状态：{}",execute.getResultCode());
         log.info("响应信息：{}",execute.getResultMessage());
@@ -68,7 +65,7 @@ public class UserPersonalTest extends AbstractSignTest {
     public void unLock() {
         UserPersonalUnLockRequest userPersonalUnLockRequest = new UserPersonalUnLockRequest();
         // 用户id
-        userPersonalUnLockRequest.setUserId("00708331277820514304");
+        userPersonalUnLockRequest.setUserId("00716661208384163840");
         UserPersonalUnLockResponse execute = signClient.execute(userPersonalUnLockRequest);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
@@ -82,7 +79,7 @@ public class UserPersonalTest extends AbstractSignTest {
     public void userinfo() {
         UserInfoRequest userInfoRequest = new UserInfoRequest();
         // 用户id
-        userInfoRequest.setUserId("00708331277820514304");
+        userInfoRequest.setUserId("00716661208384163840");
         UserInfoResponse execute = signClient.execute(userInfoRequest);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());

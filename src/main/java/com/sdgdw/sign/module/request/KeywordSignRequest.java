@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
  * 关键字签章参数
  *
  * @author modificial
+ * @version $Id: $Id
  * @since 2020/4/3
  */
 @EqualsAndHashCode(callSuper = true)
@@ -51,26 +52,28 @@ public class KeywordSignRequest  extends AbstractSignRequest<SignResponse> {
 
 	/**
 	 * true：合同内所有匹配位置全部签署；false：只签署第一个匹配；默认false
-	 */
-	private Boolean signAll;
+     */
+    private Boolean signAll;
 
-	/**
-	 * 用户id
-	 */
-	private String userId;
+    /**
+     * 用户id
+     */
+    private String userId;
 
 
-
-	@Override
-	@JsonIgnore
-	public RequestInfo<SignResponse> getRequestInfo() {
-		RequestInfo<SignResponse> requestInfo = new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("sign/keywordSign");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(SignResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @JsonIgnore
+    public RequestInfo<SignResponse> getRequestInfo() {
+        RequestInfo<SignResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("sign/keywordSign");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(SignResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

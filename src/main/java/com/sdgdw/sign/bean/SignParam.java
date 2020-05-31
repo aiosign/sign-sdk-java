@@ -1,11 +1,14 @@
 package com.sdgdw.sign.bean;
 
 import lombok.Data;
+
 import java.io.Serializable;
 
 /**
  * 签名域信息
+ *
  * @author modificial
+ * @version $Id: $Id
  */
 @Data
 public class SignParam implements Serializable {

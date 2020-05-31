@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
  * 企业用户身份信息
  *
  * @author modificial
+ * @version $Id: $Id
  * @since 2020/4/1
  */
 @EqualsAndHashCode(callSuper = true)
@@ -24,23 +25,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CompanyUserInfoRequest extends AbstractSignRequest<CompanyUserInfoResponse> {
 
-	/**
-	 * 用户id
-	 */
-	private String userId;
+    /**
+     * 用户id
+     */
+    private String userId;
 
-	private byte[] file;
+    private byte[] file;
 
-	@Override
-	@JsonIgnore
-	public RequestInfo<CompanyUserInfoResponse> getRequestInfo() {
-		RequestInfo<CompanyUserInfoResponse> requestInfo=new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("user/company/userinfo");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(CompanyUserInfoResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @JsonIgnore
+    public RequestInfo<CompanyUserInfoResponse> getRequestInfo() {
+        RequestInfo<CompanyUserInfoResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("user/company/userinfo");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(CompanyUserInfoResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

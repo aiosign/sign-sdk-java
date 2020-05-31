@@ -4,8 +4,9 @@ import lombok.Data;
 
 /**
  * 自定义签章参数
+ *
  * @author modificial
- * @description
+ * @version $Id: $Id
  * @since 2020/4/24
  */
 @Data

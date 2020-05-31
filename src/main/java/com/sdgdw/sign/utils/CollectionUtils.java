@@ -25,6 +25,7 @@ import java.util.*;
  * @author Juergen Hoeller
  * @author Rob Harrop
  * @author Arjen Poutsma
+ * @version $Id: $Id
  * @since 1.1.3
  */
 public abstract class CollectionUtils {
@@ -54,7 +55,7 @@ public abstract class CollectionUtils {
     /**
      * Convert the supplied array into a List. A primitive array gets converted
      * into a List of the appropriate wrapper type.
-     * <p><b>NOTE:</b> Generally prefer the standard {@link Arrays#asList} method.
+     * <p><b>NOTE:</b> Generally prefer the standard {@link java.util.Arrays#asList} method.
      * This {@code arrayToList} method is just meant to deal with an incoming Object
      * value that might be an {@code Object[]} or a primitive array at runtime.
      * <p>A {@code null} source value will be converted to an empty List.
@@ -74,6 +75,7 @@ public abstract class CollectionUtils {
      *
      * @param array      the array to merge (may be {@code null})
      * @param collection the target Collection to merge the array into
+     * @param <E>        a E object.
      */
     @SuppressWarnings("unchecked")
     public static <E> void mergeArrayIntoCollection(Object array, Collection<E> collection) {
@@ -91,6 +93,8 @@ public abstract class CollectionUtils {
      *
      * @param props the Properties instance to merge (may be {@code null})
      * @param map   the target Map to merge the properties into
+     * @param <K> a K object.
+     * @param <V> a V object.
      */
     @SuppressWarnings("unchecked")
     public static <K, V> void mergePropertiesIntoMap(Properties props, Map<K, V> map) {
@@ -190,14 +194,14 @@ public abstract class CollectionUtils {
      * Return the first element in '{@code candidates}' that is contained in
      * '{@code source}'. If no element in '{@code candidates}' is present in
      * '{@code source}' returns {@code null}. Iteration order is
-     * {@link Collection} implementation specific.
+     * {@link java.util.Collection} implementation specific.
      *
      * @param source     the source Collection
      * @param candidates the candidates to search for
      * @return the first present object, or {@code null} if not found
+     * @param <E> a E object.
      */
     @SuppressWarnings("unchecked")
-
     public static <E> E findFirstMatch(Collection<?> source, Collection<E> candidates) {
         if (isEmpty(source) || isEmpty(candidates)) {
             return null;
@@ -217,9 +221,9 @@ public abstract class CollectionUtils {
      * @param type       the type to look for
      * @return a value of the given type found if there is a clear match,
      * or {@code null} if none or more than one such value found
+     * @param <T> a T object.
      */
     @SuppressWarnings("unchecked")
-
     public static <T> T findValueOfType(Collection<?> collection, Class<T> type) {
         if (isEmpty(collection)) {
             return null;
@@ -247,7 +251,6 @@ public abstract class CollectionUtils {
      * @return a value of one of the given types found if there is a clear match,
      * or {@code null} if none or more than one such value found
      */
-
     public static Object findValueOfType(Collection<?> collection, Class<?>[] types) {
         if (isEmpty(collection) || ObjectUtils.isEmpty(types)) {
             return null;
@@ -292,7 +295,6 @@ public abstract class CollectionUtils {
      * @return the common element type, or {@code null} if no clear
      * common type has been found (or the collection was empty)
      */
-
     public static Class<?> findCommonElementType(Collection<?> collection) {
         if (isEmpty(collection)) {
             return null;
@@ -311,7 +313,7 @@ public abstract class CollectionUtils {
     }
 
     /**
-     * Retrieve the last element of the given Set, using {@link SortedSet#last()}
+     * Retrieve the last element of the given Set, using {@link java.util.SortedSet#last()}
      * or otherwise iterating over all elements (assuming a linked set).
      *
      * @param set the Set to check (may be {@code null} or empty)
@@ -320,8 +322,8 @@ public abstract class CollectionUtils {
      * @see LinkedHashMap#keySet()
      * @see LinkedHashSet
      * @since 5.0.3
+     * @param <T> a T object.
      */
-
     public static <T> T lastElement( Set<T> set) {
         if (isEmpty(set)) {
             return null;
@@ -345,8 +347,8 @@ public abstract class CollectionUtils {
      * @param list the List to check (may be {@code null} or empty)
      * @return the last element, or {@code null} if none
      * @since 5.0.3
+     * @param <T> a T object.
      */
-
     public static <T> T lastElement( List<T> list) {
         if (isEmpty(list)) {
             return null;
@@ -358,6 +360,10 @@ public abstract class CollectionUtils {
      * Marshal the elements from the given enumeration into an array of the given type.
      * Enumeration elements must be assignable to the type of the given array. The array
      * returned will be a different instance than the array given.
+     *
+     * @param enumeration a {@link java.util.Enumeration} object.
+     * @param array an array of A[] objects.
+     * @return an array of A[] objects.
      */
     public static <A, E extends A> A[] toArray(Enumeration<E> enumeration, A[] array) {
         ArrayList<A> elements = new ArrayList<>();
@@ -368,10 +374,11 @@ public abstract class CollectionUtils {
     }
 
     /**
-     * Adapt an {@link Enumeration} to an {@link Iterator}.
+     * Adapt an {@link java.util.Enumeration} to an {@link java.util.Iterator}.
      *
      * @param enumeration the original {@code Enumeration}
      * @return the adapted {@code Iterator}
+     * @param <E> a E object.
      */
     public static <E> Iterator<E> toIterator(Enumeration<E> enumeration) {
         return (enumeration != null ? new EnumerationIterator<>(enumeration) : Collections.emptyIterator());

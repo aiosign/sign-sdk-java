@@ -9,6 +9,7 @@ import java.util.Set;
  * 系统工具类。
  *
  * @author modificial
+ * @version $Id: $Id
  */
 public abstract class MineUtils {
 

@@ -1,8 +1,10 @@
 package com.sdgdw.sign.base;
 
 /**
+ * <p>ResponseCode class.</p>
+ *
  * @author modificial
- * @description
+ * @version $Id: $Id
  * @since 2020/5/12
  */
 public enum ResponseCode {

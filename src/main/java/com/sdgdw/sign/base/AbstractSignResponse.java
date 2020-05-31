@@ -8,8 +8,9 @@ import java.io.Serializable;
 
 /**
  * 公共响应对象
+ *
  * @author modificial
- * @description
+ * @version $Id: $Id
  * @since 2020/5/11
  */
 @Data
@@ -41,7 +42,8 @@ public abstract class AbstractSignResponse implements Serializable {
 
     /**
      * 是否请求成功
-     * @return
+     *
+     * @return a boolean.
      */
     @JsonIgnore
     public boolean isSuccess(){
@@ -52,7 +54,8 @@ public abstract class AbstractSignResponse implements Serializable {
 
     /**
      * 网关是否请求成功
-     * @return
+     *
+     * @return a boolean.
      */
     public boolean isGatewaySuccess(){
         return StringUtils.hasText(returnCode)&&returnCode.equals(SUCCESS_GATEWAY);
@@ -60,7 +63,8 @@ public abstract class AbstractSignResponse implements Serializable {
 
     /**
      * 请求api是否成功
-     * @return
+     *
+     * @return a boolean.
      */
     public boolean isApiSuccess(){
         return StringUtils.hasText(resultCode)&&returnCode.equals(SUCCESS_GATEWAY);

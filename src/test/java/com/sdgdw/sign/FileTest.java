@@ -15,22 +15,55 @@ import java.io.File;
  * @since 2020/5/19
  */
 @Slf4j
-public class FileTest extends AbstractSignTest{
+public class FileTest extends AbstractSignTest {
 
     /**
-     * 文件上传
+     * 上传印章
      */
     @Test
-    public void upload() {
+    public void uploadImpression() {
         FileUploadRequest fileUploadRequest = new FileUploadRequest();
         fileUploadRequest.setFileType("impression");
         fileUploadRequest.setFileName("测试印章");
-        fileUploadRequest.setUserId("00710519812799483904");
-        FileItem fileItem=new FileItem(new File("C:\\Users\\Administrator\\Downloads\\wallpaper\\SW-2FBAA3CF876BA6B08A5699E0CEFE9C28.jpg"));
+        fileUploadRequest.setUserId("00716661208384163840");
+        FileItem fileItem = new FileItem(new File("C:\\Users\\Administrator\\Desktop\\1.png"));
         fileUploadRequest.setFileItem(fileItem);
         FileUploadResponse execute = signClient.execute(fileUploadRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
+    /**
+     * 上传合同
+     */
+    @Test
+    public void uploadContract() {
+        FileUploadRequest fileUploadRequest = new FileUploadRequest();
+        fileUploadRequest.setFileType("contract");
+        fileUploadRequest.setFileName("测试合同");
+        fileUploadRequest.setUserId("00716661208384163840");
+        FileItem fileItem = new FileItem(new File("C:\\Users\\Administrator\\Desktop\\房屋合同.pdf"));
+        fileUploadRequest.setFileItem(fileItem);
+        FileUploadResponse execute = signClient.execute(fileUploadRequest);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
+    /**
+     * 上传模板
+     */
+    @Test
+    public void uploadTemplate() {
+        FileUploadRequest fileUploadRequest = new FileUploadRequest();
+        fileUploadRequest.setFileType("template");
+        fileUploadRequest.setFileName("测试模板");
+        FileItem fileItem = new FileItem(new File("C:\\Users\\Administrator\\Desktop\\template.pdf"));
+        fileUploadRequest.setFileItem(fileItem);
+        FileUploadResponse execute = signClient.execute(fileUploadRequest);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 }

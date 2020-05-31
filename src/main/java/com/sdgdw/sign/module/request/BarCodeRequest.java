@@ -14,8 +14,9 @@ import lombok.NoArgsConstructor;
 
 /**
  * 条形码请求参数
+ *
  * @author modificial
- * @description
+ * @version $Id: $Id
  * @since 2020/4/21
  */
 @EqualsAndHashCode(callSuper = true)
@@ -29,6 +30,9 @@ public class BarCodeRequest extends AbstractSignRequest<SignCheckResponse> {
     private String barCode;
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @JsonIgnore
     public RequestInfo<SignCheckResponse> getRequestInfo() {

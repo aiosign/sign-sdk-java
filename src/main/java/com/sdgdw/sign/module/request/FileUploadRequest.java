@@ -16,7 +16,10 @@ import java.util.Map;
 
 
 /**
+ * <p>FileUploadRequest class.</p>
+ *
  * @author yangyouwang
+ * @version $Id: $Id
  * @description 上传文件请求
  * @since 2020/5/19
  */
@@ -42,6 +45,9 @@ public class FileUploadRequest extends AbstractSignRequest<FileUploadResponse> {
      */
     private FileItem fileItem;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RequestInfo<FileUploadResponse> getRequestInfo() {
         RequestInfo<FileUploadResponse> requestInfo=new RequestInfo<>();

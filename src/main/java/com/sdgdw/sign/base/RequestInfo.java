@@ -11,8 +11,9 @@ import java.util.Map;
 
 /**
  * 请求必要信息
+ *
  * @author modificial
- * @description
+ * @version $Id: $Id
  * @since 2020/5/11
  */
 @Data

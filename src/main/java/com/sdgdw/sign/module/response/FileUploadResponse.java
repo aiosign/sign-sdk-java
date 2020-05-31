@@ -6,7 +6,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
+ * <p>FileUploadResponse class.</p>
+ *
  * @author yangyouwang
+ * @version $Id: $Id
  * @description 文件上传响应
  * @since 2020/5/19
  */

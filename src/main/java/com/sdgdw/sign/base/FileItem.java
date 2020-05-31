@@ -8,6 +8,7 @@ import java.io.*;
  * 文件元数据。
  *
  * @author modificial
+ * @version $Id: $Id
  */
 public class FileItem {
 
@@ -57,6 +58,11 @@ public class FileItem {
         this.mimeType = mimeType;
     }
 
+    /**
+     * <p>Getter for the field <code>fileName</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getFileName() {
         if (this.fileName == null && this.file != null && this.file.exists()) {
             this.fileName = file.getName();
@@ -64,6 +70,12 @@ public class FileItem {
         return this.fileName;
     }
 
+    /**
+     * <p>Getter for the field <code>mimeType</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     * @throws java.io.IOException if any.
+     */
     public String getMimeType() throws IOException {
         if (this.mimeType == null) {
             this.mimeType = MineUtils.getMimeType(getContent());
@@ -71,6 +83,12 @@ public class FileItem {
         return this.mimeType;
     }
 
+    /**
+     * <p>Getter for the field <code>content</code>.</p>
+     *
+     * @return an array of {@link byte} objects.
+     * @throws java.io.IOException if any.
+     */
     public byte[] getContent() throws IOException {
         if (this.content == null && this.file != null && this.file.exists()) {
             InputStream in = null;
@@ -93,7 +111,11 @@ public class FileItem {
                 }
             }
         }
-        return this.content;
+        byte[] content = this.content;
+        if (null != content && content.length > 0) {
+            return content;
+        }
+        throw new RuntimeException("获取文件流失败,请检查文件是否存在");
     }
 
 }

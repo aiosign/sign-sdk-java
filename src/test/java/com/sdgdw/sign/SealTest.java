@@ -22,13 +22,13 @@ public class SealTest extends AbstractSignTest {
     public void add() {
         SealAddRequest sealAddRequest = new SealAddRequest();
         // 用户id
-        sealAddRequest.setUserId("00710519812799483904");
+        sealAddRequest.setUserId("00716661208384163840");
         // 印章名字
-        sealAddRequest.setSealName("测试");
+        sealAddRequest.setSealName("测试印章");
         // 印章类型
-        sealAddRequest.setSealType("99");
+        sealAddRequest.setSealType("01");
         // 印章文件id
-        sealAddRequest.setFileId("2ba1b307524a5eece0edb26cfc5fb64b");
+        sealAddRequest.setFileId("1f63ed0d5fd6631b788115abbb6e3bec");
         // 印章规格
         sealAddRequest.setSize("40*40");
         // 描述
@@ -46,7 +46,7 @@ public class SealTest extends AbstractSignTest {
     public void remove() {
         SealRemoveRequest sealRemoveRequest = new SealRemoveRequest();
         // 印章id
-        sealRemoveRequest.setSealId("de9af3e9a1dd866d26deb5fda69c8405");
+        sealRemoveRequest.setSealId("a9e48474650448709a3b577ce4f72234");
         SealBatchResponse execute = signClient.execute(sealRemoveRequest);
         log.info("响应状态：{}",execute.getResultCode());
         log.info("响应信息：{}",execute.getResultMessage());
@@ -59,7 +59,7 @@ public class SealTest extends AbstractSignTest {
     @Test
     public void lock() {
         SealLockRequest sealLockRequest = new SealLockRequest(); // 印章id
-        sealLockRequest.setSealId("de9af3e9a1dd866d26deb5fda69c8405");
+        sealLockRequest.setSealId("a9e48474650448709a3b577ce4f72234");
         SealBatchResponse execute = signClient.execute(sealLockRequest);
         log.info("响应状态：{}",execute.getResultCode());
         log.info("响应信息：{}",execute.getResultMessage());
@@ -72,7 +72,7 @@ public class SealTest extends AbstractSignTest {
     @Test
     public void unlock() {
         SealUnLockRequest sealUnLockRequest = new SealUnLockRequest(); // 印章id
-        sealUnLockRequest.setSealId("de9af3e9a1dd866d26deb5fda69c8405");
+        sealUnLockRequest.setSealId("a9e48474650448709a3b577ce4f72234");
         SealBatchResponse execute = signClient.execute(sealUnLockRequest);
         log.info("响应状态：{}",execute.getResultCode());
         log.info("响应信息：{}",execute.getResultMessage());
@@ -85,7 +85,7 @@ public class SealTest extends AbstractSignTest {
     @Test
     public void query() {
         SealIdentityRequest sealIdentityRequest = new SealIdentityRequest(); // 印章id
-        sealIdentityRequest.setSealId("de9af3e9a1dd866d26deb5fda69c8405");
+        sealIdentityRequest.setSealId("a9e48474650448709a3b577ce4f72234");
         SealQueryResponse execute = signClient.execute(sealIdentityRequest);
         log.info("响应状态：{}",execute.getResultCode());
         log.info("响应信息：{}",execute.getResultMessage());

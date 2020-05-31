@@ -16,6 +16,7 @@ import java.security.NoSuchAlgorithmException;
  * @author Juergen Hoeller
  * @author Craig Andrews
  * @since 3.0
+ * @version $Id: $Id
  */
 public abstract class DigestUtils {
 
@@ -25,65 +26,74 @@ public abstract class DigestUtils {
 			{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
 
-	/**
-	 * Calculate the MD5 digest of the given bytes.
-	 * @param bytes the bytes to calculate the digest over
-	 * @return the digest
-	 */
+    /**
+     * Calculate the MD5 digest of the given bytes.
+     *
+     * @param bytes the bytes to calculate the digest over
+     * @return the digest
+     */
 	public static byte[] md5Digest(byte[] bytes) {
 		return digest(MD5_ALGORITHM_NAME, bytes);
-	}
+    }
 
-	/**
-	 * Calculate the MD5 digest of the given stream.
-	 * <p>This method does <strong>not</strong> close the input stream.
-	 * @param inputStream the InputStream to calculate the digest over
-	 * @return the digest
-	 * @since 4.2
+    /**
+     * Calculate the MD5 digest of the given stream.
+     * <p>This method does <strong>not</strong> close the input stream.
+     *
+     * @param inputStream the InputStream to calculate the digest over
+     * @return the digest
+     * @since 4.2
+     * @throws java.io.IOException if any.
 	 */
 	public static byte[] md5Digest(InputStream inputStream) throws IOException {
 		return digest(MD5_ALGORITHM_NAME, inputStream);
-	}
+    }
 
-	/**
-	 * Return a hexadecimal string representation of the MD5 digest of the given bytes.
-	 * @param bytes the bytes to calculate the digest over
-	 * @return a hexadecimal digest string
+    /**
+     * Return a hexadecimal string representation of the MD5 digest of the given bytes.
+     *
+     * @param bytes the bytes to calculate the digest over
+     * @return a hexadecimal digest string
 	 */
 	public static String md5DigestAsHex(byte[] bytes) {
 		return digestAsHexString(MD5_ALGORITHM_NAME, bytes);
-	}
+    }
 
-	/**
-	 * Return a hexadecimal string representation of the MD5 digest of the given stream.
-	 * <p>This method does <strong>not</strong> close the input stream.
-	 * @param inputStream the InputStream to calculate the digest over
-	 * @return a hexadecimal digest string
-	 * @since 4.2
+    /**
+     * Return a hexadecimal string representation of the MD5 digest of the given stream.
+     * <p>This method does <strong>not</strong> close the input stream.
+     *
+     * @param inputStream the InputStream to calculate the digest over
+     * @return a hexadecimal digest string
+     * @since 4.2
+     * @throws java.io.IOException if any.
 	 */
 	public static String md5DigestAsHex(InputStream inputStream) throws IOException {
 		return digestAsHexString(MD5_ALGORITHM_NAME, inputStream);
-	}
+    }
 
-	/**
-	 * Append a hexadecimal string representation of the MD5 digest of the given
-	 * bytes to the given {@link StringBuilder}.
-	 * @param bytes the bytes to calculate the digest over
-	 * @param builder the string builder to append the digest to
-	 * @return the given string builder
+    /**
+     * Append a hexadecimal string representation of the MD5 digest of the given
+     * bytes to the given {@link java.lang.StringBuilder}.
+     *
+     * @param bytes the bytes to calculate the digest over
+     * @param builder the string builder to append the digest to
+     * @return the given string builder
 	 */
 	public static StringBuilder appendMd5DigestAsHex(byte[] bytes, StringBuilder builder) {
 		return appendDigestAsHex(MD5_ALGORITHM_NAME, bytes, builder);
-	}
+    }
 
-	/**
-	 * Append a hexadecimal string representation of the MD5 digest of the given
-	 * inputStream to the given {@link StringBuilder}.
-	 * <p>This method does <strong>not</strong> close the input stream.
-	 * @param inputStream the inputStream to calculate the digest over
-	 * @param builder the string builder to append the digest to
-	 * @return the given string builder
-	 * @since 4.2
+    /**
+     * Append a hexadecimal string representation of the MD5 digest of the given
+     * inputStream to the given {@link java.lang.StringBuilder}.
+     * <p>This method does <strong>not</strong> close the input stream.
+     *
+     * @param inputStream the inputStream to calculate the digest over
+     * @param builder the string builder to append the digest to
+     * @return the given string builder
+     * @since 4.2
+     * @throws java.io.IOException if any.
 	 */
 	public static StringBuilder appendMd5DigestAsHex(InputStream inputStream, StringBuilder builder) throws IOException {
 		return appendDigestAsHex(MD5_ALGORITHM_NAME, inputStream, builder);

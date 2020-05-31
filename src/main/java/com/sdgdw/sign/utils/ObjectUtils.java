@@ -38,6 +38,7 @@ import java.util.Optional;
  * @see CollectionUtils
  * @see StringUtils
  * @since 19.03.2004
+ * @version $Id: $Id
  */
 public abstract class ObjectUtils {
 
@@ -93,6 +94,7 @@ public abstract class ObjectUtils {
      * either an Object array or a primitive array.
      *
      * @param obj the object to check
+     * @return a boolean.
      */
     public static boolean isArray( Object obj) {
         return (obj != null && obj.getClass().isArray());
@@ -103,6 +105,7 @@ public abstract class ObjectUtils {
      * i.e. {@code null} or of zero length.
      *
      * @param array the array to check
+     * @return a boolean.
      * @see #isEmpty(Object)
      */
     public static boolean isEmpty( Object[] array) {
@@ -113,11 +116,11 @@ public abstract class ObjectUtils {
      * Determine whether the given object is empty.
      * <p>This method supports the following object types.
      * <ul>
-     * <li>{@code Optional}: considered empty if {@link Optional#empty()}</li>
+     * <li>{@code Optional}: considered empty if {@link java.util.Optional#empty()}</li>
      * <li>{@code Array}: considered empty if its length is zero</li>
-     * <li>{@link CharSequence}: considered empty if its length is zero</li>
-     * <li>{@link Collection}: delegates to {@link Collection#isEmpty()}</li>
-     * <li>{@link Map}: delegates to {@link Map#isEmpty()}</li>
+     * <li>{@link java.lang.CharSequence}: considered empty if its length is zero</li>
+     * <li>{@link java.util.Collection}: delegates to {@link java.util.Collection#isEmpty()}</li>
+     * <li>{@link java.util.Map}: delegates to {@link java.util.Map#isEmpty()}</li>
      * </ul>
      * <p>If the given object is non-null and not one of the aforementioned
      * supported types, this method returns {@code false}.
@@ -159,14 +162,13 @@ public abstract class ObjectUtils {
     }
 
     /**
-     * Unwrap the given object which is potentially a {@link Optional}.
+     * Unwrap the given object which is potentially a {@link java.util.Optional}.
      *
      * @param obj the candidate object
      * @return either the value held within the {@code Optional}, {@code null}
      * if the {@code Optional} is empty, or simply the given object as-is
      * @since 5.0
      */
-
     public static Object unwrapOptional(Object obj) {
         if (obj instanceof Optional) {
             Optional<?> optional = (Optional<?>) obj;
@@ -231,14 +233,14 @@ public abstract class ObjectUtils {
     }
 
     /**
-     * Case insensitive alternative to {@link Enum#valueOf(Class, String)}.
+     * Case insensitive alternative to {@link java.lang.Enum#valueOf(Class, String)}.
      *
-     * @param <E>        the concrete Enum type
      * @param enumValues the array of all Enum constants in question, usually per {@code Enum.values()}
      * @param constant   the constant to get the enum value of
-     * @throws IllegalArgumentException if the given constant is not found in the given array
-     *                                  of enum values. Use {@link #containsConstant(Enum[], String)} as a guard to
-     *                                  avoid this exception.
+     * @return a E object.
+     * @throws java.lang.IllegalArgumentException if the given constant is not found in the given array
+     *                                            of enum values. Use {@link #containsConstant(Enum[], String)} as a guard to
+     *                                            avoid this exception.
      */
     public static <E extends Enum<?>> E caseInsensitiveValueOf(E[] enumValues, String constant) {
         for (E candidate : enumValues) {
@@ -257,6 +259,8 @@ public abstract class ObjectUtils {
      * @param array the array to append to (can be {@code null})
      * @param obj   the object to append
      * @return the new array (of the same component type; never {@code null})
+     * @param <A> a A object.
+     * @param <O> a O object.
      */
     public static <A, O extends A> A[] addObjectToArray( A[] array,  O obj) {
         Class<?> compType = Object.class;
@@ -283,7 +287,7 @@ public abstract class ObjectUtils {
      *
      * @param source the (potentially primitive) array
      * @return the corresponding object array (never {@code null})
-     * @throws IllegalArgumentException if the parameter is not an array
+     * @throws java.lang.IllegalArgumentException if the parameter is not an array
      */
     public static Object[] toObjectArray(Object source) {
         if (source instanceof Object[]) {
@@ -398,6 +402,8 @@ public abstract class ObjectUtils {
      * @see #nullSafeHashCode(int[])
      * @see #nullSafeHashCode(long[])
      * @see #nullSafeHashCode(short[])
+     * @param obj a {@link java.lang.Object} object.
+     * @return a int.
      */
     public static int nullSafeHashCode( Object obj) {
         if (obj == null) {
@@ -438,6 +444,9 @@ public abstract class ObjectUtils {
     /**
      * Return a hash code based on the contents of the specified array.
      * If {@code array} is {@code null}, this method returns 0.
+     *
+     * @param array an array of {@link java.lang.Object} objects.
+     * @return a int.
      */
     public static int nullSafeHashCode( Object[] array) {
         if (array == null) {
@@ -453,6 +462,9 @@ public abstract class ObjectUtils {
     /**
      * Return a hash code based on the contents of the specified array.
      * If {@code array} is {@code null}, this method returns 0.
+     *
+     * @param array an array of {@link boolean} objects.
+     * @return a int.
      */
     public static int nullSafeHashCode( boolean[] array) {
         if (array == null) {
@@ -468,6 +480,9 @@ public abstract class ObjectUtils {
     /**
      * Return a hash code based on the contents of the specified array.
      * If {@code array} is {@code null}, this method returns 0.
+     *
+     * @param array an array of {@link byte} objects.
+     * @return a int.
      */
     public static int nullSafeHashCode( byte[] array) {
         if (array == null) {
@@ -483,6 +498,9 @@ public abstract class ObjectUtils {
     /**
      * Return a hash code based on the contents of the specified array.
      * If {@code array} is {@code null}, this method returns 0.
+     *
+     * @param array an array of {@link char} objects.
+     * @return a int.
      */
     public static int nullSafeHashCode( char[] array) {
         if (array == null) {
@@ -498,6 +516,9 @@ public abstract class ObjectUtils {
     /**
      * Return a hash code based on the contents of the specified array.
      * If {@code array} is {@code null}, this method returns 0.
+     *
+     * @param array an array of {@link double} objects.
+     * @return a int.
      */
     public static int nullSafeHashCode( double[] array) {
         if (array == null) {
@@ -513,6 +534,9 @@ public abstract class ObjectUtils {
     /**
      * Return a hash code based on the contents of the specified array.
      * If {@code array} is {@code null}, this method returns 0.
+     *
+     * @param array an array of {@link float} objects.
+     * @return a int.
      */
     public static int nullSafeHashCode( float[] array) {
         if (array == null) {
@@ -528,6 +552,9 @@ public abstract class ObjectUtils {
     /**
      * Return a hash code based on the contents of the specified array.
      * If {@code array} is {@code null}, this method returns 0.
+     *
+     * @param array an array of {@link int} objects.
+     * @return a int.
      */
     public static int nullSafeHashCode( int[] array) {
         if (array == null) {
@@ -543,6 +570,9 @@ public abstract class ObjectUtils {
     /**
      * Return a hash code based on the contents of the specified array.
      * If {@code array} is {@code null}, this method returns 0.
+     *
+     * @param array an array of {@link long} objects.
+     * @return a int.
      */
     public static int nullSafeHashCode( long[] array) {
         if (array == null) {
@@ -558,6 +588,9 @@ public abstract class ObjectUtils {
     /**
      * Return a hash code based on the contents of the specified array.
      * If {@code array} is {@code null}, this method returns 0.
+     *
+     * @param array an array of {@link short} objects.
+     * @return a int.
      */
     public static int nullSafeHashCode( short[] array) {
         if (array == null) {
@@ -571,9 +604,11 @@ public abstract class ObjectUtils {
     }
 
     /**
-     * Return the same value as {@link Boolean#hashCode(boolean)}}.
+     * Return the same value as {@link java.lang.Boolean#hashCode(boolean)}}.
      *
      * @deprecated as of Spring Framework 5.0, in favor of the native JDK 8 variant
+     * @param bool a boolean.
+     * @return a int.
      */
     @Deprecated
     public static int hashCode(boolean bool) {
@@ -581,9 +616,11 @@ public abstract class ObjectUtils {
     }
 
     /**
-     * Return the same value as {@link Double#hashCode(double)}}.
+     * Return the same value as {@link java.lang.Double#hashCode(double)}}.
      *
      * @deprecated as of Spring Framework 5.0, in favor of the native JDK 8 variant
+     * @param dbl a double.
+     * @return a int.
      */
     @Deprecated
     public static int hashCode(double dbl) {
@@ -591,9 +628,11 @@ public abstract class ObjectUtils {
     }
 
     /**
-     * Return the same value as {@link Float#hashCode(float)}}.
+     * Return the same value as {@link java.lang.Float#hashCode(float)}}.
      *
      * @deprecated as of Spring Framework 5.0, in favor of the native JDK 8 variant
+     * @param flt a float.
+     * @return a int.
      */
     @Deprecated
     public static int hashCode(float flt) {
@@ -601,9 +640,11 @@ public abstract class ObjectUtils {
     }
 
     /**
-     * Return the same value as {@link Long#hashCode(long)}}.
+     * Return the same value as {@link java.lang.Long#hashCode(long)}}.
      *
      * @deprecated as of Spring Framework 5.0, in favor of the native JDK 8 variant
+     * @param lng a long.
+     * @return a int.
      */
     @Deprecated
     public static int hashCode(long lng) {

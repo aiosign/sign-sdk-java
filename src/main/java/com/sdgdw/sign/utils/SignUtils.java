@@ -13,6 +13,7 @@ import java.util.Base64;
  * 签名算法工具类
  *
  * @author modificial
+ * @version $Id: $Id
  * @since 2020/3/26
  */
 @Slf4j
@@ -40,8 +41,9 @@ public class SignUtils {
     /**
      * 校验签名是否正确.
      *
-     * @param params  需要校验的参数 string
-     * @param signKey 校验的签名Key appsecret
+     * @param params      需要校验的参数 string
+     * @param signKey     校验的签名Key appsecret
+     * @param currentSign a {@link java.lang.String} object.
      * @return true - 签名校验成功，false - 签名校验失败
      */
     public static boolean checkSign(String params, String signKey, String currentSign) {
@@ -52,9 +54,9 @@ public class SignUtils {
     /**
      * HmacSHA256签名
      *
-     * @param message
-     * @param key
-     * @return
+     * @param message a {@link java.lang.String} object.
+     * @param key a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
      */
     public static String createHmacSha256Sign(String message, String key) {
         try {

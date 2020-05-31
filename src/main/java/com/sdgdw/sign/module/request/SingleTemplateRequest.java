@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
  * 单次模板签章参数
  *
  * @author modificial
+ * @version $Id: $Id
  * @since 2020/4/3
  */
 @EqualsAndHashCode(callSuper = true)
@@ -33,6 +34,9 @@ public class SingleTemplateRequest extends AbstractSignRequest<SignResponse> {
 	 */
     private SignFields signField;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @JsonIgnore
     public RequestInfo<SignResponse> getRequestInfo() {

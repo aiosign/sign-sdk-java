@@ -83,8 +83,8 @@
 package com.sdgdw.sign;
 
 
-import com.sdgdw.sign.module.request.UserInfoRequest;
-import com.sdgdw.sign.module.response.UserInfoResponse;
+import UserInfoRequest;
+import UserInfoResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 /**

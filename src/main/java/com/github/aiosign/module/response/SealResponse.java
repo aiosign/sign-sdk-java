@@ -9,7 +9,6 @@ import lombok.EqualsAndHashCode;
  * 印章操作结果
  *
  * @author modificial
- * @version $Id: $Id
  * @since 2020/4/1
  */
 @EqualsAndHashCode(callSuper = true)

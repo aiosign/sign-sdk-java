@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
  * 模本签名参数
  *
  * @author modificial
- * @version $Id: $Id
  * @since 2020/4/2
  */
 @EqualsAndHashCode(callSuper = true)

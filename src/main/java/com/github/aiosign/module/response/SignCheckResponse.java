@@ -9,10 +9,8 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * <p>SignCheckResponse class.</p>
- *
  * @author yangyouwang
- * @version $Id: $Id
+ * @description
  * @since 2020/5/12
  */
 @EqualsAndHashCode(callSuper = true)

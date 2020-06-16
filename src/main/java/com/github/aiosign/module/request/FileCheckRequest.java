@@ -16,11 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <p>FileCheckRequest class.</p>
- * 文件验签请求
- *
  * @author yangyouwang
- * @version $Id: $Id
+ * @description 文件验签请求
  * @since 2020/5/20
  */
 @EqualsAndHashCode(callSuper = true)
@@ -35,20 +32,17 @@ public class FileCheckRequest extends AbstractSignRequest<SignCheckResponse> {
     private FileItem fileItem;
 
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     @JsonIgnore
     public RequestInfo<SignCheckResponse> getRequestInfo() {
-        RequestInfo<SignCheckResponse> requestInfo = new RequestInfo<>();
+        RequestInfo<SignCheckResponse> requestInfo=new RequestInfo<>();
         requestInfo.setContentType(ContentType.MULTIPART);
         requestInfo.setApiUri("sign/check/file");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(SignCheckResponse.class);
         Map<String, FileItem> map = new HashMap<>(2);
-        map.put("file", fileItem);
+        map.put("file",fileItem);
         requestInfo.setFileParams(map);
         return requestInfo;
     }

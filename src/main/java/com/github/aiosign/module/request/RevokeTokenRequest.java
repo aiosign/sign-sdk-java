@@ -13,10 +13,8 @@ import lombok.NoArgsConstructor;
 import java.util.Collections;
 
 /**
- * <p>RevokeTokenRequest class.</p>
- *
  * @author modificial
- * @version $Id: $Id
+ * @description
  * @since 2020/5/12
  */
 @EqualsAndHashCode(callSuper = true)
@@ -28,11 +26,10 @@ public class RevokeTokenRequest extends AbstractSignRequest<RevokeTokenResponse>
      * 需要回收的token值
      */
     private String token;
-
     /**
-     * {@inheritDoc}
-     * <p>
      * 返回请求的必要参数信息
+     *
+     * @return
      */
     @Override
     public RequestInfo<RevokeTokenResponse> getRequestInfo() {

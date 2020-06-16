@@ -10,11 +10,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
 /**
  * 用户个人账户
  *
  * @author modificial
- * @version $Id: $Id
  * @since 2020/4/1
  */
 @EqualsAndHashCode(callSuper = true)
@@ -28,11 +28,11 @@ public class UserPersonalLockRequest extends AbstractSignRequest<UserPersonalLoc
 	 */
 	private String userId;
 
-    /**
-     * {@inheritDoc}
-     * <p>
-     * 返回请求的必要参数信息
-     */
+	/**
+	 * 返回请求的必要参数信息
+	 *
+	 * @return
+	 */
 	@Override
 	@JsonIgnore
 	public RequestInfo<UserPersonalLockResponse> getRequestInfo() {

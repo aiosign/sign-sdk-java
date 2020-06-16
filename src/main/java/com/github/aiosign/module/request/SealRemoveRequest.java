@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
  * 印章唯一标识,以逗号隔开
  *
  * @author modificial
- * @version $Id: $Id
  * @since 2020/4/1
  */
 @EqualsAndHashCode(callSuper = true)
@@ -26,25 +25,22 @@ import lombok.NoArgsConstructor;
 public class SealRemoveRequest extends AbstractSignRequest<SealBatchResponse> {
 
 
-    /**
-     * 印章id
-     */
-    private String sealId;
+	/**
+	 * 印章id
+	 */
+	private String sealId;
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @JsonIgnore
-    public RequestInfo<SealBatchResponse> getRequestInfo() {
-        RequestInfo<SealBatchResponse> requestInfo = new RequestInfo<>();
-        requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("seal/remove");
-        requestInfo.setMethod(HttpMethod.POST);
-        requestInfo.setNeedToken(true);
-        requestInfo.setResponseType(SealBatchResponse.class);
-        requestInfo.setRequestBody(this);
-        return requestInfo;
-    }
+	@Override
+	@JsonIgnore
+	public RequestInfo<SealBatchResponse> getRequestInfo() {
+		RequestInfo<SealBatchResponse> requestInfo = new RequestInfo<>();
+		requestInfo.setContentType(ContentType.JSON);
+		requestInfo.setApiUri("seal/remove");
+		requestInfo.setMethod(HttpMethod.POST);
+		requestInfo.setNeedToken(true);
+		requestInfo.setResponseType(SealBatchResponse.class);
+		requestInfo.setRequestBody(this);
+		return requestInfo;
+	}
 
 }

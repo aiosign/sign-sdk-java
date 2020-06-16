@@ -196,8 +196,7 @@ public class SignTest extends AbstractSignTest {
         // 页码
         signDetail.setPageNum(1);
         // 规格
-        signDetail.setSignHeight(40);
-        signDetail.setSignWidth(40);
+        signDetail.setSignSize("10");
         // 签署距离合同上方距离
         signDetail.setSignTop(100);
         // 签署距离合同左方距离

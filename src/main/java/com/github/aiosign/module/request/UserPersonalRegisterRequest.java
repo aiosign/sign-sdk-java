@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
  * 个人用户注册请求对象
  *
  * @author modificial
- * @version $Id: $Id
  * @since 2020/4/1
  */
 @EqualsAndHashCode(callSuper = true)
@@ -60,9 +59,9 @@ public class UserPersonalRegisterRequest extends AbstractSignRequest<UserPersona
 	private String description;
 
 	/**
-	 * {@inheritDoc}
-	 * <p>
 	 * 返回请求的必要参数信息
+	 *
+	 * @return
 	 */
 	@Override
 	@JsonIgnore

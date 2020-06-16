@@ -9,7 +9,6 @@ import lombok.EqualsAndHashCode;
  * 个人用户注册返回信息
  *
  * @author modificial
- * @version $Id: $Id
  * @since 2020/4/1
  */
 @EqualsAndHashCode(callSuper = true)
@@ -25,7 +24,7 @@ public class UserPersonalRegisterResponse extends AbstractSignResponse {
 	 */
 	@EqualsAndHashCode(callSuper = true)
 	@Data
-	public static class UserPersonalRegisterModule extends BaseSignObject {
+	public static class UserPersonalRegisterModule extends BaseSignObject{
 		/**
 		 * 用户id
 		 */

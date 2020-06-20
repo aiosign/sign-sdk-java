@@ -12,7 +12,6 @@ import java.util.List;
  * 批量签章参数
  *
  * @author modificial
- * @version $Id: $Id
  * @since 2020/4/3
  */
 @EqualsAndHashCode(callSuper = true)

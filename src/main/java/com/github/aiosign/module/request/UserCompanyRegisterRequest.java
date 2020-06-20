@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
  * 企业用户注册
  *
  * @author modificial
- * @version $Id: $Id
  * @since 2020/4/1
  */
 @EqualsAndHashCode(callSuper = true)
@@ -89,29 +88,26 @@ public class UserCompanyRegisterRequest extends AbstractSignRequest<UserCompanyR
 	 */
 	private String agentPhone;
 
-    /**
-     * 经办人邮箱
-     */
-    private String agentEmail;
+	/**
+	 * 经办人邮箱
+	 */
+	private String agentEmail;
 
-    /**
-     * 描述信息
-     */
-    private String description;
+	/**
+	 * 描述信息
+	 */
+	private String description;
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @JsonIgnore
-    public RequestInfo<UserCompanyResponse> getRequestInfo() {
-        RequestInfo<UserCompanyResponse> requestInfo = new RequestInfo<>();
-        requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("user/company/register");
-        requestInfo.setMethod(HttpMethod.POST);
-        requestInfo.setNeedToken(true);
-        requestInfo.setResponseType(UserCompanyResponse.class);
-        requestInfo.setRequestBody(this);
-        return requestInfo;
-    }
+	@Override
+	@JsonIgnore
+	public RequestInfo<UserCompanyResponse> getRequestInfo() {
+		RequestInfo<UserCompanyResponse> requestInfo=new RequestInfo<>();
+		requestInfo.setContentType(ContentType.JSON);
+		requestInfo.setApiUri("user/company/register");
+		requestInfo.setMethod(HttpMethod.POST);
+		requestInfo.setNeedToken(true);
+		requestInfo.setResponseType(UserCompanyResponse.class);
+		requestInfo.setRequestBody(this);
+		return requestInfo;
+	}
 }

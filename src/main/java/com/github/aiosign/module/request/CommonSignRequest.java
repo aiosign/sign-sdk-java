@@ -18,7 +18,6 @@ import java.util.List;
  * 普通签章请求参数
  *
  * @author modificial
- * @version $Id: $Id
  * @since 2020/4/3
  */
 @EqualsAndHashCode(callSuper = true)
@@ -83,9 +82,6 @@ public class CommonSignRequest extends AbstractSignRequest<SignResponse> {
 
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	@JsonIgnore
 	public RequestInfo<SignResponse> getRequestInfo() {

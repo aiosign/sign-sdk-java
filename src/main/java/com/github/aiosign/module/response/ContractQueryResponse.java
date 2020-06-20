@@ -13,7 +13,6 @@ import java.util.List;
  * 合同添加返回值
  *
  * @author modificial
- * @version $Id: $Id
  * @since 2020/4/2
  */
 @EqualsAndHashCode(callSuper = true)

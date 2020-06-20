@@ -11,7 +11,6 @@ import java.io.Serializable;
  * 企业用户身份信息
  *
  * @author modificial
- * @version $Id: $Id
  * @since 2020/4/1
  */
 @EqualsAndHashCode(callSuper = true)

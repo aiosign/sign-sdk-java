@@ -1,10 +1,7 @@
 package com.github.aiosign.client.support;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.aiosign.base.AbstractSignRequest;
-import com.github.aiosign.base.AbstractSignResponse;
-import com.github.aiosign.base.FileItem;
-import com.github.aiosign.base.RequestInfo;
+import com.github.aiosign.base.*;
 import com.github.aiosign.client.SignClient;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.utils.*;
@@ -114,6 +111,18 @@ public class DefaultSignClient implements SignClient {
         }
         throw new RuntimeException("调用api发生错误");
     }
+
+    /**
+     * 执行相关组合业务
+     *
+     * @param
+     * @return
+     */
+    @Override
+    public <T extends AbstractSignResponse> T execute(AbstractComposeRequest<T> composeRequest) {
+        return composeRequest.execute(this);
+    }
+
 
     /**
      * 发起请求并获取结果

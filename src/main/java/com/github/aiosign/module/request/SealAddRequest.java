@@ -10,11 +10,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
 /**
  * 印章添加参数
  *
  * @author modificial
- * @version $Id: $Id
  * @since 2020/4/1
  */
 @EqualsAndHashCode(callSuper = true)
@@ -44,29 +44,26 @@ public class SealAddRequest extends AbstractSignRequest<SealResponse> {
 	 */
 	private String fileId;
 
-    /**
-     * 印章规格
-     */
-    private String size;
+	/**
+	 * 印章规格
+	 */
+	private String size;
 
-    /**
-     * 描述信息
-     */
-    private String description;
+	/**
+	 * 描述信息
+	 */
+	private String description;
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @JsonIgnore
-    public RequestInfo<SealResponse> getRequestInfo() {
-        RequestInfo<SealResponse> requestInfo = new RequestInfo<>();
-        requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("seal/add");
-        requestInfo.setMethod(HttpMethod.POST);
-        requestInfo.setNeedToken(true);
-        requestInfo.setResponseType(SealResponse.class);
-        requestInfo.setRequestBody(this);
-        return requestInfo;
-    }
+	@Override
+	@JsonIgnore
+	public RequestInfo<SealResponse> getRequestInfo() {
+		RequestInfo<SealResponse> requestInfo = new RequestInfo<>();
+		requestInfo.setContentType(ContentType.JSON);
+		requestInfo.setApiUri("seal/add");
+		requestInfo.setMethod(HttpMethod.POST);
+		requestInfo.setNeedToken(true);
+		requestInfo.setResponseType(SealResponse.class);
+		requestInfo.setRequestBody(this);
+		return requestInfo;
+	}
 }

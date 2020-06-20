@@ -143,7 +143,7 @@ SDK中接口获取token的操作都已经封装好了，获取token成功后会�
 首先对字符串做去空格化处理（包括\r\n），然后对字符串做HmacSHA256算法，秘钥为您的appsecret，编码一定要为UTF-8，否则可能会导致获取的加密值不同，然后转为base64编码的字符串的加密字符串，最后对该字符串做MD5摘要，最后的字符串将作为最终的签名值。
 签名的工具类代码如下：
 ```java 
-package com.sdgdw.sign.utils;
+package com.github.aiosign.utils;
 
 import lombok.extern.slf4j.Slf4j;
 

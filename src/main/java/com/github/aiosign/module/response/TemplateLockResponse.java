@@ -7,9 +7,6 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 模板锁定或解锁返回结果
- *
- * @author Administrator
- * @version $Id: $Id
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

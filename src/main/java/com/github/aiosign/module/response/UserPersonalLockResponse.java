@@ -9,7 +9,6 @@ import lombok.EqualsAndHashCode;
  * 个人用户锁定或解锁返回结果
  *
  * @author modificial
- * @version $Id: $Id
  * @since 2020/4/1
  */
 @EqualsAndHashCode(callSuper = true)
@@ -20,7 +19,7 @@ public class UserPersonalLockResponse extends AbstractSignResponse {
 
 	@EqualsAndHashCode(callSuper = true)
 	@Data
-	public static class UserPersonalLockModule extends BaseSignObject {
+	public static class UserPersonalLockModule extends BaseSignObject{
 		/**
 		 * 用户id
 		 */

@@ -18,7 +18,6 @@ import java.util.List;
  * 会签传入参数
  *
  * @author modificial
- * @version $Id: $Id
  * @since 2020/4/3
  */
 @EqualsAndHashCode(callSuper = true)
@@ -36,22 +35,6 @@ public class MeetingSignRequest extends AbstractSignRequest<MeetingSignResponse>
 	 * 签章详细信息
 	 */
 	private List<SignDetail> signDetails;
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	@JsonIgnore
-	public RequestInfo<MeetingSignResponse> getRequestInfo() {
-		RequestInfo<MeetingSignResponse> requestInfo = new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("sign/meeting/single");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(MeetingSignResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
 
 	/**
 	 * 签章详细参数
@@ -74,13 +57,10 @@ public class MeetingSignRequest extends AbstractSignRequest<MeetingSignResponse>
 		private Integer pageNum;
 
 		/**
-		 * 印章宽度
+		 * 印章规格
 		 */
-		private Integer signWidth;
-		/**
-		 * 印章高度
-		 */
-		private Integer signHeight;
+		private String signSize;
+
 		/**
 		 * 签署距离合同上方距离
 		 */
@@ -91,5 +71,18 @@ public class MeetingSignRequest extends AbstractSignRequest<MeetingSignResponse>
 		 */
 		private Integer signLeft;
 
+	}
+
+	@Override
+	@JsonIgnore
+	public RequestInfo<MeetingSignResponse> getRequestInfo() {
+		RequestInfo<MeetingSignResponse> requestInfo = new RequestInfo<>();
+		requestInfo.setContentType(ContentType.JSON);
+		requestInfo.setApiUri("sign/single");
+		requestInfo.setMethod(HttpMethod.POST);
+		requestInfo.setNeedToken(true);
+		requestInfo.setResponseType(MeetingSignResponse.class);
+		requestInfo.setRequestBody(this);
+		return requestInfo;
 	}
 }

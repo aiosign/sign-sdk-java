@@ -10,7 +10,6 @@ import java.util.List;
 
 /**
  * @author yangyouwang
- * @description
  * @since 2020/5/12
  */
 @EqualsAndHashCode(callSuper = true)

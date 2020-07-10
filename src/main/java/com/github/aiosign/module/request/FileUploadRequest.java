@@ -17,7 +17,6 @@ import java.util.Map;
 
 /**
  * @author yangyouwang
- * @description 上传文件请求
  * @since 2020/5/19
  */
 @EqualsAndHashCode(callSuper = true)

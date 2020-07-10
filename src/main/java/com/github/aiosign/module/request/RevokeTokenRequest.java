@@ -14,7 +14,6 @@ import java.util.Collections;
 
 /**
  * @author modificial
- * @description
  * @since 2020/5/12
  */
 @EqualsAndHashCode(callSuper = true)

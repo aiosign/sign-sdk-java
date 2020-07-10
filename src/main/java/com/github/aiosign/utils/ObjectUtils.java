@@ -231,7 +231,6 @@ public abstract class ObjectUtils {
      *
      * @param enumValues the array of all Enum constants in question, usually per {@code Enum.values()}
      * @param constant   the constant to get the enum value of
-     * @param <E>
      * @return a E object.
      * @throws java.lang.IllegalArgumentException if the given constant is not found in the given array
      *                                            of enum values. Use {@link #containsConstant(Enum[], String)} as a guard to

@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 /**
  * 获取token的参数对象
  * @author modificial
- * @description
  * @since 2020/5/11
  */
 @EqualsAndHashCode(callSuper = true)
@@ -40,8 +39,6 @@ public class TokenRequest extends AbstractSignRequest<TokenResponse> {
 
     /**
      * 返回请求的必要参数信息
-     *
-     * @return
      */
     @Override
     @JsonIgnore

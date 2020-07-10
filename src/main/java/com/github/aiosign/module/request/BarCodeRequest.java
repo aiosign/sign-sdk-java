@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 /**
  * 条形码请求参数
  * @author modificial
- * @description
  * @since 2020/4/21
  */
 @EqualsAndHashCode(callSuper = true)

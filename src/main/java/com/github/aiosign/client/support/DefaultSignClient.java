@@ -76,8 +76,8 @@ public class DefaultSignClient implements SignClient {
      * @param appSecret   应用秘钥
      * @param checkResult a boolean.
      */
-    public DefaultSignClient(String rootUri, String proxyHost, Integer proxyPort, String appId, String appSecret,boolean checkResult) {
-        this(rootUri, CONNECT_TIME_OUT, READ_TIME_OUT, proxyHost, proxyPort, appId, appSecret,checkResult);
+    public DefaultSignClient(String rootUri, String proxyHost, Integer proxyPort, String appId, String appSecret, boolean checkResult) {
+        this(rootUri, CONNECT_TIME_OUT, READ_TIME_OUT, proxyHost, proxyPort, appId, appSecret, checkResult);
     }
 
     /**
@@ -88,12 +88,12 @@ public class DefaultSignClient implements SignClient {
      * @param appSecret 应用秘钥
      */
     public DefaultSignClient(String rootUri, String appId, String appSecret) {
-        this(rootUri, null, 0, appId, appSecret,false);
+        this(rootUri, null, 0, appId, appSecret, false);
     }
 
     /**
      * {@inheritDoc}
-     *
+     * <p>
      * 执行http请求，并返回数据
      */
     @Override
@@ -114,9 +114,6 @@ public class DefaultSignClient implements SignClient {
 
     /**
      * 执行相关组合业务
-     *
-     * @param
-     * @return
      */
     @Override
     public <T extends AbstractSignResponse> T execute(AbstractComposeRequest<T> composeRequest) {
@@ -135,7 +132,7 @@ public class DefaultSignClient implements SignClient {
         String result = null;
         String apiUrl = rootUri + requestInfo.getApiUri();
         //如果需要传递token
-        if(requestInfo.isNeedToken()) {
+        if (requestInfo.isNeedToken()) {
             String token = TokenManager.getToken(this);
             if (StringUtils.isEmpty(token)) {
                 throw new RuntimeException("获取token失败");
@@ -148,7 +145,7 @@ public class DefaultSignClient implements SignClient {
                     ObjectMapper objectMapper = ObjectMapperHolder.INSTANCE.getInstance();
                     Serializable requestBody = requestInfo.getRequestBody();
                     String body = objectMapper.writeValueAsString(requestBody);
-                    String sign = SignUtils.createSign(body,appSecret);
+                    String sign = SignUtils.createSign(body, appSecret);
                     result = WebUtils.doPostJson(apiUrl, body, this.connectTimeOut, this.readTimeOut, proxyHost, proxyPort, sign);
                 } else if (requestInfo.getContentType().equals(ContentType.FORM_URLENCODED)) {
                     Map<String, String> params = requestInfo.getParams();
@@ -175,5 +172,31 @@ public class DefaultSignClient implements SignClient {
             throw new RuntimeException("返回的数据不是json");
         }
         return objectMapper.readValue(result, requestInfo.getResponseType());
+    }
+
+    /**
+     * 重写hashcode方法，只要是appid和appsecret相同，其hashcode值就相同
+     *
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        String key = this.appId + this.appSecret;
+        return ObjectUtils.nullSafeHashCode(key);
+    }
+
+    /**
+     * 重写其equals方法，只要是appid和appsecret相同，就认为两个对象是相等的
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+        DefaultSignClient other = (DefaultSignClient) obj;
+        return this.appSecret.equals(other.appSecret) && this.appId.equals(other.appId);
     }
 }

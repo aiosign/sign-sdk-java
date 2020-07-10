@@ -60,8 +60,6 @@ public class UserPersonalRegisterRequest extends AbstractSignRequest<UserPersona
 
 	/**
 	 * 返回请求的必要参数信息
-	 *
-	 * @return
 	 */
 	@Override
 	@JsonIgnore

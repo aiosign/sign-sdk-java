@@ -6,8 +6,9 @@ import com.github.aiosign.client.SignClient;
 import java.io.Serializable;
 
 /**
+ * 相关业务接口组合
+ *
  * @author 侯存路
- * @description 相关业务接口组合
  * @since 2020/6/15 18:08
  */
 public abstract class AbstractComposeRequest<T extends AbstractSignResponse> implements Serializable {
@@ -15,8 +16,6 @@ public abstract class AbstractComposeRequest<T extends AbstractSignResponse> imp
 
     /**
      * 执行相关业务
-     *
-     * @return
      */
     public abstract <T extends AbstractSignResponse> T execute(SignClient signClient);
 

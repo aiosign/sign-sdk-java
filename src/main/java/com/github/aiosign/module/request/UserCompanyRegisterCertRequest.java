@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author 侯存路
- * @description 企业用户注册 与 用户证书申请
  * @since 2020/6/16 9:05
  */
 @EqualsAndHashCode(callSuper = true)

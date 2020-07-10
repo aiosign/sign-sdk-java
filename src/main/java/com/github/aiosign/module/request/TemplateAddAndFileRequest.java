@@ -3,7 +3,9 @@ package com.github.aiosign.module.request;
 import com.github.aiosign.base.AbstractComposeRequest;
 import com.github.aiosign.base.FileItem;
 import com.github.aiosign.client.SignClient;
-import com.github.aiosign.module.response.*;
+import com.github.aiosign.module.response.FileUploadResponse;
+import com.github.aiosign.module.response.TemplateAddAndFileResponse;
+import com.github.aiosign.module.response.TemplateAddResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,7 +13,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author 侯存路
- * @description
  * @since 2020/6/16 9:28
  */
 @EqualsAndHashCode(callSuper = true)

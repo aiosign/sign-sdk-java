@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
 
 /**
  * @author modificial
- * @description
  * @since 2020/5/11
  */
 @EqualsAndHashCode(callSuper = true)

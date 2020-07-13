@@ -42,5 +42,4 @@ public class CertTest extends AbstractSignTest {
         log.info("响应信息：{}",execute.getResultMessage());
         log.info("响应数据：{}",execute.getData());
     }
-
 }

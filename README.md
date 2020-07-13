@@ -10,7 +10,7 @@
 <dependency>
     <groupId>com.sdgdw.sign</groupId>
     <artifactId>sign-sdk-java</artifactId>
-    <version>1.0.0</version>
+    <version>1.4.0</version>
 </dependency>
 ````
 [233455667665]: https://projectlombok.org/setup/overview "lombok插件安装"
@@ -19,7 +19,7 @@
 <dependency>
     <groupId>com.sdgdw.sign</groupId>
     <artifactId>sign-sdk-java</artifactId>
-    <version>1.0.0</version>
+    <version>1.4.0</version>
     <systemPath>您的jar所在的路径</systemPath>
 </dependency>
 ```

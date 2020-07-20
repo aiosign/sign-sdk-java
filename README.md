@@ -8,7 +8,7 @@
 如果您使用Apache Maven来管理Java项目，只需在项目的pom.xml文件加入相应的依赖项即可。您可以在大众签章开放平台下载各版本的Maven依赖。您只需在pom.xml中声明以下依赖
 ````xml
 <dependency>
-    <groupId>com.sdgdw.sign</groupId>
+    <groupId>com.github.aiosign.</groupId>
     <artifactId>sign-sdk-java</artifactId>
     <version>1.4.0</version>
 </dependency>
@@ -17,7 +17,7 @@
 您也可以从github上直接拉取代码，然后运行mvn clean install命令安装到本地仓库中，如果您是直接从开放平台上下载的sdk，您也直接可以通过以下方式来引入依赖
 ```xml
 <dependency>
-    <groupId>com.sdgdw.sign</groupId>
+    <groupId>com.github.aiosign.</groupId>
     <artifactId>sign-sdk-java</artifactId>
     <version>1.4.0</version>
     <systemPath>您的jar所在的路径</systemPath>
@@ -80,7 +80,7 @@
 - 2.创建API请求对象并设置参数。 
 - 3.发起请求并处理应答或异常。 
 ```java
-package com.sdgdw.sign;
+package com.github.aiosign.;
 
 
 import UserInfoRequest;

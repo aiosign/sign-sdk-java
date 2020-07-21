@@ -33,4 +33,9 @@ public class SignParam implements Serializable {
      * 印章高度，精确1位小数
      */
     private Double height;
+
+    /**
+     * 是否为图章
+     */
+    private Boolean isPicture;
 }

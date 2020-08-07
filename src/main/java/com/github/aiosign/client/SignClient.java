@@ -4,6 +4,8 @@ import com.github.aiosign.base.AbstractComposeRequest;
 import com.github.aiosign.base.AbstractSignRequest;
 import com.github.aiosign.base.AbstractSignResponse;
 
+import java.io.OutputStream;
+
 /**
  * 签章所用的客户端
  *
@@ -27,5 +29,13 @@ public interface SignClient {
      * @param <T>
      */
     <T extends AbstractSignResponse> T execute(AbstractComposeRequest<T> composeRequest);
+
+    /**
+     * 下载文件
+     * @param baseUri 接口uri地址
+     * @param fileId 文件id
+     * @param outputStream 输出流
+     */
+    void download(String baseUri,String fileId, OutputStream outputStream);
 
 }

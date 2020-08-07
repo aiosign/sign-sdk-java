@@ -10,9 +10,13 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.net.URL;
 import java.util.Map;
 import java.util.Optional;
+
+import static com.github.aiosign.utils.WebUtils.downLoadFromUrl;
 
 /**
  * 默认的签章客户端实现
@@ -120,6 +124,18 @@ public class DefaultSignClient implements SignClient {
         return composeRequest.execute(this);
     }
 
+    /**
+     * 下载文件
+     * @param fileId 文件id
+     * @param outputStream 输出流
+     */
+    @Override
+    public void download(String baseUri,String fileId, OutputStream outputStream) {
+        String apiUrl=rootUri+baseUri;
+        String token = TokenManager.getToken(this);
+        String uriBuild = uriBuild(apiUrl, fileId, token);
+        downLoadFromUrl(uriBuild,outputStream);
+    }
 
     /**
      * 发起请求并获取结果
@@ -198,5 +214,20 @@ public class DefaultSignClient implements SignClient {
         }
         DefaultSignClient other = (DefaultSignClient) obj;
         return this.appSecret.equals(other.appSecret) && this.appId.equals(other.appId);
+    }
+
+    /**
+     * 构建url
+     * @param uri 基本的uri
+     * @param fileId 文件id
+     * @param token 用户凭证
+     * @return
+     */
+    private String uriBuild(String uri,String fileId,String token){
+        StringBuilder sb=new StringBuilder(uri);
+        sb.append("?").append("access_token");
+        sb.append("=").append(token);
+        sb.append("&").append("fileId").append("=").append(fileId);
+        return sb.toString();
     }
 }

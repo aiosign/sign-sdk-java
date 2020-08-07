@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 
 /**
@@ -65,5 +67,17 @@ public class FileTest extends AbstractSignTest {
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());
+    }
+
+    /**
+     * 下载文件
+     * @throws FileNotFoundException
+     */
+    @Test
+    public void downloadFile() throws FileNotFoundException {
+        String baseUri="file/download";
+        String fileId="ceafec7cdfaf4f3b8f7af21966a137e9";
+        FileOutputStream out=new FileOutputStream("contract.pdf");
+        signClient.download(baseUri,fileId,out);
     }
 }

@@ -116,7 +116,7 @@ public class WebUtils {
         if (query != null) {
             content = query.getBytes(charset);
         }
-        return doPost(url, ctype, content, connectTimeout, readTimeout, proxyHost, proxyPort,null);
+        return doPost(url, ctype, content, connectTimeout, readTimeout, proxyHost, proxyPort, null);
     }
 
     /**
@@ -129,11 +129,11 @@ public class WebUtils {
      * @param readTimeout    请求超时时间
      * @param proxyHost      代理host，传null表示不使用代理
      * @param proxyPort      代理端口，传0表示不使用代理
+     * @param sign           a {@link java.lang.String} object.
      * @return 响应字符串
-     * @param sign a {@link java.lang.String} object.
      */
     public static String doPost(String url, String ctype, byte[] content, int connectTimeout,
-                                int readTimeout, String proxyHost, int proxyPort,String sign) {
+                                int readTimeout, String proxyHost, int proxyPort, String sign) {
         Assert.isTrue(StringUtils.hasLength(url) && (url.startsWith("http://") || url.startsWith("https://")), "url地址不合法");
         Assert.hasText(ctype, "请求头类型不能为空");
         Assert.notNull(content, "请求体数据不能为空");
@@ -145,9 +145,9 @@ public class WebUtils {
         try {
             conn = null;
             if (!StringUtils.isEmpty(proxyHost)) {
-                conn = getConnection(new URL(url), METHOD_POST, ctype, proxyHost, proxyPort,sign);
+                conn = getConnection(new URL(url), METHOD_POST, ctype, proxyHost, proxyPort, sign);
             } else {
-                conn = getConnection(new URL(url), METHOD_POST, ctype,sign);
+                conn = getConnection(new URL(url), METHOD_POST, ctype, sign);
             }
             conn.setConnectTimeout(connectTimeout);
             conn.setReadTimeout(readTimeout);
@@ -186,9 +186,9 @@ public class WebUtils {
      * @param sign           a {@link java.lang.String} object.
      * @return a {@link java.lang.String} object.
      */
-    public static String doPostJson(String url, String content, int connectTimeout, int readTimeout,String proxyHost,Integer proxyPort,String sign) {
+    public static String doPostJson(String url, String content, int connectTimeout, int readTimeout, String proxyHost, Integer proxyPort, String sign) {
         return doPost(url, "application/json", content.getBytes(StandardCharsets.UTF_8),
-                connectTimeout, readTimeout,proxyHost,proxyPort,sign);
+                connectTimeout, readTimeout, proxyHost, proxyPort, sign);
     }
 
     /**
@@ -222,9 +222,9 @@ public class WebUtils {
                 String ctype = "multipart/form-data;boundary=" + boundary + ";charset=" + charset;
                 conn = null;
                 if (!StringUtils.isEmpty(proxyHost)) {
-                    conn = getConnection(new URL(url), METHOD_POST, ctype, proxyHost, proxyPort,null);
+                    conn = getConnection(new URL(url), METHOD_POST, ctype, proxyHost, proxyPort, null);
                 } else {
-                    conn = getConnection(new URL(url), METHOD_POST, ctype,null);
+                    conn = getConnection(new URL(url), METHOD_POST, ctype, null);
                 }
                 conn.setConnectTimeout(connectTimeout);
                 conn.setReadTimeout(readTimeout);
@@ -332,7 +332,7 @@ public class WebUtils {
             String ctype = "application/x-www-form-urlencoded;charset=" + charset;
             String query = buildQuery(params, charset);
             try {
-                conn = getConnection(buildGetUrl(url, query), METHOD_GET, ctype,null);
+                conn = getConnection(buildGetUrl(url, query), METHOD_GET, ctype, null);
             } catch (IOException e) {
                 throw e;
             }
@@ -350,6 +350,56 @@ public class WebUtils {
         }
 
         return rsp;
+    }
+
+    /**
+     * 从网络Url中下载文件
+     *
+     * @param urlStr 下载的url地址
+     */
+    public static void downLoadFromUrl(String urlStr, OutputStream out) {
+        try {
+            URL url = new URL(urlStr);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            //设置超时间为3秒
+            conn.setConnectTimeout(3 * 1000);
+            //防止屏蔽程序抓取而返回403错误
+            conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+            //得到输入流
+            InputStream inputStream = conn.getInputStream();
+            //获取自己数组
+            byte[] getData = readInputStream(inputStream);
+            out.write(getData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        log.info("info:" + urlStr + " download success");
+    }
+
+    /**
+     * 从输入流中获取字节数组
+     *
+     * @param inputStream
+     * @return
+     * @throws IOException
+     */
+    public static byte[] readInputStream(InputStream inputStream) throws IOException {
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        while ((len = inputStream.read(buffer)) != -1) {
+            bos.write(buffer, 0, len);
+        }
+        bos.close();
+        return bos.toByteArray();
     }
 
     /**
@@ -420,7 +470,7 @@ public class WebUtils {
         conn.setRequestProperty("Accept", "application/json,text/plain,text/xml,text/javascript,text/html");
         conn.setRequestProperty("User-Agent", "sign-sdk-java");
         conn.setRequestProperty("Content-Type", ctype);
-        if(StringUtils.hasText(sign)) {
+        if (StringUtils.hasText(sign)) {
             conn.setRequestProperty("sign", sign);
         }
         return conn;
@@ -502,11 +552,11 @@ public class WebUtils {
         } else {
             String msg = getStreamAsString(es, charset);
             if (StringUtils.isEmpty(msg)) {
-                String errorMsg=conn.getResponseCode() + ":" + conn.getResponseMessage();
-                log.error("调用api发生错误，错误信息为{}",errorMsg);
+                String errorMsg = conn.getResponseCode() + ":" + conn.getResponseMessage();
+                log.error("调用api发生错误，错误信息为{}", errorMsg);
                 return null;
             } else {
-                log.error("调用api发生错误，错误信息为{}",msg);
+                log.error("调用api发生错误，错误信息为{}", msg);
                 return null;
             }
         }

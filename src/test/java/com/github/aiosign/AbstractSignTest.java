@@ -23,7 +23,7 @@ public abstract class AbstractSignTest {
      */
     @Before
     public void init() {
-        signClient = new DefaultSignClient("api网关地址", "您的appid", "您的appsecret");
+        signClient = new DefaultSignClient("http://192.168.2.173:8081/v1/", "733016099889238016", "yMmLMVotwayVfjqkjn");
     }
 
     /**

@@ -23,54 +23,71 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserPersonalRegisterRequest extends AbstractSignRequest<UserPersonalRegisterResponse> {
 
-	/**
-	 * 用户名（必填）
-	 */
-	private String userName;
+    /**
+     * 用户名（必填）
+     */
+    private String userName;
 
-	/**
-	 * 地区编码（必填）
-	 */
-	private String areaCode;
+    /**
+     * 地区编码（必填）
+     */
+    private String areaCode;
 
-	/**
-	 * 手机号（必填）
-	 */
-	private String phone;
+    /**
+     * 手机号（必填）
+     */
+    private String phone;
 
-	/**
-	 * 证件类型（必填）
-	 */
-	private String idType;
+    /**
+     * 证件类型（必填）
+     */
+    private String idType;
 
-	/**
-	 * 证件号（必填）
-	 */
-	private String idNumber;
+    /**
+     * 证件号（必填）
+     */
+    private String idNumber;
 
-	/**
-	 * 邮箱地址（非必填）
-	 */
-	private String mail;
+    /**
+     * 邮箱地址（非必填）
+     */
+    private String mail;
 
-	/**
-	 * 描述信息
-	 */
-	private String description;
+    /**
+     * 描述信息
+     */
+    private String description;
 
-	/**
-	 * 返回请求的必要参数信息
-	 */
-	@Override
-	@JsonIgnore
-	public RequestInfo<UserPersonalRegisterResponse> getRequestInfo() {
-		RequestInfo<UserPersonalRegisterResponse> requestInfo=new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("user/personal/register");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(UserPersonalRegisterResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+
+    /**
+     * 是否需要三网认证
+     * true  需要
+     * false 不需要
+     */
+    private boolean threeAuth = false;
+
+
+    /**
+     * 是否需要注册证书
+     * true  需要
+     * false 不需要
+     */
+    private boolean registerCert = false;
+
+
+    /**
+     * 返回请求的必要参数信息
+     */
+    @Override
+    @JsonIgnore
+    public RequestInfo<UserPersonalRegisterResponse> getRequestInfo() {
+        RequestInfo<UserPersonalRegisterResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("user/personal/register");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(UserPersonalRegisterResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

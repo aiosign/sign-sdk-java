@@ -64,6 +64,7 @@ public class UserPersonalRegisterRequest extends AbstractSignRequest<UserPersona
      * true  需要
      * false 不需要
      */
+    @JsonIgnore
     private boolean threeAuth = false;
 
 
@@ -72,6 +73,7 @@ public class UserPersonalRegisterRequest extends AbstractSignRequest<UserPersona
      * true  需要
      * false 不需要
      */
+    @JsonIgnore
     private boolean registerCert = false;
 
 

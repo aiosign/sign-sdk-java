@@ -70,7 +70,7 @@ public class SmsTest extends AbstractSignTest {
         SmsAuthCodeRequest singleRequest = new SmsAuthCodeRequest();
 
         List<SmsAuthCodeRequest.Phone> phones = new ArrayList<>();
-        phones.add(new SmsAuthCodeRequest.Phone("123456789", "15688413831", 10000));
+        phones.add(new SmsAuthCodeRequest.Phone("123456789", "15688413831"));
 
         singleRequest.setPhones(phones);
         SmsAuthCodeResponse execute = signClient.execute(singleRequest);
@@ -86,9 +86,9 @@ public class SmsTest extends AbstractSignTest {
     @Test
     public void validAuthCode() {
         SmsValidAuthCodeRequest request = new SmsValidAuthCodeRequest();
-        request.setAuthCode("213");
+        request.setAuthCode("518808");
         request.setPhone("15688413831");
-        request.setUuid("80ec7a7815e6492b8c46393f78829c78");
+        request.setUuid("1dc767d8729c48e493a7f34a72b430ff");
 
         SmsValidAuthCodeResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());

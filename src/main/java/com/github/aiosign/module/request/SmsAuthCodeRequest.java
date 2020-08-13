@@ -44,10 +44,6 @@ public class SmsAuthCodeRequest extends AbstractSignRequest<SmsAuthCodeResponse>
          */
         private String phone;
 
-        /**
-         * 验证码有效时间(秒)
-         */
-        private Integer expireTime;
     }
 
 

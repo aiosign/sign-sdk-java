@@ -23,7 +23,7 @@ public abstract class AbstractSignTest {
      */
     @Before
     public void init() {
-        signClient = new DefaultSignClient("http://192.168.2.173:8081/v1/", "733016099889238016", "yMmLMVotwayVfjqkjn");
+        signClient = new DefaultSignClient("http://localhost:8085/v1/", "733016099889238016", "yMmLMVotwayVfjqkjn");
     }
 
     /**

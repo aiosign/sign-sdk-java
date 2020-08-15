@@ -132,7 +132,6 @@ public class RelevantInterfaceTest extends AbstractSignTest {
         FileItem fileItem = new FileItem(new File("C:\\Users\\Administrator\\Documents\\房屋合同.pdf"));
         request.setFileItem(fileItem);
         request.setFileName("测试合同");
-        request.setUserId("00715229845080657920");
         request.setName("测试模板");
 
         TemplateAddAndFileResponse templateAddAndFileResponse = signClient.execute(request);

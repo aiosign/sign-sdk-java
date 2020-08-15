@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.aiosign</groupId>
     <artifactId>sign-sdk-java</artifactId>
-    <version>1.4.5</version>
+    <version>1.4.6</version>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -118,14 +118,27 @@
     </build>
     <distributionManagement>
         <repository>
-            <id>sonatype-nexus-staging</id>
+            <id>maven-releases</id>
             <name>Nexus Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+            <url>http://119.163.197.218:8061/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <id>maven-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://119.163.197.218:8061/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
+
+    <!--    <distributionManagement>-->
+    <!--        <repository>-->
+    <!--            <id>sonatype-nexus-staging</id>-->
+    <!--            <name>Nexus Release Repository</name>-->
+    <!--            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>-->
+    <!--        </repository>-->
+    <!--        <snapshotRepository>-->
+    <!--            <id>sonatype-nexus-snapshots</id>-->
+    <!--            <name>Sonatype Nexus Snapshots</name>-->
+    <!--            <url>https://oss.sonatype.org/content/repositories/snapshots</url>-->
+    <!--        </snapshotRepository>-->
+    <!--    </distributionManagement>-->
 </project>

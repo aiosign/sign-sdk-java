@@ -25,10 +25,6 @@ public class TemplateAddAndFileRequest extends AbstractComposeRequest<TemplateAd
     private final String fileType = "template";
 
     /**
-     * 用户标识
-     */
-    private String userId;
-    /**
      * 文件名称
      */
     private String fileName;
@@ -54,7 +50,6 @@ public class TemplateAddAndFileRequest extends AbstractComposeRequest<TemplateAd
         FileUploadRequest fileUploadRequest = new FileUploadRequest();
         fileUploadRequest.setFileType(fileType);
         fileUploadRequest.setFileName(fileName);
-        fileUploadRequest.setUserId(userId);
         fileUploadRequest.setFileItem(fileItem);
         //   文件上传
         FileUploadResponse fileUploadResponse = signClient.execute(fileUploadRequest);

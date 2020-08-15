@@ -26,6 +26,14 @@ public class TemplateFillRequest extends AbstractSignRequest<TemplateFillRespons
      */
     private String templateId;
     /**
+     * 合同名字不能为空
+     */
+    private String name;
+    /**
+     * 用户id
+     */
+    private String userId;
+    /**
      * 文本域参数
      */
     private List<TextParam> simpleFormFields;

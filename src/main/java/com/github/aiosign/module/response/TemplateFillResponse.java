@@ -32,5 +32,9 @@ public class TemplateFillResponse extends AbstractSignResponse {
          * 文件名字
          */
         private String fileName;
+        /**
+         * 合同id
+         */
+        private String contractId;
     }
 }

@@ -75,6 +75,7 @@ public class ContractAddAndFileRequest extends AbstractComposeRequest<ContractAd
         }
         contractAddAndFileResponse.setFileId(fileUploadResponse.getData().getFileId());
         contractAddAndFileResponse.setContractId(execute.getData().getContractId());
+        setReturnCode(contractAddAndFileResponse, execute);
         return contractAddAndFileResponse;
     }
 

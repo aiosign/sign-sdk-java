@@ -86,6 +86,7 @@ public class SealAddAndFileRequest extends AbstractComposeRequest<SealAddAndFile
         }
         registerCertResponse.setFileId(fileUploadResponse.getData().getFileId());
         registerCertResponse.setSealId(execute.getData().getSealId());
+        setReturnCode(registerCertResponse, execute);
         return registerCertResponse;
     }
 

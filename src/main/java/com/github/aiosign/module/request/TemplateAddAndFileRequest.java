@@ -73,6 +73,8 @@ public class TemplateAddAndFileRequest extends AbstractComposeRequest<TemplateAd
 
         templateAddAndFileResponse.setFileId(fileUploadResponse.getData().getFileId());
         templateAddAndFileResponse.setTemplateId(execute.getData().getTemplateId());
+
+        setReturnCode(templateAddAndFileResponse, execute);
         return templateAddAndFileResponse;
     }
 

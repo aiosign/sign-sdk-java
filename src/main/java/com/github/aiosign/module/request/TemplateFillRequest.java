@@ -1,5 +1,6 @@
 package com.github.aiosign.module.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.aiosign.base.AbstractSignRequest;
 import com.github.aiosign.base.RequestInfo;
 import com.github.aiosign.bean.TextParam;
@@ -44,6 +45,7 @@ public class TemplateFillRequest extends AbstractSignRequest<TemplateFillRespons
      * @return a {@link RequestInfo} object.
      */
     @Override
+    @JsonIgnore
     public RequestInfo<TemplateFillResponse> getRequestInfo() {
         RequestInfo<TemplateFillResponse> requestInfo=new RequestInfo<>();
         requestInfo.setApiUri("template/fill");

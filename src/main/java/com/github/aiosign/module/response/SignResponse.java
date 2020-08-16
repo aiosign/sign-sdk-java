@@ -5,6 +5,8 @@ import com.github.aiosign.base.BaseSignObject;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 /**
  * 单次签章返回结果
  *
@@ -36,5 +38,18 @@ public class SignResponse extends AbstractSignResponse {
 		 * 签章状态
 		 */
 		private boolean signState;
+		/**
+		 * 签章完成后 hash 值
+		 */
+		public String hash;
+
+		private List<EventCert> eventCerts;
+
+	}
+
+	@Data
+	public static class EventCert{
+		private String userId;
+		private String certId;
 	}
 }

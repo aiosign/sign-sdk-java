@@ -31,6 +31,10 @@ public class TemplateAddRequest extends AbstractSignRequest<TemplateAddResponse>
 	 * 模板名字
 	 */
 	private String name;
+	/**
+	 * 是否校验签名域
+	 */
+	private boolean signCheck=true;
 
 	@Override
 	@JsonIgnore

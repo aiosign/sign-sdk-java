@@ -40,7 +40,10 @@ public class TemplateAddAndFileRequest extends AbstractComposeRequest<TemplateAd
      * 描述
      */
     private String description;
-
+    /**
+     * 是否校验签名域
+     */
+    private boolean signCheck=true;
 
     @Override
 

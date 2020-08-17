@@ -34,7 +34,7 @@ public class TemplateAddRequest extends AbstractSignRequest<TemplateAddResponse>
 	/**
 	 * 是否校验签名域
 	 */
-	private boolean signCheck=true;
+	private boolean signCheck;
 
 	@Override
 	@JsonIgnore

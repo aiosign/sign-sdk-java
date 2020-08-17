@@ -43,7 +43,7 @@ public class TemplateAddAndFileRequest extends AbstractComposeRequest<TemplateAd
     /**
      * 是否校验签名域
      */
-    private boolean signCheck=true;
+    private boolean signCheck;
 
     @Override
 

@@ -1,6 +1,7 @@
 package com.github.aiosign.client.support;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.github.aiosign.base.*;
 import com.github.aiosign.client.SignClient;
 import com.github.aiosign.enums.ContentType;
@@ -160,6 +161,8 @@ public class DefaultSignClient implements SignClient {
                 if (requestInfo.getContentType().equals(ContentType.JSON)) {
                     ObjectMapper objectMapper = ObjectMapperHolder.INSTANCE.getInstance();
                     Serializable requestBody = requestInfo.getRequestBody();
+                    // 关键代码
+                    objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
                     String body = objectMapper.writeValueAsString(requestBody);
                     String sign = SignUtils.createSign(body, appSecret);
                     result = WebUtils.doPostJson(apiUrl, body, this.connectTimeOut, this.readTimeOut, proxyHost, proxyPort, sign);

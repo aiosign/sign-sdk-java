@@ -30,8 +30,11 @@ public class EnterprisePayResponse extends AbstractSignResponse {
 
         /**
          * 打款结果
+         * 1:成功
+         * 2:进行中
+         * 3:失败
          */
-        private EnterprisePayStatus res;
+        private int res;
         /**
          * 打款响应信息
          */

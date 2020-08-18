@@ -2,7 +2,6 @@ package com.github.aiosign.module.response;
 
 import com.github.aiosign.base.AbstractSignResponse;
 import com.github.aiosign.base.BaseSignObject;
-import com.github.aiosign.enums.EnterprisePayStatus;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -24,9 +23,12 @@ public class ChinaPayEnterprisePayValidResponse extends AbstractSignResponse {
     public static class ChinaPayEnterprisePay extends BaseSignObject {
 
         /**
-         * 企业打款验证结果
+         * 打款结果
+         * 1:成功
+         * 2:进行中
+         * 3:失败
          */
-        private EnterprisePayStatus res;
+        private int res;
 
         /**
          * 企业打款验证响应信息

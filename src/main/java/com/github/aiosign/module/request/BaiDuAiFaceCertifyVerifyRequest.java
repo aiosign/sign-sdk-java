@@ -5,8 +5,8 @@ import com.github.aiosign.base.AbstractSignRequest;
 import com.github.aiosign.base.RequestInfo;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
-import com.github.aiosign.module.response.ChinaPayEnterprisePayValidResponse;
-import com.github.aiosign.module.response.EnterprisePayResponse;
+import com.github.aiosign.module.response.BaiDuAiFaceCertifyVerifyResponse;
+import com.github.aiosign.module.response.BaiduSessionCodeResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,35 +21,36 @@ import lombok.NoArgsConstructor;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class ChinaPayEnterprisePayValidReq extends AbstractSignRequest<ChinaPayEnterprisePayValidResponse> {
+public class BaiDuAiFaceCertifyVerifyRequest extends AbstractSignRequest<BaiDuAiFaceCertifyVerifyResponse> {
+
 
     /**
-     * 企业银行账户
+     * 认证信息
      */
-    private String accountNo;
-
+    private String image;
     /**
-     * 打款流水Id
+     * 身份证号码
      */
-    private String orderId;
-
+    private String idCardNumber;
     /**
-     * 金额（分）
+     * 姓名
      */
-    private String amount;
+    private String name;
+    /**
+     * 语音验证类型，BASE64,
+     */
+    private String imageType;
 
 
     @Override
     @JsonIgnore
-    public RequestInfo<ChinaPayEnterprisePayValidResponse> getRequestInfo() {
-        RequestInfo<ChinaPayEnterprisePayValidResponse> requestInfo = new RequestInfo<>();
+    public RequestInfo<BaiDuAiFaceCertifyVerifyResponse> getRequestInfo() {
+        RequestInfo<BaiDuAiFaceCertifyVerifyResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("authentication/enterprise-pay-valid");
+        requestInfo.setApiUri("authentication/baidu/certify-verify");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
-        requestInfo.setResponseType(ChinaPayEnterprisePayValidResponse.class);
+        requestInfo.setResponseType(BaiDuAiFaceCertifyVerifyResponse.class);
         requestInfo.setRequestBody(this);
         return requestInfo;
     }

@@ -1,5 +1,6 @@
 package com.github.aiosign;
 
+import com.github.aiosign.base.FileItem;
 import com.github.aiosign.bean.Picture;
 import com.github.aiosign.enums.CertifyType;
 import com.github.aiosign.enums.PictureType;
@@ -7,6 +8,8 @@ import com.github.aiosign.module.request.*;
 import com.github.aiosign.module.response.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+
+import java.io.File;
 
 /**
  * @author 侯存路
@@ -173,6 +176,53 @@ public class AuthenticationTest extends AbstractSignTest {
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());
 
+    }
+
+
+    /**
+     * 获取百度身份验证-语音验证数据
+     */
+    @Test
+    public void voiceVerificationData() {
+        BaiduSessionCodeRequest request = new BaiduSessionCodeRequest();
+        BaiduSessionCodeResponse execute = signClient.execute(request);
+
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
+
+    /**
+     * 获取百度身份验证-语音验证数据
+     */
+    @Test
+    public void baiDuAiFaceVideoVerify() {
+        BaiDuAiFaceVideoVerifyRequest request = new BaiDuAiFaceVideoVerifyRequest();
+        request.setFile(new FileItem(new File("E:\\9623ef8f85030bf1f041c8beb62ba2af.jpeg")));
+        request.setSessionId("123");
+
+        BaiDuAiFaceVideoVerifyRequestResponse execute = signClient.execute(request);
+
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+    }
+
+
+    /**
+     * 获取百度身份验证-验证
+     */
+    @Test
+    public void baiDuAiFaceCertifyVerify() {
+        BaiDuAiFaceCertifyVerifyRequest request = new BaiDuAiFaceCertifyVerifyRequest();
+        request.setIdCardNumber("");
+        request.setName("");
+        request.setImage("");
+        request.setImageType("");
+
+        BaiDuAiFaceCertifyVerifyResponse execute = signClient.execute(request);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
     }
 
 

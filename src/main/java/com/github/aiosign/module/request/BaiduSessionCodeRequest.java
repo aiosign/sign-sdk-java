@@ -5,8 +5,8 @@ import com.github.aiosign.base.AbstractSignRequest;
 import com.github.aiosign.base.RequestInfo;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
+import com.github.aiosign.module.response.BaiduSessionCodeResponse;
 import com.github.aiosign.module.response.ChinaPayEnterprisePayValidResponse;
-import com.github.aiosign.module.response.EnterprisePayResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,35 +21,18 @@ import lombok.NoArgsConstructor;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class ChinaPayEnterprisePayValidReq extends AbstractSignRequest<ChinaPayEnterprisePayValidResponse> {
-
-    /**
-     * 企业银行账户
-     */
-    private String accountNo;
-
-    /**
-     * 打款流水Id
-     */
-    private String orderId;
-
-    /**
-     * 金额（分）
-     */
-    private String amount;
+public class BaiduSessionCodeRequest extends AbstractSignRequest<BaiduSessionCodeResponse> {
 
 
     @Override
     @JsonIgnore
-    public RequestInfo<ChinaPayEnterprisePayValidResponse> getRequestInfo() {
-        RequestInfo<ChinaPayEnterprisePayValidResponse> requestInfo = new RequestInfo<>();
+    public RequestInfo<BaiduSessionCodeResponse> getRequestInfo() {
+        RequestInfo<BaiduSessionCodeResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("authentication/enterprise-pay-valid");
+        requestInfo.setApiUri("authentication/baidu/session-code");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
-        requestInfo.setResponseType(ChinaPayEnterprisePayValidResponse.class);
+        requestInfo.setResponseType(BaiduSessionCodeResponse.class);
         requestInfo.setRequestBody(this);
         return requestInfo;
     }

@@ -133,4 +133,47 @@ public class AuthenticationTest extends AbstractSignTest {
     }
 
 
+    /**
+     * 企业打款
+     */
+    @Test
+    public void enterprisePay() {
+
+        EnterprisePayReq request = new EnterprisePayReq();
+        request.setKeyType("123");
+        request.setKey("123");
+        request.setName("123");
+        request.setUsrName("123");
+        request.setAccountNo("123");
+        request.setAccountBank("123");
+        request.setAccountCity("123");
+        request.setAccountProvince("123");
+
+        EnterprisePayResponse execute = signClient.execute(request);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+
+    }
+
+
+    /**
+     * 企业打款校验
+     */
+    @Test
+    public void ChinaPayEnterprisePayValidReq() {
+
+        ChinaPayEnterprisePayValidReq request = new ChinaPayEnterprisePayValidReq();
+        request.setAccountNo("企业银行账户");
+        request.setAmount("金额");
+        request.setOrderId("打款流水Id");
+
+        ChinaPayEnterprisePayValidResponse execute = signClient.execute(request);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+
+    }
+
+
 }

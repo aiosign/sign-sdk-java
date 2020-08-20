@@ -33,11 +33,11 @@ public class DefaultSignClient implements SignClient {
     /**
      * 默认连接超时时间
      */
-    public static final Integer CONNECT_TIME_OUT = 3000;
+    public static final Integer CONNECT_TIME_OUT = 40000;
     /**
      * 默认读取超时时间
      */
-    public static final Integer READ_TIME_OUT = 3000;
+    public static final Integer READ_TIME_OUT = 40000;
     /**
      * 网关根地址 【必填】
      */

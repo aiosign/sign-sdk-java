@@ -47,10 +47,10 @@ public class AuthenticationTest extends AbstractSignTest {
     public void blankFourEnCeryQuery() {
 
         AuthenticationBlankFourEnCeryQueryRequest request = new AuthenticationBlankFourEnCeryQueryRequest();
-        request.setIdcard("身份证号");
-        request.setRealname("姓名");
-        request.setMobile("手机号");
-        request.setBankcard("银行卡");
+        request.setIdcard("370126199410075616");
+        request.setRealname("魏帅");
+        request.setMobile("15864010711");
+        request.setBankcard("6212261602023398458");
 
         AuthenticationBlankFourEnCeryQueryResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
@@ -215,10 +215,10 @@ public class AuthenticationTest extends AbstractSignTest {
     @Test
     public void baiDuAiFaceCertifyVerify() {
         BaiDuAiFaceCertifyVerifyRequest request = new BaiDuAiFaceCertifyVerifyRequest();
-        request.setIdCardNumber("");
-        request.setName("");
-        request.setImage("");
-        request.setImageType("");
+        request.setIdCardNumber("string");
+        request.setName("string");
+        request.setImage("string");
+        request.setImageType("string");
 
         BaiDuAiFaceCertifyVerifyResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());

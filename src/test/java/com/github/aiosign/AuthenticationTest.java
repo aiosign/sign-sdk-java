@@ -80,6 +80,26 @@ public class AuthenticationTest extends AbstractSignTest {
 
 
     /**
+     * 企业四要素认证
+     */
+    @Test
+    public void enterpriseFourElementsQuery() {
+
+        SJBEntFourRequest request = new SJBEntFourRequest();
+        request.setName("马宇1");
+        request.setIdcard("211021196703110011");
+        request.setEntname("山东国盾网信息科技有限公司");
+        request.setEntmark("91370100MA3C9NHDXT");
+
+        SJBEntFourResponse execute = signClient.execute(request);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+
+    }
+
+
+    /**
      * 实人认证
      */
     @Test

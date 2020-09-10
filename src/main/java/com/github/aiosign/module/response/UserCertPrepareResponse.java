@@ -14,7 +14,7 @@ import java.util.Map;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class UserCertPrepareResponse  extends AbstractSignResponse {
+public class UserCertPrepareResponse extends AbstractSignResponse {
 
-	private Map<String,Object> data;
+    private Map<String, Object> data;
 }

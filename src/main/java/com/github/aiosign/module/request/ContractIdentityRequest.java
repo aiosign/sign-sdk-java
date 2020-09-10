@@ -20,22 +20,22 @@ import lombok.EqualsAndHashCode;
 @Data
 public class ContractIdentityRequest extends AbstractSignRequest<ContractQueryResponse> {
 
-	/**
-	 * 合同id
-	 */
-	private String contractId;
+    /**
+     * 合同id
+     */
+    private String contractId;
 
 
-	@Override
-	@JsonIgnore
-	public RequestInfo<ContractQueryResponse> getRequestInfo() {
-		RequestInfo<ContractQueryResponse> requestInfo = new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("contract/query");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(ContractQueryResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    @Override
+    @JsonIgnore
+    public RequestInfo<ContractQueryResponse> getRequestInfo() {
+        RequestInfo<ContractQueryResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("contract/query");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(ContractQueryResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

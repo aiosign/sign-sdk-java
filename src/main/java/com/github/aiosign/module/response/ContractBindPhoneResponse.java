@@ -15,6 +15,7 @@ import lombok.EqualsAndHashCode;
 @Data
 public class ContractBindPhoneResponse extends AbstractSignResponse {
     private ContractBindPhoneModule data;
+
     /**
      * 绑定合同
      */

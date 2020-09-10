@@ -24,23 +24,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CompanyUserInfoRequest extends AbstractSignRequest<CompanyUserInfoResponse> {
 
-	/**
-	 * 用户id
-	 */
-	private String userId;
+    /**
+     * 用户id
+     */
+    private String userId;
 
-	private byte[] file;
+    private byte[] file;
 
-	@Override
-	@JsonIgnore
-	public RequestInfo<CompanyUserInfoResponse> getRequestInfo() {
-		RequestInfo<CompanyUserInfoResponse> requestInfo=new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("user/company/userinfo");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(CompanyUserInfoResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    @Override
+    @JsonIgnore
+    public RequestInfo<CompanyUserInfoResponse> getRequestInfo() {
+        RequestInfo<CompanyUserInfoResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("user/company/userinfo");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(CompanyUserInfoResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

@@ -16,51 +16,50 @@ import java.util.List;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class BatchTemplateResponse  extends AbstractSignResponse {
+public class BatchTemplateResponse extends AbstractSignResponse {
 
-	private BatchTemplateModule data;
-	/**
-	 * 模本签名参数
-	 */
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class BatchTemplateModule extends BaseSignObject {
-		/**
-		 * 批次号
-		 */
-		private String batchId;
+    private BatchTemplateModule data;
 
-		/**
-		 * 签章基本结果信息
-		 */
-		private List<SignInfo> signInfos;
+    /**
+     * 模本签名参数
+     */
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class BatchTemplateModule extends BaseSignObject {
+        /**
+         * 批次号
+         */
+        private String batchId;
 
-		/**
-		 * 签章结果
-		 */
-		@Data
-		public static class SignInfo implements Serializable {
+        /**
+         * 签章基本结果信息
+         */
+        private List<SignInfo> signInfos;
 
-			/**
-			 * 签章id
-			 */
-			private String signId;
+        /**
+         * 签章结果
+         */
+        @Data
+        public static class SignInfo implements Serializable {
 
-			/**
-			 * 合同文件id
-			 */
-			private String fileId;
-
-			/**
-			 * 签章状态
-			 */
-			private Boolean signState;
-			/**
-			 * 自定义id
-			 */
-			public String customId;
-		}
-	}
+            /**
+             * 自定义id
+             */
+            public String customId;
+            /**
+             * 签章id
+             */
+            private String signId;
+            /**
+             * 合同文件id
+             */
+            private String fileId;
+            /**
+             * 签章状态
+             */
+            private Boolean signState;
+        }
+    }
 
 
 }

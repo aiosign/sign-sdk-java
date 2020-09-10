@@ -46,9 +46,6 @@ public class AuthenticationRPMinRequest extends AbstractSignRequest<Authenticati
     private Picture idCardFrontImage;
 
 
-
-
-
     @Override
     @JsonIgnore
     public RequestInfo<AuthenticationRPMinResponse> getRequestInfo() {

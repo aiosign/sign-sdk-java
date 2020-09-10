@@ -7,7 +7,6 @@ import com.github.aiosign.enums.CertifyType;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
 import com.github.aiosign.module.response.AuthenticationAliPayCertifyResponse;
-import com.github.aiosign.module.response.AuthenticationBlankFourEnCeryQueryResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +14,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author 侯存路
- * @description
  * @since 2020/8/11 16:34
  */
 @EqualsAndHashCode(callSuper = true)
@@ -39,7 +37,6 @@ public class AuthenticationAliPayCertifyRequest extends AbstractSignRequest<Auth
      * 认证模式
      */
     private CertifyType certifytype;
-
 
 
     @Override

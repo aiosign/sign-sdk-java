@@ -35,10 +35,10 @@ import java.util.Optional;
  * @author Rob Harrop
  * @author Chris Beams
  * @author Sam Brannen
+ * @version $Id: $Id
  * @see CollectionUtils
  * @see StringUtils
  * @since 19.03.2004
- * @version $Id: $Id
  */
 public abstract class ObjectUtils {
 
@@ -96,7 +96,7 @@ public abstract class ObjectUtils {
      * @param obj the object to check
      * @return a boolean.
      */
-    public static boolean isArray( Object obj) {
+    public static boolean isArray(Object obj) {
         return (obj != null && obj.getClass().isArray());
     }
 
@@ -108,7 +108,7 @@ public abstract class ObjectUtils {
      * @return a boolean.
      * @see #isEmpty(Object)
      */
-    public static boolean isEmpty( Object[] array) {
+    public static boolean isEmpty(Object[] array) {
         return (array == null || array.length == 0);
     }
 
@@ -130,7 +130,7 @@ public abstract class ObjectUtils {
      * @since 4.2
      */
     @SuppressWarnings("rawtypes")
-    public static boolean isEmpty( Object obj) {
+    public static boolean isEmpty(Object obj) {
         if (obj == null) {
             return true;
         }
@@ -252,11 +252,11 @@ public abstract class ObjectUtils {
      *
      * @param array the array to append to (can be {@code null})
      * @param obj   the object to append
+     * @param <A>   a A object.
+     * @param <O>   a O object.
      * @return the new array (of the same component type; never {@code null})
-     * @param <A> a A object.
-     * @param <O> a O object.
      */
-    public static <A, O extends A> A[] addObjectToArray( A[] array,  O obj) {
+    public static <A, O extends A> A[] addObjectToArray(A[] array, O obj) {
         Class<?> compType = Object.class;
         if (array != null) {
             compType = array.getClass().getComponentType();
@@ -386,6 +386,8 @@ public abstract class ObjectUtils {
      * methods for arrays in this class. If the object is {@code null},
      * this method returns 0.
      *
+     * @param obj a {@link java.lang.Object} object.
+     * @return a int.
      * @see Object#hashCode()
      * @see #nullSafeHashCode(Object[])
      * @see #nullSafeHashCode(boolean[])
@@ -396,10 +398,8 @@ public abstract class ObjectUtils {
      * @see #nullSafeHashCode(int[])
      * @see #nullSafeHashCode(long[])
      * @see #nullSafeHashCode(short[])
-     * @param obj a {@link java.lang.Object} object.
-     * @return a int.
      */
-    public static int nullSafeHashCode( Object obj) {
+    public static int nullSafeHashCode(Object obj) {
         if (obj == null) {
             return 0;
         }
@@ -442,7 +442,7 @@ public abstract class ObjectUtils {
      * @param array an array of {@link java.lang.Object} objects.
      * @return a int.
      */
-    public static int nullSafeHashCode( Object[] array) {
+    public static int nullSafeHashCode(Object[] array) {
         if (array == null) {
             return 0;
         }
@@ -460,7 +460,7 @@ public abstract class ObjectUtils {
      * @param array an array of {@link boolean} objects.
      * @return a int.
      */
-    public static int nullSafeHashCode( boolean[] array) {
+    public static int nullSafeHashCode(boolean[] array) {
         if (array == null) {
             return 0;
         }
@@ -478,7 +478,7 @@ public abstract class ObjectUtils {
      * @param array an array of {@link byte} objects.
      * @return a int.
      */
-    public static int nullSafeHashCode( byte[] array) {
+    public static int nullSafeHashCode(byte[] array) {
         if (array == null) {
             return 0;
         }
@@ -496,7 +496,7 @@ public abstract class ObjectUtils {
      * @param array an array of {@link char} objects.
      * @return a int.
      */
-    public static int nullSafeHashCode( char[] array) {
+    public static int nullSafeHashCode(char[] array) {
         if (array == null) {
             return 0;
         }
@@ -514,7 +514,7 @@ public abstract class ObjectUtils {
      * @param array an array of {@link double} objects.
      * @return a int.
      */
-    public static int nullSafeHashCode( double[] array) {
+    public static int nullSafeHashCode(double[] array) {
         if (array == null) {
             return 0;
         }
@@ -532,7 +532,7 @@ public abstract class ObjectUtils {
      * @param array an array of {@link float} objects.
      * @return a int.
      */
-    public static int nullSafeHashCode( float[] array) {
+    public static int nullSafeHashCode(float[] array) {
         if (array == null) {
             return 0;
         }
@@ -550,7 +550,7 @@ public abstract class ObjectUtils {
      * @param array an array of {@link int} objects.
      * @return a int.
      */
-    public static int nullSafeHashCode( int[] array) {
+    public static int nullSafeHashCode(int[] array) {
         if (array == null) {
             return 0;
         }
@@ -568,7 +568,7 @@ public abstract class ObjectUtils {
      * @param array an array of {@link long} objects.
      * @return a int.
      */
-    public static int nullSafeHashCode( long[] array) {
+    public static int nullSafeHashCode(long[] array) {
         if (array == null) {
             return 0;
         }
@@ -586,7 +586,7 @@ public abstract class ObjectUtils {
      * @param array an array of {@link short} objects.
      * @return a int.
      */
-    public static int nullSafeHashCode( short[] array) {
+    public static int nullSafeHashCode(short[] array) {
         if (array == null) {
             return 0;
         }
@@ -600,9 +600,9 @@ public abstract class ObjectUtils {
     /**
      * Return the same value as {@link java.lang.Boolean#hashCode(boolean)}}.
      *
-     * @deprecated as of Spring Framework 5.0, in favor of the native JDK 8 variant
      * @param bool a boolean.
      * @return a int.
+     * @deprecated as of Spring Framework 5.0, in favor of the native JDK 8 variant
      */
     @Deprecated
     public static int hashCode(boolean bool) {
@@ -612,9 +612,9 @@ public abstract class ObjectUtils {
     /**
      * Return the same value as {@link java.lang.Double#hashCode(double)}}.
      *
-     * @deprecated as of Spring Framework 5.0, in favor of the native JDK 8 variant
      * @param dbl a double.
      * @return a int.
+     * @deprecated as of Spring Framework 5.0, in favor of the native JDK 8 variant
      */
     @Deprecated
     public static int hashCode(double dbl) {
@@ -624,9 +624,9 @@ public abstract class ObjectUtils {
     /**
      * Return the same value as {@link java.lang.Float#hashCode(float)}}.
      *
-     * @deprecated as of Spring Framework 5.0, in favor of the native JDK 8 variant
      * @param flt a float.
      * @return a int.
+     * @deprecated as of Spring Framework 5.0, in favor of the native JDK 8 variant
      */
     @Deprecated
     public static int hashCode(float flt) {
@@ -636,9 +636,9 @@ public abstract class ObjectUtils {
     /**
      * Return the same value as {@link java.lang.Long#hashCode(long)}}.
      *
-     * @deprecated as of Spring Framework 5.0, in favor of the native JDK 8 variant
      * @param lng a long.
      * @return a int.
+     * @deprecated as of Spring Framework 5.0, in favor of the native JDK 8 variant
      */
     @Deprecated
     public static int hashCode(long lng) {

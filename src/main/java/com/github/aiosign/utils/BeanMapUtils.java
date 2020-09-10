@@ -24,7 +24,7 @@ public abstract class BeanMapUtils {
     /**
      * <p>convertToMap.</p>
      *
-     * @param obj a {@link java.lang.Object} object.
+     * @param obj         a {@link java.lang.Object} object.
      * @param convertNull a boolean.
      * @return a {@link java.util.Map} object.
      */

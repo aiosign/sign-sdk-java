@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.Map;
 import java.util.Optional;
 
@@ -127,15 +126,16 @@ public class DefaultSignClient implements SignClient {
 
     /**
      * 下载文件
-     * @param fileId 文件id
+     *
+     * @param fileId       文件id
      * @param outputStream 输出流
      */
     @Override
-    public void download(String baseUri,String fileId, OutputStream outputStream) {
-        String apiUrl=rootUri+baseUri;
+    public void download(String baseUri, String fileId, OutputStream outputStream) {
+        String apiUrl = rootUri + baseUri;
         String token = TokenManager.getToken(this);
         String uriBuild = uriBuild(apiUrl, fileId, token);
-        downLoadFromUrl(uriBuild,outputStream);
+        downLoadFromUrl(uriBuild, outputStream);
     }
 
     /**
@@ -221,13 +221,14 @@ public class DefaultSignClient implements SignClient {
 
     /**
      * 构建url
-     * @param uri 基本的uri
+     *
+     * @param uri    基本的uri
      * @param fileId 文件id
-     * @param token 用户凭证
+     * @param token  用户凭证
      * @return
      */
-    private String uriBuild(String uri,String fileId,String token){
-        StringBuilder sb=new StringBuilder(uri);
+    private String uriBuild(String uri, String fileId, String token) {
+        StringBuilder sb = new StringBuilder(uri);
         sb.append("?").append("access_token");
         sb.append("=").append(token);
         sb.append("&").append("fileId").append("=").append(fileId);

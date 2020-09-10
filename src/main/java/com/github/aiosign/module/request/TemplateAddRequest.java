@@ -23,29 +23,29 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TemplateAddRequest extends AbstractSignRequest<TemplateAddResponse> {
 
-	/**
-	 * 模板文件id
-	 */
-	private String fileId;
-	/**
-	 * 模板名字
-	 */
-	private String name;
-	/**
-	 * 是否校验签名域
-	 */
-	private boolean signCheck;
+    /**
+     * 模板文件id
+     */
+    private String fileId;
+    /**
+     * 模板名字
+     */
+    private String name;
+    /**
+     * 是否校验签名域
+     */
+    private boolean signCheck;
 
-	@Override
-	@JsonIgnore
-	public RequestInfo<TemplateAddResponse> getRequestInfo() {
-		RequestInfo<TemplateAddResponse> requestInfo=new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("template/add");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(TemplateAddResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    @Override
+    @JsonIgnore
+    public RequestInfo<TemplateAddResponse> getRequestInfo() {
+        RequestInfo<TemplateAddResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("template/add");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(TemplateAddResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

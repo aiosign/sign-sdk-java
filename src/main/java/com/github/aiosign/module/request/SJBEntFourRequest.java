@@ -5,7 +5,6 @@ import com.github.aiosign.base.AbstractSignRequest;
 import com.github.aiosign.base.RequestInfo;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
-import com.github.aiosign.module.response.ContractAddResponse;
 import com.github.aiosign.module.response.SJBEntFourResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;

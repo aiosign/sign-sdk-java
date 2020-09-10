@@ -2,11 +2,8 @@ package com.github.aiosign.module.response;
 
 import com.github.aiosign.base.AbstractSignResponse;
 import com.github.aiosign.base.BaseSignObject;
-import com.github.aiosign.enums.CertifyType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.time.LocalDateTime;
 
 /**
  * @author 侯存路

@@ -6,9 +6,7 @@ import com.github.aiosign.base.RequestInfo;
 import com.github.aiosign.bean.TextParam;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
-import com.github.aiosign.module.response.SignCheckResponse;
 import com.github.aiosign.module.response.TemplateFillResponse;
-import com.github.aiosign.module.response.TemplateLockResponse;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,6 +14,7 @@ import java.util.List;
 
 /**
  * 模板填充参数
+ *
  * @author modificial
  * @since 2020/8/15
  */
@@ -47,7 +46,7 @@ public class TemplateFillRequest extends AbstractSignRequest<TemplateFillRespons
     @Override
     @JsonIgnore
     public RequestInfo<TemplateFillResponse> getRequestInfo() {
-        RequestInfo<TemplateFillResponse> requestInfo=new RequestInfo<>();
+        RequestInfo<TemplateFillResponse> requestInfo = new RequestInfo<>();
         requestInfo.setApiUri("template/fill");
         requestInfo.setContentType(ContentType.JSON);
         requestInfo.setMethod(HttpMethod.POST);

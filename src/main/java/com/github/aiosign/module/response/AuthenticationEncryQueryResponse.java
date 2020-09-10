@@ -5,8 +5,6 @@ import com.github.aiosign.base.BaseSignObject;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.List;
-
 /**
  * @author 侯存路
  * @description
@@ -18,7 +16,6 @@ public class AuthenticationEncryQueryResponse extends AbstractSignResponse {
 
 
     private AuthenticationEncryQueryModel data;
-
 
 
     @EqualsAndHashCode(callSuper = true)

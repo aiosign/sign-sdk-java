@@ -22,9 +22,9 @@ public class TokenResponse extends AbstractSignResponse {
      */
     @EqualsAndHashCode(callSuper = true)
     @Data
-    public static class TokenModule extends BaseSignObject{
+    public static class TokenModule extends BaseSignObject {
         /**
-         *用户令牌
+         * 用户令牌
          */
         private String accessToken;
         /**

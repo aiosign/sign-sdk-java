@@ -14,21 +14,21 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class UserPersonalRegisterResponse extends AbstractSignResponse {
-	/**
-	 * 用户注册返回数据
-	 */
-	private UserPersonalRegisterModule data;
+    /**
+     * 用户注册返回数据
+     */
+    private UserPersonalRegisterModule data;
 
-	/**
-	 * 用户注册返回数据
-	 */
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class UserPersonalRegisterModule extends BaseSignObject{
-		/**
-		 * 用户id
-		 */
-		private String userId;
-	}
+    /**
+     * 用户注册返回数据
+     */
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class UserPersonalRegisterModule extends BaseSignObject {
+        /**
+         * 用户id
+         */
+        private String userId;
+    }
 
 }

@@ -6,7 +6,6 @@ import com.github.aiosign.base.RequestInfo;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
 import com.github.aiosign.module.response.ChinaPayEnterprisePayValidResponse;
-import com.github.aiosign.module.response.EnterprisePayResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

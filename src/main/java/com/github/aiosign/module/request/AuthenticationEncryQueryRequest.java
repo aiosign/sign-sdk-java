@@ -6,13 +6,10 @@ import com.github.aiosign.base.RequestInfo;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
 import com.github.aiosign.module.response.AuthenticationEncryQueryResponse;
-import com.github.aiosign.module.response.SmsAuthCodeResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 /**
  * @author 侯存路
@@ -38,7 +35,6 @@ public class AuthenticationEncryQueryRequest extends AbstractSignRequest<Authent
      * 手机号
      */
     private String phone;
-
 
 
     @Override

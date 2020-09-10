@@ -2,7 +2,6 @@ package com.github.aiosign.module.response;
 
 import com.github.aiosign.base.AbstractSignResponse;
 import com.github.aiosign.base.BaseSignObject;
-import com.github.aiosign.enums.EnterprisePayStatus;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

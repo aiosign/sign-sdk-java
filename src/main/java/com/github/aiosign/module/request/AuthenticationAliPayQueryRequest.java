@@ -3,10 +3,8 @@ package com.github.aiosign.module.request;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.aiosign.base.AbstractSignRequest;
 import com.github.aiosign.base.RequestInfo;
-import com.github.aiosign.enums.CertifyType;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
-import com.github.aiosign.module.response.AuthenticationAliPayCertifyResponse;
 import com.github.aiosign.module.response.AuthenticationAliPayQueryResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +13,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author 侯存路
- * @description
  * @since 2020/8/11 16:34
  */
 @EqualsAndHashCode(callSuper = true)

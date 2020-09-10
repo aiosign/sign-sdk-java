@@ -18,7 +18,7 @@ public class ContractTest extends AbstractSignTest {
 
 
     /**
-    * 添加合同
+     * 添加合同
      */
     @Test
     public void add() {
@@ -32,9 +32,9 @@ public class ContractTest extends AbstractSignTest {
         // 描述信息
         contractAddRequest.setDescription("测试描述");
         ContractAddResponse execute = signClient.execute(contractAddRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -46,9 +46,9 @@ public class ContractTest extends AbstractSignTest {
         // 合同id
         contractIdentityRequest.setContractId("c45e88eab763e38407621fd7e8319d23");
         ContractQueryResponse execute = signClient.execute(contractIdentityRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -60,9 +60,9 @@ public class ContractTest extends AbstractSignTest {
         // 合同id
         contractIdentityRequest.setContractId("c45e88eab763e38407621fd7e8319d23");
         ContractDeleteResponse execute = signClient.execute(contractIdentityRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -74,38 +74,38 @@ public class ContractTest extends AbstractSignTest {
         // 合同id
         asyContractIdentityRequest.setContractId("c45e88eab763e38407621fd7e8319d23");
         ContractAddResponse execute = signClient.execute(asyContractIdentityRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     @Test
-    public void bind(){
-        ContractBindPhoneRequest contractBindPhoneRequest=new ContractBindPhoneRequest();
+    public void bind() {
+        ContractBindPhoneRequest contractBindPhoneRequest = new ContractBindPhoneRequest();
         //合同Id
         contractBindPhoneRequest.setContractId("07508a07fa13031d69c3a974f4efefff");
         //手机参数
-        ContractBindPhoneRequest.BindInfo bindInfo=new ContractBindPhoneRequest.BindInfo();
+        ContractBindPhoneRequest.BindInfo bindInfo = new ContractBindPhoneRequest.BindInfo();
         bindInfo.setPhone("15053153810");
-        List<ContractBindPhoneRequest.BindInfo> bindInfoList=new ArrayList<>();
+        List<ContractBindPhoneRequest.BindInfo> bindInfoList = new ArrayList<>();
         bindInfoList.add(bindInfo);
         contractBindPhoneRequest.setParams(bindInfoList);
-        ContractBindPhoneResponse execute=signClient.execute(contractBindPhoneRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        ContractBindPhoneResponse execute = signClient.execute(contractBindPhoneRequest);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     @Test
-    public void querybindContract(){
-        QueryBindContractRequest queryBindContractRequest=new QueryBindContractRequest();
+    public void querybindContract() {
+        QueryBindContractRequest queryBindContractRequest = new QueryBindContractRequest();
         //合同名称
         queryBindContractRequest.setContractName("");
         //手机号
         queryBindContractRequest.setPhone("15053153810");
-        QueryBindContractResponse execute=signClient.execute(queryBindContractRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        QueryBindContractResponse execute = signClient.execute(queryBindContractRequest);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 }

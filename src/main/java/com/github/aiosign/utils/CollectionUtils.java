@@ -37,7 +37,7 @@ public abstract class CollectionUtils {
      * @param collection the Collection to check
      * @return whether the given Collection is empty
      */
-    public static boolean isEmpty( Collection<?> collection) {
+    public static boolean isEmpty(Collection<?> collection) {
         return (collection == null || collection.isEmpty());
     }
 
@@ -48,7 +48,7 @@ public abstract class CollectionUtils {
      * @param map the Map to check
      * @return whether the given Map is empty
      */
-    public static boolean isEmpty( Map<?, ?> map) {
+    public static boolean isEmpty(Map<?, ?> map) {
         return (map == null || map.isEmpty());
     }
 
@@ -93,8 +93,8 @@ public abstract class CollectionUtils {
      *
      * @param props the Properties instance to merge (may be {@code null})
      * @param map   the target Map to merge the properties into
-     * @param <K> a K object.
-     * @param <V> a V object.
+     * @param <K>   a K object.
+     * @param <V>   a V object.
      */
     @SuppressWarnings("unchecked")
     public static <K, V> void mergePropertiesIntoMap(Properties props, Map<K, V> map) {
@@ -198,8 +198,8 @@ public abstract class CollectionUtils {
      *
      * @param source     the source Collection
      * @param candidates the candidates to search for
+     * @param <E>        a E object.
      * @return the first present object, or {@code null} if not found
-     * @param <E> a E object.
      */
     @SuppressWarnings("unchecked")
     public static <E> E findFirstMatch(Collection<?> source, Collection<E> candidates) {
@@ -219,9 +219,9 @@ public abstract class CollectionUtils {
      *
      * @param collection the Collection to search
      * @param type       the type to look for
+     * @param <T>        a T object.
      * @return a value of the given type found if there is a clear match,
      * or {@code null} if none or more than one such value found
-     * @param <T> a T object.
      */
     @SuppressWarnings("unchecked")
     public static <T> T findValueOfType(Collection<?> collection, Class<T> type) {
@@ -317,14 +317,14 @@ public abstract class CollectionUtils {
      * or otherwise iterating over all elements (assuming a linked set).
      *
      * @param set the Set to check (may be {@code null} or empty)
+     * @param <T> a T object.
      * @return the last element, or {@code null} if none
      * @see SortedSet
      * @see LinkedHashMap#keySet()
      * @see LinkedHashSet
      * @since 5.0.3
-     * @param <T> a T object.
      */
-    public static <T> T lastElement( Set<T> set) {
+    public static <T> T lastElement(Set<T> set) {
         if (isEmpty(set)) {
             return null;
         }
@@ -345,11 +345,11 @@ public abstract class CollectionUtils {
      * Retrieve the last element of the given List, accessing the highest index.
      *
      * @param list the List to check (may be {@code null} or empty)
+     * @param <T>  a T object.
      * @return the last element, or {@code null} if none
      * @since 5.0.3
-     * @param <T> a T object.
      */
-    public static <T> T lastElement( List<T> list) {
+    public static <T> T lastElement(List<T> list) {
         if (isEmpty(list)) {
             return null;
         }
@@ -360,8 +360,8 @@ public abstract class CollectionUtils {
      * Adapt an {@link java.util.Enumeration} to an {@link java.util.Iterator}.
      *
      * @param enumeration the original {@code Enumeration}
+     * @param <E>         a E object.
      * @return the adapted {@code Iterator}
-     * @param <E> a E object.
      */
     public static <E> Iterator<E> toIterator(Enumeration<E> enumeration) {
         return (enumeration != null ? new EnumerationIterator<>(enumeration) : Collections.emptyIterator());

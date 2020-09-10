@@ -23,21 +23,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserPersonalUnLockRequest extends AbstractSignRequest<UserPersonalUnLockResponse> {
 
-	/**
-	 * 用户id
-	 */
-	private String userId;
+    /**
+     * 用户id
+     */
+    private String userId;
 
-	@Override
-	@JsonIgnore
-	public RequestInfo<UserPersonalUnLockResponse> getRequestInfo() {
-		RequestInfo<UserPersonalUnLockResponse> requestInfo=new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("user/personal/unlock");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(UserPersonalUnLockResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    @Override
+    @JsonIgnore
+    public RequestInfo<UserPersonalUnLockResponse> getRequestInfo() {
+        RequestInfo<UserPersonalUnLockResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("user/personal/unlock");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(UserPersonalUnLockResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

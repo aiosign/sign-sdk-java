@@ -24,21 +24,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TemplateQueryRequest extends AbstractSignRequest<TemplateQueryResponse> {
 
-	/**
-	 * 模板id
-	 */
-	private String templateId;
+    /**
+     * 模板id
+     */
+    private String templateId;
 
-	@Override
-	@JsonIgnore
-	public RequestInfo<TemplateQueryResponse> getRequestInfo() {
-		RequestInfo<TemplateQueryResponse> requestInfo=new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("template/query");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(TemplateQueryResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    @Override
+    @JsonIgnore
+    public RequestInfo<TemplateQueryResponse> getRequestInfo() {
+        RequestInfo<TemplateQueryResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("template/query");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(TemplateQueryResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

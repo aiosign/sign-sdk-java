@@ -1,20 +1,16 @@
 package com.github.aiosign.module.request;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.aiosign.base.AbstractSignRequest;
 import com.github.aiosign.base.FileItem;
 import com.github.aiosign.base.RequestInfo;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
 import com.github.aiosign.module.response.BaiDuAiFaceVideoVerifyRequestResponse;
-import com.github.aiosign.module.response.BaiduSessionCodeResponse;
-import com.github.aiosign.module.response.FileUploadResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,7 +41,7 @@ public class BaiDuAiFaceVideoVerifyRequest extends AbstractSignRequest<BaiDuAiFa
 
     @Override
     public RequestInfo<BaiDuAiFaceVideoVerifyRequestResponse> getRequestInfo() {
-        RequestInfo<BaiDuAiFaceVideoVerifyRequestResponse> requestInfo=new RequestInfo<>();
+        RequestInfo<BaiDuAiFaceVideoVerifyRequestResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.MULTIPART);
         requestInfo.setApiUri("authentication/baidu/video-verify");
         requestInfo.setMethod(HttpMethod.POST);

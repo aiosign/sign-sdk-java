@@ -28,9 +28,9 @@ public class SingleTemplateRequest extends AbstractSignRequest<SignResponse> {
      * 模板id
      */
     private String templateId;
-	/**
-	 * 签章信息
-	 */
+    /**
+     * 签章信息
+     */
     private SignFields signField;
 
     @Override

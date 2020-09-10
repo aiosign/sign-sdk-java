@@ -64,9 +64,9 @@ public class SignTest extends AbstractSignTest {
         // 签章信息
         singleTemplateRequest.setSignField(signFields);
         SignResponse execute = signClient.execute(singleTemplateRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -115,9 +115,9 @@ public class SignTest extends AbstractSignTest {
         batchTemplateRequest.setBatchTemplates(customSignFieldsList);
 
         BatchTemplateResponse execute = signClient.execute(batchTemplateRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -150,9 +150,9 @@ public class SignTest extends AbstractSignTest {
         commonSignRequest.setUserId("00716661208384163840");
 
         SignResponse execute = signClient.execute(commonSignRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -176,9 +176,9 @@ public class SignTest extends AbstractSignTest {
         // 用户id
         keywordSignRequest.setUserId("00716661208384163840");
         SignResponse execute = signClient.execute(keywordSignRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -224,8 +224,8 @@ public class SignTest extends AbstractSignTest {
         directSignRequest.setIdNumber("371525199309870986");
         //base64合同文件
         directSignRequest.setContractFileContent("a9e4847465044ddd8709a3b577ce4f72234");
-        List<DirectSignRequest.SignDetail> signFields=new ArrayList<>();
-        DirectSignRequest.SignDetail signDetail=new DirectSignRequest.SignDetail();
+        List<DirectSignRequest.SignDetail> signFields = new ArrayList<>();
+        DirectSignRequest.SignDetail signDetail = new DirectSignRequest.SignDetail();
         //base64 印章文件
         signDetail.setSealFileContent("47465044ddd8709a3b577ce4f72234");
         //签章需要的x坐标
@@ -240,7 +240,7 @@ public class SignTest extends AbstractSignTest {
         signDetail.setSealWidth(50.0);
         signFields.add(signDetail);
         directSignRequest.setSignFields(signFields);
-        DirectSignResponse execute=signClient.execute(directSignRequest);
+        DirectSignResponse execute = signClient.execute(directSignRequest);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());

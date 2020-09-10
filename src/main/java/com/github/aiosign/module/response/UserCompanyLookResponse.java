@@ -15,19 +15,19 @@ import lombok.EqualsAndHashCode;
 @Data
 public class UserCompanyLookResponse extends AbstractSignResponse {
 
-	private UserCompanyLookModule data;
+    private UserCompanyLookModule data;
 
 
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class UserCompanyLookModule extends BaseSignObject {
-		/**
-		 * 企业用户id
-		 */
-		private String userId;
-		/**
-		 * 结果
-		 */
-		private Boolean result;
-	}
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class UserCompanyLookModule extends BaseSignObject {
+        /**
+         * 企业用户id
+         */
+        private String userId;
+        /**
+         * 结果
+         */
+        private Boolean result;
+    }
 }

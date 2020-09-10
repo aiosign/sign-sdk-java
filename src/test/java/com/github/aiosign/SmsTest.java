@@ -1,8 +1,14 @@
 package com.github.aiosign;
 
 import com.github.aiosign.enums.SmsType;
-import com.github.aiosign.module.request.*;
-import com.github.aiosign.module.response.*;
+import com.github.aiosign.module.request.SmsAuthCodeRequest;
+import com.github.aiosign.module.request.SmsBatchRequest;
+import com.github.aiosign.module.request.SmsSingleRequest;
+import com.github.aiosign.module.request.SmsValidAuthCodeRequest;
+import com.github.aiosign.module.response.SmsAuthCodeResponse;
+import com.github.aiosign.module.response.SmsBatchResponse;
+import com.github.aiosign.module.response.SmsSingleResponse;
+import com.github.aiosign.module.response.SmsValidAuthCodeResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 

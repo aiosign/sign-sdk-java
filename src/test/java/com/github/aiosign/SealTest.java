@@ -34,9 +34,9 @@ public class SealTest extends AbstractSignTest {
         // 描述
         sealAddRequest.setDescription("测试");
         SealResponse execute = signClient.execute(sealAddRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -48,9 +48,9 @@ public class SealTest extends AbstractSignTest {
         // 印章id
         sealRemoveRequest.setSealId("a9e48474650448709a3b577ce4f72234");
         SealBatchResponse execute = signClient.execute(sealRemoveRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -61,9 +61,9 @@ public class SealTest extends AbstractSignTest {
         SealLockRequest sealLockRequest = new SealLockRequest(); // 印章id
         sealLockRequest.setSealId("a9e48474650448709a3b577ce4f72234");
         SealBatchResponse execute = signClient.execute(sealLockRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -74,9 +74,9 @@ public class SealTest extends AbstractSignTest {
         SealUnLockRequest sealUnLockRequest = new SealUnLockRequest(); // 印章id
         sealUnLockRequest.setSealId("a9e48474650448709a3b577ce4f72234");
         SealBatchResponse execute = signClient.execute(sealUnLockRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -87,8 +87,8 @@ public class SealTest extends AbstractSignTest {
         SealIdentityRequest sealIdentityRequest = new SealIdentityRequest(); // 印章id
         sealIdentityRequest.setSealId("a9e48474650448709a3b577ce4f72234");
         SealQueryResponse execute = signClient.execute(sealIdentityRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 }

@@ -55,7 +55,7 @@ public class SignUtils {
      * HmacSHA256签名
      *
      * @param message a {@link java.lang.String} object.
-     * @param key a {@link java.lang.String} object.
+     * @param key     a {@link java.lang.String} object.
      * @return a {@link java.lang.String} object.
      */
     public static String createHmacSha256Sign(String message, String key) {

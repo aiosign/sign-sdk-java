@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -31,14 +32,6 @@ public class ContractBindPhoneRequest extends AbstractSignRequest<ContractBindPh
 
     private List<BindInfo> params;
 
-    @Data
-    public static class BindInfo implements Serializable {
-        /**
-         * 手机号
-         */
-        private String phone;
-    }
-
     @Override
     @JsonIgnore
     public RequestInfo<ContractBindPhoneResponse> getRequestInfo() {
@@ -50,5 +43,13 @@ public class ContractBindPhoneRequest extends AbstractSignRequest<ContractBindPh
         requestInfo.setResponseType(ContractBindPhoneResponse.class);
         requestInfo.setRequestBody(this);
         return requestInfo;
+    }
+
+    @Data
+    public static class BindInfo implements Serializable {
+        /**
+         * 手机号
+         */
+        private String phone;
     }
 }

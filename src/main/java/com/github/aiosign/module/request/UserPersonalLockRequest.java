@@ -23,26 +23,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserPersonalLockRequest extends AbstractSignRequest<UserPersonalLockResponse> {
 
-	/**
-	 * 用户id
-	 */
-	private String userId;
+    /**
+     * 用户id
+     */
+    private String userId;
 
-	/**
-	 * 返回请求的必要参数信息
-	 *
-	 * @return
-	 */
-	@Override
-	@JsonIgnore
-	public RequestInfo<UserPersonalLockResponse> getRequestInfo() {
-		RequestInfo<UserPersonalLockResponse> requestInfo=new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("user/personal/lock");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(UserPersonalLockResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    /**
+     * 返回请求的必要参数信息
+     *
+     * @return
+     */
+    @Override
+    @JsonIgnore
+    public RequestInfo<UserPersonalLockResponse> getRequestInfo() {
+        RequestInfo<UserPersonalLockResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("user/personal/lock");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(UserPersonalLockResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

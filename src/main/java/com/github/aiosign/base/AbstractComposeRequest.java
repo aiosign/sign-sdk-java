@@ -20,7 +20,6 @@ public abstract class AbstractComposeRequest<T extends AbstractSignResponse> imp
     public abstract <T extends AbstractSignResponse> T execute(SignClient signClient);
 
 
-
     public void setReturnCode(AbstractSignResponse abstractSignResponse, AbstractSignResponse signResponse) {
         abstractSignResponse.setReturnCode(signResponse.getReturnCode());
         abstractSignResponse.setResultMessage(signResponse.getResultMessage());

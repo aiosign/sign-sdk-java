@@ -26,72 +26,73 @@ import java.util.List;
 @NoArgsConstructor
 public class EventCertSignRequest extends AbstractSignRequest<SignResponse> {
 
-	/**
-	 * 合同id
-	 */
-	private String contractId;
+    /**
+     * 合同id
+     */
+    private String contractId;
 
-	/**
-	 * 签章备注
-	 */
-	private String remark;
+    /**
+     * 签章备注
+     */
+    private String remark;
 
-	/**
-	 * 签章信息集合
-	 */
-	private List<SignParams> fields;
-	/**
-	 * 用户id
-	 */
-	private String userId;
-	/**
-	 * 签章参数
-	 */
-	@Data
-	public static class SignParams implements Serializable {
+    /**
+     * 签章信息集合
+     */
+    private List<SignParams> fields;
+    /**
+     * 用户id
+     */
+    private String userId;
 
-		/**
-		 * 印章id
-		 */
-		private String sealId;
+    @Override
+    @JsonIgnore
+    public RequestInfo<SignResponse> getRequestInfo() {
+        RequestInfo<SignResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("event_cert_sign/common");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(SignResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 
-		/**
-		 * 第几页
-		 */
-		private Integer pageNumber;
+    /**
+     * 签章参数
+     */
+    @Data
+    public static class SignParams implements Serializable {
 
-		/**
-		 * 水平横坐标
-		 */
-		private Double horizontal;
+        /**
+         * 印章id
+         */
+        private String sealId;
 
-		/**
-		 * 垂直纵坐标
-		 */
-		private Double vertical;
+        /**
+         * 第几页
+         */
+        private Integer pageNumber;
 
-		/**
-		 * 印章宽度，精确1位小数
-		 */
-		private Double width;
+        /**
+         * 水平横坐标
+         */
+        private Double horizontal;
 
-		/**
-		 * 印章高度，精确1位小数
-		 */
-		private Double height;
+        /**
+         * 垂直纵坐标
+         */
+        private Double vertical;
 
-	}
+        /**
+         * 印章宽度，精确1位小数
+         */
+        private Double width;
 
-	@Override
-	@JsonIgnore
-	public RequestInfo<SignResponse> getRequestInfo() {
-		RequestInfo<SignResponse> requestInfo = new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("event_cert_sign/common");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(SignResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+        /**
+         * 印章高度，精确1位小数
+         */
+        private Double height;
+
+    }
 }

@@ -5,7 +5,6 @@ import com.github.aiosign.base.AbstractSignRequest;
 import com.github.aiosign.base.RequestInfo;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
-import com.github.aiosign.module.response.SmsAuthCodeResponse;
 import com.github.aiosign.module.response.SmsValidAuthCodeResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,7 +37,6 @@ public class SmsValidAuthCodeRequest extends AbstractSignRequest<SmsValidAuthCod
      * 验证码
      */
     private String authCode;
-
 
 
     @Override

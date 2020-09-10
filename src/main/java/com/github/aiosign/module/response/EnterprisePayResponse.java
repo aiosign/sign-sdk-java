@@ -2,13 +2,8 @@ package com.github.aiosign.module.response;
 
 import com.github.aiosign.base.AbstractSignResponse;
 import com.github.aiosign.base.BaseSignObject;
-import com.github.aiosign.bean.ContractInfo;
-import com.github.aiosign.enums.EnterprisePayStatus;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * 企业打款校验

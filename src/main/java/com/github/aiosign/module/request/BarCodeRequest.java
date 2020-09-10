@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * 条形码请求参数
+ *
  * @author modificial
  * @since 2020/4/21
  */

@@ -24,53 +24,52 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class EventCertKeywordSignRequest extends AbstractSignRequest<SignResponse> {
 
-	/**
-	 * 合同id
-	 */
-	private String contractId;
+    /**
+     * 合同id
+     */
+    private String contractId;
 
-	/**
-	 * 印章id
-	 */
-	private String sealId;
+    /**
+     * 印章id
+     */
+    private String sealId;
 
-	/**
-	 * 关键字不能为空
-	 */
-	private String keyword;
+    /**
+     * 关键字不能为空
+     */
+    private String keyword;
 
-	/**
-	 * 印章高度，精确1位小数
-	 */
-	private Double height;
+    /**
+     * 印章高度，精确1位小数
+     */
+    private Double height;
 
-	/**
-	 * 印章宽度，精确1位小数
-	 */
-	private Double width;
+    /**
+     * 印章宽度，精确1位小数
+     */
+    private Double width;
 
-	/**
-	 * true：合同内所有匹配位置全部签署；false：只签署第一个匹配；默认false
-	 */
-	private Boolean signAll;
+    /**
+     * true：合同内所有匹配位置全部签署；false：只签署第一个匹配；默认false
+     */
+    private Boolean signAll;
 
-	/**
-	 * 用户id
-	 */
-	private String userId;
+    /**
+     * 用户id
+     */
+    private String userId;
 
 
-
-	@Override
-	@JsonIgnore
-	public RequestInfo<SignResponse> getRequestInfo() {
-		RequestInfo<SignResponse> requestInfo = new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("event_cert_sign/keywordSign");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(SignResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    @Override
+    @JsonIgnore
+    public RequestInfo<SignResponse> getRequestInfo() {
+        RequestInfo<SignResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("event_cert_sign/keywordSign");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(SignResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

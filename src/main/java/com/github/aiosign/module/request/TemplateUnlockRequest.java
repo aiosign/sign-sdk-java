@@ -24,23 +24,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TemplateUnlockRequest extends AbstractSignRequest<TemplateUnlockResponse> {
 
-	/**
-	 * 模板id,逗号隔开
-	 */
-	private String templateId;
+    /**
+     * 模板id,逗号隔开
+     */
+    private String templateId;
 
 
-	@Override
-	@JsonIgnore
-	public RequestInfo<TemplateUnlockResponse> getRequestInfo() {
-		RequestInfo<TemplateUnlockResponse> requestInfo=new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("template/unlock");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(TemplateUnlockResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    @Override
+    @JsonIgnore
+    public RequestInfo<TemplateUnlockResponse> getRequestInfo() {
+        RequestInfo<TemplateUnlockResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("template/unlock");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(TemplateUnlockResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 
 }

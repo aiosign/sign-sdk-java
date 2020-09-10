@@ -15,14 +15,14 @@ import lombok.EqualsAndHashCode;
 @Data
 public class ContractAddResponse extends AbstractSignResponse {
 
-	private ContractAddModule data;
+    private ContractAddModule data;
 
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class ContractAddModule extends BaseSignObject {
-		/**
-		 * 合同id
-		 */
-		private String contractId;
-	}
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class ContractAddModule extends BaseSignObject {
+        /**
+         * 合同id
+         */
+        private String contractId;
+    }
 }

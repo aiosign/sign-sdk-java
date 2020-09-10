@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * 获取token的参数对象
+ *
  * @author modificial
  * @since 2020/5/11
  */
@@ -30,11 +31,11 @@ public class TokenRequest extends AbstractSignRequest<TokenResponse> {
     /**
      * 授权类型固定为client_credentials
      */
-    private String grantType="client_credentials";
+    private String grantType = "client_credentials";
 
-    public TokenRequest(String appId,String appSecret){
-        this.appId=appId;
-        this.appSecret=appSecret;
+    public TokenRequest(String appId, String appSecret) {
+        this.appId = appId;
+        this.appSecret = appSecret;
     }
 
     /**
@@ -43,7 +44,7 @@ public class TokenRequest extends AbstractSignRequest<TokenResponse> {
     @Override
     @JsonIgnore
     public RequestInfo<TokenResponse> getRequestInfo() {
-        RequestInfo<TokenResponse> responseRequestInfo=new RequestInfo<>();
+        RequestInfo<TokenResponse> responseRequestInfo = new RequestInfo<>();
         responseRequestInfo.setApiUri("oauth/token");
         responseRequestInfo.setContentType(ContentType.JSON);
         responseRequestInfo.setMethod(HttpMethod.POST);

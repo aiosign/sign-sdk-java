@@ -17,6 +17,7 @@ import java.util.List;
 public class SignCheckResponse extends AbstractSignResponse {
 
     private SignCheckModule data;
+
     /**
      * 验签参数
      */
@@ -36,6 +37,7 @@ public class SignCheckResponse extends AbstractSignResponse {
          * 详细验签结果
          */
         private List<SignCheckResult> signCheckResults;
+
         /**
          * 验证签名的详细信息
          */
@@ -52,7 +54,7 @@ public class SignCheckResponse extends AbstractSignResponse {
             /**
              * 时间戳
              */
-            private String  timestamp;
+            private String timestamp;
             /**
              * 校验结果
              */

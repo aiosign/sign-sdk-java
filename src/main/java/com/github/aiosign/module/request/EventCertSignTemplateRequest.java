@@ -29,9 +29,9 @@ public class EventCertSignTemplateRequest extends AbstractSignRequest<SignRespon
      * 模板id
      */
     private String templateId;
-	/**
-	 * 签章信息
-	 */
+    /**
+     * 签章信息
+     */
     private SignFields signField;
 
     @Override

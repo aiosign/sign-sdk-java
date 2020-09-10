@@ -64,7 +64,7 @@ public class RequestInfo<T extends AbstractSignResponse> implements Serializable
         } else if (contentType.equals(ContentType.FORM_URLENCODED)) {
             Assert.notEmpty(params, "query参数不能为空");
         } else if (contentType.equals(ContentType.MULTIPART)) {
-            Assert.notEmpty(fileParams,"文件上传的参数不能为空");
+            Assert.notEmpty(fileParams, "文件上传的参数不能为空");
         }
     }
 }

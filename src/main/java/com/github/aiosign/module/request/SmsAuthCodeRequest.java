@@ -6,7 +6,6 @@ import com.github.aiosign.base.RequestInfo;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
 import com.github.aiosign.module.response.SmsAuthCodeResponse;
-import com.github.aiosign.module.response.SmsBatchResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,6 +27,18 @@ public class SmsAuthCodeRequest extends AbstractSignRequest<SmsAuthCodeResponse>
 
     private List<Phone> phones;
 
+    @Override
+    @JsonIgnore
+    public RequestInfo<SmsAuthCodeResponse> getRequestInfo() {
+        RequestInfo<SmsAuthCodeResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("sms/auth_code");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(SmsAuthCodeResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 
     @Data
     @AllArgsConstructor
@@ -44,20 +55,6 @@ public class SmsAuthCodeRequest extends AbstractSignRequest<SmsAuthCodeResponse>
          */
         private String phone;
 
-    }
-
-
-    @Override
-    @JsonIgnore
-    public RequestInfo<SmsAuthCodeResponse> getRequestInfo() {
-        RequestInfo<SmsAuthCodeResponse> requestInfo = new RequestInfo<>();
-        requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("sms/auth_code");
-        requestInfo.setMethod(HttpMethod.POST);
-        requestInfo.setNeedToken(true);
-        requestInfo.setResponseType(SmsAuthCodeResponse.class);
-        requestInfo.setRequestBody(this);
-        return requestInfo;
     }
 
 

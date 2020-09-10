@@ -23,21 +23,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ContractIdentityListRequest extends AbstractSignRequest<ContractDeleteResponse> {
 
-	/**
-	 * 合同id
-	 */
-	private String contractId;
+    /**
+     * 合同id
+     */
+    private String contractId;
 
-	@Override
-	@JsonIgnore
-	public RequestInfo<ContractDeleteResponse> getRequestInfo() {
-		RequestInfo<ContractDeleteResponse> requestInfo=new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("contract/remove");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(ContractDeleteResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    @Override
+    @JsonIgnore
+    public RequestInfo<ContractDeleteResponse> getRequestInfo() {
+        RequestInfo<ContractDeleteResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("contract/remove");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(ContractDeleteResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

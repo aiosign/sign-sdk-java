@@ -23,36 +23,36 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ContractAddRequest extends AbstractSignRequest<ContractAddResponse> {
 
-	/**
-	 * 合同名字
-	 */
-	private String name;
+    /**
+     * 合同名字
+     */
+    private String name;
 
-	/**
-	 * 文件id
-	 */
-	private String fileId;
+    /**
+     * 文件id
+     */
+    private String fileId;
 
-	/**
-	 * 用户id不能为空
-	 */
-	private String userId;
+    /**
+     * 用户id不能为空
+     */
+    private String userId;
 
-	/**
-	 * 描述信息
-	 */
-	private String description;
+    /**
+     * 描述信息
+     */
+    private String description;
 
-	@Override
-	@JsonIgnore
-	public RequestInfo<ContractAddResponse> getRequestInfo() {
-		RequestInfo<ContractAddResponse> requestInfo=new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("contract/add");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(ContractAddResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    @Override
+    @JsonIgnore
+    public RequestInfo<ContractAddResponse> getRequestInfo() {
+        RequestInfo<ContractAddResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("contract/add");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(ContractAddResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

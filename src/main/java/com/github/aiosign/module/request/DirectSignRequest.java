@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -48,6 +49,19 @@ public class DirectSignRequest extends AbstractSignRequest<DirectSignResponse> {
 
     private List<SignDetail> signFields;
 
+    @Override
+    @JsonIgnore
+    public RequestInfo<DirectSignResponse> getRequestInfo() {
+        RequestInfo<DirectSignResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("event_cert_sign/directSign");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(DirectSignResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
+
     /**
      * 签署详情
      */
@@ -77,18 +91,5 @@ public class DirectSignRequest extends AbstractSignRequest<DirectSignResponse> {
          * 签章需要的y坐标
          */
         private Double vertical;
-    }
-
-    @Override
-    @JsonIgnore
-    public RequestInfo<DirectSignResponse> getRequestInfo() {
-        RequestInfo<DirectSignResponse> requestInfo = new RequestInfo<>();
-        requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("event_cert_sign/directSign");
-        requestInfo.setMethod(HttpMethod.POST);
-        requestInfo.setNeedToken(true);
-        requestInfo.setResponseType(DirectSignResponse.class);
-        requestInfo.setRequestBody(this);
-        return requestInfo;
     }
 }

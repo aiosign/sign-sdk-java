@@ -19,26 +19,26 @@ import lombok.EqualsAndHashCode;
 @Data
 public class UserInfoRequest extends AbstractSignRequest<UserInfoResponse> {
 
-	/**
-	 * 用户id
-	 */
-	private String userId;
+    /**
+     * 用户id
+     */
+    private String userId;
 
-	/**
-	 * 返回请求的必要参数信息
-	 *
-	 * @return
-	 */
-	@Override
-	@JsonIgnore
-	public RequestInfo<UserInfoResponse> getRequestInfo() {
-		RequestInfo<UserInfoResponse> requestInfo=new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("user/personal/userinfo");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(UserInfoResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    /**
+     * 返回请求的必要参数信息
+     *
+     * @return
+     */
+    @Override
+    @JsonIgnore
+    public RequestInfo<UserInfoResponse> getRequestInfo() {
+        RequestInfo<UserInfoResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("user/personal/userinfo");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(UserInfoResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

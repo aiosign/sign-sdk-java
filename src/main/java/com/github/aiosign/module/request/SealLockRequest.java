@@ -24,22 +24,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SealLockRequest extends AbstractSignRequest<SealBatchResponse> {
 
-	/**
-	 * 印章id
-	 */
-	private String sealId;
+    /**
+     * 印章id
+     */
+    private String sealId;
 
-	@Override
-	@JsonIgnore
-	public RequestInfo<SealBatchResponse> getRequestInfo() {
-		RequestInfo<SealBatchResponse> requestInfo = new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("seal/lock");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(SealBatchResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    @Override
+    @JsonIgnore
+    public RequestInfo<SealBatchResponse> getRequestInfo() {
+        RequestInfo<SealBatchResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("seal/lock");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(SealBatchResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 
 }

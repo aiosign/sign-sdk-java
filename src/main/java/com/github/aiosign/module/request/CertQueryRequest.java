@@ -24,21 +24,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CertQueryRequest extends AbstractSignRequest<UserCertResponse> {
 
-	/**
-	 * 预处理id
-	 */
-	private String prepareId;
+    /**
+     * 预处理id
+     */
+    private String prepareId;
 
-	@Override
-	@JsonIgnore
-	public RequestInfo<UserCertResponse> getRequestInfo() {
-		RequestInfo<UserCertResponse> requestInfo = new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("cert/certinfo");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(UserCertResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    @Override
+    @JsonIgnore
+    public RequestInfo<UserCertResponse> getRequestInfo() {
+        RequestInfo<UserCertResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("cert/certinfo");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(UserCertResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

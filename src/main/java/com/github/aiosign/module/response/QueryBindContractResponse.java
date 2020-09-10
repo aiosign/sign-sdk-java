@@ -4,6 +4,7 @@ import com.github.aiosign.base.AbstractSignResponse;
 import com.github.aiosign.base.BaseSignObject;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 import java.time.LocalDateTime;
 import java.util.List;
 

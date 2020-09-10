@@ -56,9 +56,9 @@ public class UserCompanyTest extends AbstractSignTest {
         // 描述
         userCompanyRegisterRequest.setDescription("测试企业用户001");
         UserCompanyResponse execute = signClient.execute(userCompanyRegisterRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -66,13 +66,13 @@ public class UserCompanyTest extends AbstractSignTest {
      */
     @Test
     public void lock() {
-        UserIdentityLockRequest userIdentityLockRequest =new UserIdentityLockRequest();
+        UserIdentityLockRequest userIdentityLockRequest = new UserIdentityLockRequest();
         // 用户id
         userIdentityLockRequest.setUserId("10716662288815902720");
         UserCompanyLookResponse execute = signClient.execute(userIdentityLockRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**

@@ -13,16 +13,16 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class UserCompanyResponse  extends AbstractSignResponse {
+public class UserCompanyResponse extends AbstractSignResponse {
 
-	private UserCompanyModule data;
+    private UserCompanyModule data;
 
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class UserCompanyModule extends BaseSignObject {
-		/**
-		 * 企业用户id
-		 */
-		private String userId;
-	}
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class UserCompanyModule extends BaseSignObject {
+        /**
+         * 企业用户id
+         */
+        private String userId;
+    }
 }

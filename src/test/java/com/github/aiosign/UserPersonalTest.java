@@ -11,6 +11,7 @@ import com.github.aiosign.module.response.UserPersonalRegisterResponse;
 import com.github.aiosign.module.response.UserPersonalUnLockResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+
 /**
  * @author yangyouwang
  * @description 个人用户Test
@@ -39,9 +40,9 @@ public class UserPersonalTest extends AbstractSignTest {
         // 描述
         userPersonalLockRequest.setDescription("测试001");
         UserPersonalRegisterResponse execute = signClient.execute(userPersonalLockRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -49,13 +50,13 @@ public class UserPersonalTest extends AbstractSignTest {
      */
     @Test
     public void lock() {
-        UserPersonalLockRequest userPersonalLockRequest =new UserPersonalLockRequest();
+        UserPersonalLockRequest userPersonalLockRequest = new UserPersonalLockRequest();
         // 用户id
         userPersonalLockRequest.setUserId("00716661208384163840");
         UserPersonalLockResponse execute = signClient.execute(userPersonalLockRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**

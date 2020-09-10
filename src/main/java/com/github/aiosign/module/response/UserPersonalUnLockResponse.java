@@ -13,21 +13,21 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class UserPersonalUnLockResponse  extends AbstractSignResponse {
+public class UserPersonalUnLockResponse extends AbstractSignResponse {
 
-	private UserPersonalUnLockModule data;
+    private UserPersonalUnLockModule data;
 
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class UserPersonalUnLockModule extends BaseSignObject {
-		/**
-		 * 用户id
-		 */
-		private String userId;
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class UserPersonalUnLockModule extends BaseSignObject {
+        /**
+         * 用户id
+         */
+        private String userId;
 
-		/**
-		 * 锁定或解锁的结果 true操作成功 false操作失败
-		 */
-		private boolean result;
-	}
+        /**
+         * 锁定或解锁的结果 true操作成功 false操作失败
+         */
+        private boolean result;
+    }
 }

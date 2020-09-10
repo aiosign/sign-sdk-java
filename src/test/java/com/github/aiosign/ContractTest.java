@@ -1,14 +1,12 @@
 package com.github.aiosign;
 
-import com.github.aiosign.module.request.AsyContractIdentityRequest;
-import com.github.aiosign.module.request.ContractAddRequest;
-import com.github.aiosign.module.request.ContractIdentityListRequest;
-import com.github.aiosign.module.request.ContractIdentityRequest;
-import com.github.aiosign.module.response.ContractAddResponse;
-import com.github.aiosign.module.response.ContractDeleteResponse;
-import com.github.aiosign.module.response.ContractQueryResponse;
+import com.github.aiosign.module.request.*;
+import com.github.aiosign.module.response.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author yangyouwang
@@ -76,6 +74,36 @@ public class ContractTest extends AbstractSignTest {
         // 合同id
         asyContractIdentityRequest.setContractId("c45e88eab763e38407621fd7e8319d23");
         ContractAddResponse execute = signClient.execute(asyContractIdentityRequest);
+        log.info("响应状态：{}",execute.getResultCode());
+        log.info("响应信息：{}",execute.getResultMessage());
+        log.info("响应数据：{}",execute.getData());
+    }
+
+    @Test
+    public void bind(){
+        ContractBindPhoneRequest contractBindPhoneRequest=new ContractBindPhoneRequest();
+        //合同Id
+        contractBindPhoneRequest.setContractId("07508a07fa13031d69c3a974f4efefff");
+        //手机参数
+        ContractBindPhoneRequest.BindInfo bindInfo=new ContractBindPhoneRequest.BindInfo();
+        bindInfo.setPhone("15053153810");
+        List<ContractBindPhoneRequest.BindInfo> bindInfoList=new ArrayList<>();
+        bindInfoList.add(bindInfo);
+        contractBindPhoneRequest.setParams(bindInfoList);
+        ContractBindPhoneResponse execute=signClient.execute(contractBindPhoneRequest);
+        log.info("响应状态：{}",execute.getResultCode());
+        log.info("响应信息：{}",execute.getResultMessage());
+        log.info("响应数据：{}",execute.getData());
+    }
+
+    @Test
+    public void querybindContract(){
+        QueryBindContractRequest queryBindContractRequest=new QueryBindContractRequest();
+        //合同名称
+        queryBindContractRequest.setContractName("");
+        //手机号
+        queryBindContractRequest.setPhone("15053153810");
+        QueryBindContractResponse execute=signClient.execute(queryBindContractRequest);
         log.info("响应状态：{}",execute.getResultCode());
         log.info("响应信息：{}",execute.getResultMessage());
         log.info("响应数据：{}",execute.getData());

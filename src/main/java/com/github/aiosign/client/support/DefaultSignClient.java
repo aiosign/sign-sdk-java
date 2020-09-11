@@ -182,7 +182,7 @@ public class DefaultSignClient implements SignClient {
             default:
                 break;
         }
-//        log.info("当前请求地址为{},返回结果为{}", apiUrl, result);
+        log.info("当前请求地址为{},返回结果为{}", apiUrl, result);
         Assert.hasText(result, "调用api失败");
         ObjectMapper objectMapper = ObjectMapperHolder.INSTANCE.getInstance();
         try {

@@ -12,7 +12,11 @@ import com.github.aiosign.module.response.SignResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
 
@@ -214,7 +218,7 @@ public class SignTest extends AbstractSignTest {
      * 一部签署
      */
     @Test
-    public void directSign() {
+    public void directSign() throws IOException {
         DirectSignRequest directSignRequest = new DirectSignRequest();
         //用户类型
         directSignRequest.setUserType("1");
@@ -222,12 +226,16 @@ public class SignTest extends AbstractSignTest {
         directSignRequest.setUserName("测试人");
         //身份证号码
         directSignRequest.setIdNumber("371525199309870986");
+        String contractPath="/Users/modificial/Downloads/1.pdf";
+        byte[] bytes = Files.readAllBytes(Paths.get(contractPath));
         //base64合同文件
-        directSignRequest.setContractFileContent("a9e4847465044ddd8709a3b577ce4f72234");
+        directSignRequest.setContractFileContent(Base64.getEncoder().encodeToString(bytes));
         List<DirectSignRequest.SignDetail> signFields = new ArrayList<>();
         DirectSignRequest.SignDetail signDetail = new DirectSignRequest.SignDetail();
+        String sealPath="/Users/modificial/Downloads/出证专用章.png";
+        byte[] sealBytes = Files.readAllBytes(Paths.get(sealPath));
         //base64 印章文件
-        signDetail.setSealFileContent("47465044ddd8709a3b577ce4f72234");
+        signDetail.setSealFileContent(Base64.getEncoder().encodeToString(sealBytes));
         //签章需要的x坐标
         signDetail.setHorizontal(40.0);
         //签章需要的y坐标

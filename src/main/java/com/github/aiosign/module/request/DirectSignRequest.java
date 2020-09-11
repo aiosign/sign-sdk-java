@@ -54,7 +54,7 @@ public class DirectSignRequest extends AbstractSignRequest<DirectSignResponse> {
     public RequestInfo<DirectSignResponse> getRequestInfo() {
         RequestInfo<DirectSignResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("event_cert_sign/directSign");
+        requestInfo.setApiUri("/v1/event_cert_sign/directSign");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(DirectSignResponse.class);

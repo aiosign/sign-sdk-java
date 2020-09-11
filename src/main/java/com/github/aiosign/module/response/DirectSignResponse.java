@@ -61,5 +61,9 @@ public class DirectSignResponse extends AbstractSignResponse {
          * 错误信息
          */
         private String message;
+        /**
+         * 证书主题
+         */
+        private String certSubject;
     }
 }

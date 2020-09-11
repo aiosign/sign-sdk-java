@@ -3,8 +3,10 @@ package com.github.aiosign;
 import com.github.aiosign.base.FileItem;
 import com.github.aiosign.module.request.BarCodeRequest;
 import com.github.aiosign.module.request.FileCheckRequest;
+import com.github.aiosign.module.request.FileCheckV2Request;
 import com.github.aiosign.module.request.FileIdentityRequest;
 import com.github.aiosign.module.response.SignCheckResponse;
+import com.github.aiosign.module.response.SignCheckV2Response;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -37,6 +39,20 @@ public class SignCheckTest extends AbstractSignTest {
      * 根据文件验签
      */
     @Test
+    public void fileV2() {
+        FileCheckV2Request fileCheckRequest = new FileCheckV2Request();
+        // 文件id
+        FileItem fileItem = new FileItem(new File("/Users/modificial/Downloads/1.pdf"));
+        fileCheckRequest.setFileItem(fileItem);
+        SignCheckV2Response execute = signClient.execute(fileCheckRequest);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+    /**
+     * 根据文件验签
+     */
+    @Test
     public void file() {
         FileCheckRequest fileCheckRequest = new FileCheckRequest();
         // 文件id
@@ -47,7 +63,6 @@ public class SignCheckTest extends AbstractSignTest {
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());
     }
-
     /**
      * 条形码验签
      */

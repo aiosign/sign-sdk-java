@@ -54,7 +54,7 @@ public class AuthenticationRPMinRequest extends AbstractSignRequest<Authenticati
     public RequestInfo<AuthenticationRPMinResponse> getRequestInfo() {
         RequestInfo<AuthenticationRPMinResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("authentication/real-people");
+        requestInfo.setApiUri("/v1/authentication/real-people");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(AuthenticationRPMinResponse.class);

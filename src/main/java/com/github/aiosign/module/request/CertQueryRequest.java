@@ -34,7 +34,7 @@ public class CertQueryRequest extends AbstractSignRequest<UserCertResponse> {
 	public RequestInfo<UserCertResponse> getRequestInfo() {
 		RequestInfo<UserCertResponse> requestInfo = new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("cert/certinfo");
+		requestInfo.setApiUri("/v1/cert/certinfo");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(UserCertResponse.class);

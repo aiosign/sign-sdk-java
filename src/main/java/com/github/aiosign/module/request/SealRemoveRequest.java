@@ -35,7 +35,7 @@ public class SealRemoveRequest extends AbstractSignRequest<SealBatchResponse> {
 	public RequestInfo<SealBatchResponse> getRequestInfo() {
 		RequestInfo<SealBatchResponse> requestInfo = new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("seal/remove");
+		requestInfo.setApiUri("/v1/seal/remove");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(SealBatchResponse.class);

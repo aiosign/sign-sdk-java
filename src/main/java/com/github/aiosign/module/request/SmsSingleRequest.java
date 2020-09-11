@@ -50,7 +50,7 @@ public class SmsSingleRequest extends AbstractSignRequest<SmsSingleResponse> {
     public RequestInfo<SmsSingleResponse> getRequestInfo() {
         RequestInfo<SmsSingleResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("sms/single");
+        requestInfo.setApiUri("/v1/sms/single");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(SmsSingleResponse.class);

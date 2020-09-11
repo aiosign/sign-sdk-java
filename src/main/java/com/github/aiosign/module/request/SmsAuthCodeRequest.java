@@ -52,7 +52,7 @@ public class SmsAuthCodeRequest extends AbstractSignRequest<SmsAuthCodeResponse>
     public RequestInfo<SmsAuthCodeResponse> getRequestInfo() {
         RequestInfo<SmsAuthCodeResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("sms/auth_code");
+        requestInfo.setApiUri("/v1/sms/auth_code");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(SmsAuthCodeResponse.class);

@@ -66,7 +66,7 @@ public class EventCertKeywordSignRequest extends AbstractSignRequest<SignRespons
 	public RequestInfo<SignResponse> getRequestInfo() {
 		RequestInfo<SignResponse> requestInfo = new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("event_cert_sign/keywordSign");
+		requestInfo.setApiUri("/v1/event_cert_sign/keywordSign");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(SignResponse.class);

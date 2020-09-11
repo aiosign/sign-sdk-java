@@ -38,7 +38,7 @@ public class UserPersonalLockRequest extends AbstractSignRequest<UserPersonalLoc
 	public RequestInfo<UserPersonalLockResponse> getRequestInfo() {
 		RequestInfo<UserPersonalLockResponse> requestInfo=new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("user/personal/lock");
+		requestInfo.setApiUri("/v1/user/personal/lock");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(UserPersonalLockResponse.class);

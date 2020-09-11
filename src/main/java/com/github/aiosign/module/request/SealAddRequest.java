@@ -59,7 +59,7 @@ public class SealAddRequest extends AbstractSignRequest<SealResponse> {
 	public RequestInfo<SealResponse> getRequestInfo() {
 		RequestInfo<SealResponse> requestInfo = new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("seal/add");
+		requestInfo.setApiUri("/v1/seal/add");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(SealResponse.class);

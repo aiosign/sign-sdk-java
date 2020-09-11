@@ -34,7 +34,7 @@ public class UserInfoRequest extends AbstractSignRequest<UserInfoResponse> {
 	public RequestInfo<UserInfoResponse> getRequestInfo() {
 		RequestInfo<UserInfoResponse> requestInfo=new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("user/personal/userinfo");
+		requestInfo.setApiUri("/v1/user/personal/userinfo");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(UserInfoResponse.class);

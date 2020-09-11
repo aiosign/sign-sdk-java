@@ -47,7 +47,7 @@ public class AuthenticationAliPayCertifyRequest extends AbstractSignRequest<Auth
     public RequestInfo<AuthenticationAliPayCertifyResponse> getRequestInfo() {
         RequestInfo<AuthenticationAliPayCertifyResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("authentication/alipay-result-start");
+        requestInfo.setApiUri("/v1/authentication/alipay-result-start");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(AuthenticationAliPayCertifyResponse.class);

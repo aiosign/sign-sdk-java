@@ -48,7 +48,7 @@ public class ContractAddRequest extends AbstractSignRequest<ContractAddResponse>
 	public RequestInfo<ContractAddResponse> getRequestInfo() {
 		RequestInfo<ContractAddResponse> requestInfo=new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("contract/add");
+		requestInfo.setApiUri("/v1/contract/add");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(ContractAddResponse.class);

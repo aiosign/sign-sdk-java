@@ -46,7 +46,7 @@ public class AuthenticationEncryQueryRequest extends AbstractSignRequest<Authent
     public RequestInfo<AuthenticationEncryQueryResponse> getRequestInfo() {
         RequestInfo<AuthenticationEncryQueryResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("authentication/encryQuery");
+        requestInfo.setApiUri("/v1/authentication/encryQuery");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(AuthenticationEncryQueryResponse.class);

@@ -85,7 +85,7 @@ public class UserPersonalRegisterRequest extends AbstractSignRequest<UserPersona
     public RequestInfo<UserPersonalRegisterResponse> getRequestInfo() {
         RequestInfo<UserPersonalRegisterResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("user/personal/register");
+        requestInfo.setApiUri("/v1/user/personal/register");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(UserPersonalRegisterResponse.class);

@@ -36,7 +36,7 @@ public class CompanyUserInfoRequest extends AbstractSignRequest<CompanyUserInfoR
 	public RequestInfo<CompanyUserInfoResponse> getRequestInfo() {
 		RequestInfo<CompanyUserInfoResponse> requestInfo=new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("user/company/userinfo");
+		requestInfo.setApiUri("/v1/user/company/userinfo");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(CompanyUserInfoResponse.class);

@@ -41,7 +41,7 @@ public class TemplateAddRequest extends AbstractSignRequest<TemplateAddResponse>
 	public RequestInfo<TemplateAddResponse> getRequestInfo() {
 		RequestInfo<TemplateAddResponse> requestInfo=new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("template/add");
+		requestInfo.setApiUri("/v1/template/add");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(TemplateAddResponse.class);

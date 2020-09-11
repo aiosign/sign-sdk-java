@@ -34,7 +34,7 @@ public class UserIdentityRequest extends AbstractSignRequest<UserCertPrepareResp
 	public RequestInfo<UserCertPrepareResponse> getRequestInfo() {
 		RequestInfo<UserCertPrepareResponse> requestInfo=new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("cert/apply");
+		requestInfo.setApiUri("/v1/cert/apply");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(UserCertPrepareResponse.class);

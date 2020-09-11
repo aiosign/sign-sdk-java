@@ -87,7 +87,7 @@ public class CommonSignRequest extends AbstractSignRequest<SignResponse> {
 	public RequestInfo<SignResponse> getRequestInfo() {
 		RequestInfo<SignResponse> requestInfo = new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("sign/common");
+		requestInfo.setApiUri("/v1/sign/common");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(SignResponse.class);

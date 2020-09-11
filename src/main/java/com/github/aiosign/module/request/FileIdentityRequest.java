@@ -32,7 +32,7 @@ public class FileIdentityRequest extends AbstractSignRequest<SignCheckResponse> 
     public RequestInfo<SignCheckResponse> getRequestInfo() {
         RequestInfo<SignCheckResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("sign/check/common");
+        requestInfo.setApiUri("/v1/sign/check/common");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(SignCheckResponse.class);

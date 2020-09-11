@@ -32,7 +32,7 @@ public class SealIdentityRequest extends AbstractSignRequest<SealQueryResponse> 
     public RequestInfo<SealQueryResponse> getRequestInfo() {
         RequestInfo<SealQueryResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("seal/query");
+        requestInfo.setApiUri("/v1/seal/query");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(SealQueryResponse.class);

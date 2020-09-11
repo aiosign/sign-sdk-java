@@ -42,7 +42,7 @@ public class EventCertBatchTemplateRequest extends AbstractSignRequest<BatchTemp
 	public RequestInfo<BatchTemplateResponse> getRequestInfo() {
 		RequestInfo<BatchTemplateResponse> requestInfo = new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("event_cert_sign/template/batch");
+		requestInfo.setApiUri("/v1/event_cert_sign/template/batch");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(BatchTemplateResponse.class);

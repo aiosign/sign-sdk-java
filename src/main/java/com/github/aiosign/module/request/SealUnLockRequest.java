@@ -35,7 +35,7 @@ public class SealUnLockRequest extends AbstractSignRequest<SealBatchResponse> {
 	public RequestInfo<SealBatchResponse> getRequestInfo() {
 		RequestInfo<SealBatchResponse> requestInfo = new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("seal/unlock");
+		requestInfo.setApiUri("/v1/seal/unlock");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(SealBatchResponse.class);

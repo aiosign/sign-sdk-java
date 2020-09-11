@@ -37,7 +37,7 @@ public class RevokeTokenRequest extends AbstractSignRequest<RevokeTokenResponse>
         requestInfo.setResponseType(RevokeTokenResponse.class);
         requestInfo.setNeedToken(false);
         requestInfo.setMethod(HttpMethod.POST);
-        requestInfo.setApiUri("oauth/revokeToken");
+        requestInfo.setApiUri("/v1/oauth/revokeToken");
         requestInfo.setContentType(ContentType.FORM_URLENCODED);
         return requestInfo;
     }

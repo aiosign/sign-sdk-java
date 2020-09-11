@@ -48,7 +48,7 @@ public class TemplateFillRequest extends AbstractSignRequest<TemplateFillRespons
     @JsonIgnore
     public RequestInfo<TemplateFillResponse> getRequestInfo() {
         RequestInfo<TemplateFillResponse> requestInfo=new RequestInfo<>();
-        requestInfo.setApiUri("template/fill");
+        requestInfo.setApiUri("/v1/template/fill");
         requestInfo.setContentType(ContentType.JSON);
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);

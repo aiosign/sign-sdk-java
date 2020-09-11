@@ -45,7 +45,7 @@ public class FileUploadRequest extends AbstractSignRequest<FileUploadResponse> {
     public RequestInfo<FileUploadResponse> getRequestInfo() {
         RequestInfo<FileUploadResponse> requestInfo=new RequestInfo<>();
         requestInfo.setContentType(ContentType.MULTIPART);
-        requestInfo.setApiUri("file/upload");
+        requestInfo.setApiUri("/v1/file/upload");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(FileUploadResponse.class);

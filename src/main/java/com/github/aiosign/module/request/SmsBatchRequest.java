@@ -50,7 +50,7 @@ public class SmsBatchRequest extends AbstractSignRequest<SmsBatchResponse> {
     public RequestInfo<SmsBatchResponse> getRequestInfo() {
         RequestInfo<SmsBatchResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("sms/batch");
+        requestInfo.setApiUri("/v1/sms/batch");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(SmsBatchResponse.class);

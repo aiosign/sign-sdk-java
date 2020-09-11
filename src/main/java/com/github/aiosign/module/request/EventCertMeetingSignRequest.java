@@ -78,7 +78,7 @@ public class EventCertMeetingSignRequest extends AbstractSignRequest<MeetingSign
     public RequestInfo<MeetingSignResponse> getRequestInfo() {
         RequestInfo<MeetingSignResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("event_cert_sign/single");
+        requestInfo.setApiUri("/v1/event_cert_sign/single");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(MeetingSignResponse.class);

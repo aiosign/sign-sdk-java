@@ -31,7 +31,7 @@ public class ContractIdentityRequest extends AbstractSignRequest<ContractQueryRe
 	public RequestInfo<ContractQueryResponse> getRequestInfo() {
 		RequestInfo<ContractQueryResponse> requestInfo = new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("contract/query");
+		requestInfo.setApiUri("/v1/contract/query");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(ContractQueryResponse.class);

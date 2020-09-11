@@ -38,7 +38,7 @@ public class SingleTemplateRequest extends AbstractSignRequest<SignResponse> {
     public RequestInfo<SignResponse> getRequestInfo() {
         RequestInfo<SignResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("sign/template/single");
+        requestInfo.setApiUri("/v1/sign/template/single");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(SignResponse.class);

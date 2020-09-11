@@ -46,7 +46,7 @@ public class SmsValidAuthCodeRequest extends AbstractSignRequest<SmsValidAuthCod
     public RequestInfo<SmsValidAuthCodeResponse> getRequestInfo() {
         RequestInfo<SmsValidAuthCodeResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("sms/valid_auth_code");
+        requestInfo.setApiUri("/v1/sms/valid_auth_code");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(SmsValidAuthCodeResponse.class);

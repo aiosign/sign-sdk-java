@@ -35,7 +35,7 @@ public class TemplateUnlockRequest extends AbstractSignRequest<TemplateUnlockRes
 	public RequestInfo<TemplateUnlockResponse> getRequestInfo() {
 		RequestInfo<TemplateUnlockResponse> requestInfo=new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("template/unlock");
+		requestInfo.setApiUri("/v1/template/unlock");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(TemplateUnlockResponse.class);

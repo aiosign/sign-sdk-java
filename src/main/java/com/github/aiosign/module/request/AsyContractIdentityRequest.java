@@ -34,7 +34,7 @@ public class AsyContractIdentityRequest extends AbstractSignRequest<ContractAddR
 	public RequestInfo<ContractAddResponse> getRequestInfo() {
 		RequestInfo<ContractAddResponse> requestInfo = new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("contract/render");
+		requestInfo.setApiUri("/v1/contract/render");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(ContractAddResponse.class);

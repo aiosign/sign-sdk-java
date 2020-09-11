@@ -33,7 +33,7 @@ public class BarCodeRequest extends AbstractSignRequest<SignCheckResponse> {
     public RequestInfo<SignCheckResponse> getRequestInfo() {
         RequestInfo<SignCheckResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("sign/check/barcode");
+        requestInfo.setApiUri("/v1/sign/check/barcode");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(SignCheckResponse.class);

@@ -78,7 +78,7 @@ public class MeetingSignRequest extends AbstractSignRequest<MeetingSignResponse>
 	public RequestInfo<MeetingSignResponse> getRequestInfo() {
 		RequestInfo<MeetingSignResponse> requestInfo = new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("sign/single");
+		requestInfo.setApiUri("/v1/sign/single");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(MeetingSignResponse.class);

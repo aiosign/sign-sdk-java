@@ -46,7 +46,7 @@ public class AuthenticationBlankFourEnCeryQueryRequest extends AbstractSignReque
     public RequestInfo<AuthenticationBlankFourEnCeryQueryResponse> getRequestInfo() {
         RequestInfo<AuthenticationBlankFourEnCeryQueryResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("authentication/blank-encry-query");
+        requestInfo.setApiUri("/v1/authentication/blank-encry-query");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(AuthenticationBlankFourEnCeryQueryResponse.class);

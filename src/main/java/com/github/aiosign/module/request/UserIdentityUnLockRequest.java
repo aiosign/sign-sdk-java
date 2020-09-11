@@ -34,7 +34,7 @@ public class UserIdentityUnLockRequest extends AbstractSignRequest<UserCompanyUn
 	public RequestInfo<UserCompanyUnLookResponse> getRequestInfo() {
 		RequestInfo<UserCompanyUnLookResponse> requestInfo=new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("user/company/unlock");
+		requestInfo.setApiUri("/v1/user/company/unlock");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(UserCompanyUnLookResponse.class);

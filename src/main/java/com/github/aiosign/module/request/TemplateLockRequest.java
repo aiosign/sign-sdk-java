@@ -30,7 +30,7 @@ public class TemplateLockRequest extends AbstractSignRequest<TemplateLockRespons
 	public RequestInfo<TemplateLockResponse> getRequestInfo() {
 		RequestInfo<TemplateLockResponse> requestInfo=new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("template/lock");
+		requestInfo.setApiUri("/v1/template/lock");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(TemplateLockResponse.class);

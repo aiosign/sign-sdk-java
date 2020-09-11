@@ -33,7 +33,7 @@ public class ContractIdentityListRequest extends AbstractSignRequest<ContractDel
 	public RequestInfo<ContractDeleteResponse> getRequestInfo() {
 		RequestInfo<ContractDeleteResponse> requestInfo=new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("contract/remove");
+		requestInfo.setApiUri("/v1/contract/remove");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(ContractDeleteResponse.class);

@@ -44,7 +44,7 @@ public class TokenRequest extends AbstractSignRequest<TokenResponse> {
     @JsonIgnore
     public RequestInfo<TokenResponse> getRequestInfo() {
         RequestInfo<TokenResponse> responseRequestInfo=new RequestInfo<>();
-        responseRequestInfo.setApiUri("oauth/token");
+        responseRequestInfo.setApiUri("/v1/oauth/token");
         responseRequestInfo.setContentType(ContentType.JSON);
         responseRequestInfo.setMethod(HttpMethod.POST);
         responseRequestInfo.setNeedToken(false);

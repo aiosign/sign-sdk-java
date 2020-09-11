@@ -34,7 +34,7 @@ public class TemplateQueryRequest extends AbstractSignRequest<TemplateQueryRespo
 	public RequestInfo<TemplateQueryResponse> getRequestInfo() {
 		RequestInfo<TemplateQueryResponse> requestInfo=new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("template/query");
+		requestInfo.setApiUri("/v1/template/query");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(TemplateQueryResponse.class);

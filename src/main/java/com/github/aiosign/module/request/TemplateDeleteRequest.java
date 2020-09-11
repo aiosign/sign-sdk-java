@@ -31,7 +31,7 @@ public class TemplateDeleteRequest extends AbstractSignRequest<TemplateDeleteRes
     public RequestInfo<TemplateDeleteResponse> getRequestInfo() {
         RequestInfo<TemplateDeleteResponse> requestInfo=new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("template/delete");
+        requestInfo.setApiUri("/v1/template/delete");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(TemplateDeleteResponse.class);

@@ -103,7 +103,7 @@ public class UserCompanyRegisterRequest extends AbstractSignRequest<UserCompanyR
 	public RequestInfo<UserCompanyResponse> getRequestInfo() {
 		RequestInfo<UserCompanyResponse> requestInfo=new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("user/company/register");
+		requestInfo.setApiUri("/v1/user/company/register");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(UserCompanyResponse.class);

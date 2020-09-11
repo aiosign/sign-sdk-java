@@ -45,7 +45,7 @@ public class AuthenticationEnterpriseThreeQueryRequest extends AbstractSignReque
     public RequestInfo<AuthenticationEnterpriseThreeQueryResponse> getRequestInfo() {
         RequestInfo<AuthenticationEnterpriseThreeQueryResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("authentication/enterprise-encry-query");
+        requestInfo.setApiUri("/v1/authentication/enterprise-encry-query");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(AuthenticationEnterpriseThreeQueryResponse.class);

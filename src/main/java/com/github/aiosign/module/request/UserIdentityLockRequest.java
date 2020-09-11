@@ -34,7 +34,7 @@ public class UserIdentityLockRequest extends AbstractSignRequest<UserCompanyLook
 	public RequestInfo<UserCompanyLookResponse> getRequestInfo() {
 		RequestInfo<UserCompanyLookResponse> requestInfo=new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("user/company/lock");
+		requestInfo.setApiUri("/v1/user/company/lock");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(UserCompanyLookResponse.class);

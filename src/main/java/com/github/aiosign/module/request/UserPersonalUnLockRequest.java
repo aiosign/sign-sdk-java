@@ -33,7 +33,7 @@ public class UserPersonalUnLockRequest extends AbstractSignRequest<UserPersonalU
 	public RequestInfo<UserPersonalUnLockResponse> getRequestInfo() {
 		RequestInfo<UserPersonalUnLockResponse> requestInfo=new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("user/personal/unlock");
+		requestInfo.setApiUri("/v1/user/personal/unlock");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(UserPersonalUnLockResponse.class);

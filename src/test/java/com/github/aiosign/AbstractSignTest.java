@@ -23,7 +23,8 @@ public abstract class AbstractSignTest {
      */
     @Before
     public void init() {
-        signClient = new DefaultSignClient("http://localhost:8085/v1/", "733016099889238016", "yMmLMVotwayVfjqkjn");
+        signClient = new DefaultSignClient("http://192.168.17.23:31501/", "733016099889238016",
+                "yMmLMVotwayVfjqkjn");
     }
 
     /**
@@ -31,7 +32,7 @@ public abstract class AbstractSignTest {
      */
     @Test
     public void getToken() {
-        TokenRequest tokenRequest = new TokenRequest("appid", "appsecret");
+        TokenRequest tokenRequest = new TokenRequest("733016099889238016", "yMmLMVotwayVfjqkjn");
         TokenResponse response = signClient.execute(tokenRequest);
         if (response.isSuccess()) {
             System.out.println("获取token成功，响应值为" + response.getData());

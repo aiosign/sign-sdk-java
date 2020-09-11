@@ -36,7 +36,7 @@ public class FileCheckRequest extends AbstractSignRequest<SignCheckResponse> {
     public RequestInfo<SignCheckResponse> getRequestInfo() {
         RequestInfo<SignCheckResponse> requestInfo=new RequestInfo<>();
         requestInfo.setContentType(ContentType.MULTIPART);
-        requestInfo.setApiUri("sign/check/file");
+        requestInfo.setApiUri("/v1/sign/check/file");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(SignCheckResponse.class);

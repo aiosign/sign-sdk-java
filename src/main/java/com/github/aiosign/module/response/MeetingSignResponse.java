@@ -13,20 +13,20 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class MeetingSignResponse  extends AbstractSignResponse {
+public class MeetingSignResponse extends AbstractSignResponse {
 
-	private MeetingSignModule data;
+    private MeetingSignModule data;
 
-	/**
-	 * 模本签名参数
-	 */
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class MeetingSignModule extends BaseSignObject {
-		/**
-		 * 合同id
-		 */
-		private String contractId;
-	}
+    /**
+     * 模本签名参数
+     */
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class MeetingSignModule extends BaseSignObject {
+        /**
+         * 合同id
+         */
+        private String contractId;
+    }
 
 }

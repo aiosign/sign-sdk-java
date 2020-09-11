@@ -15,16 +15,17 @@ import lombok.EqualsAndHashCode;
 @Data
 public class SealResponse extends AbstractSignResponse {
 
-	private SealModule data;
-	/**
-	 * 印章参数
-	 */
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class SealModule extends BaseSignObject {
-		/**
-		 * 印章id
-		 */
-		private String sealId;
-	}
+    private SealModule data;
+
+    /**
+     * 印章参数
+     */
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class SealModule extends BaseSignObject {
+        /**
+         * 印章id
+         */
+        private String sealId;
+    }
 }

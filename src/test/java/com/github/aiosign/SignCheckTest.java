@@ -28,9 +28,9 @@ public class SignCheckTest extends AbstractSignTest {
         // 文件id
         fileIdentityRequest.setFileId("00004223f9648c805374675db1778590");
         SignCheckResponse execute = signClient.execute(fileIdentityRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -43,9 +43,9 @@ public class SignCheckTest extends AbstractSignTest {
         FileItem fileItem = new FileItem(new File("C:\\Users\\Administrator\\Downloads\\wallpaper\\SW-2FBAA3CF876BA6B08A5699E0CEFE9C28.jpg"));
         fileCheckRequest.setFileItem(fileItem);
         SignCheckResponse execute = signClient.execute(fileCheckRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -57,8 +57,8 @@ public class SignCheckTest extends AbstractSignTest {
         // 条形码请求参数
         barCodeRequest.setBarCode("");
         SignCheckResponse execute = signClient.execute(barCodeRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 }

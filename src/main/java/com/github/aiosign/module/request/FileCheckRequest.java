@@ -34,14 +34,14 @@ public class FileCheckRequest extends AbstractSignRequest<SignCheckResponse> {
     @Override
     @JsonIgnore
     public RequestInfo<SignCheckResponse> getRequestInfo() {
-        RequestInfo<SignCheckResponse> requestInfo=new RequestInfo<>();
+        RequestInfo<SignCheckResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.MULTIPART);
         requestInfo.setApiUri("/v1/sign/check/file");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(SignCheckResponse.class);
         Map<String, FileItem> map = new HashMap<>(2);
-        map.put("file",fileItem);
+        map.put("file", fileItem);
         requestInfo.setFileParams(map);
         return requestInfo;
     }

@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 回收token返回值
+ *
  * @author modificial
  * @since 2020/5/12
  */

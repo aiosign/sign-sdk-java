@@ -15,19 +15,19 @@ import lombok.EqualsAndHashCode;
 @Data
 public class SealBatchResponse extends AbstractSignResponse {
 
-	private SealBatchModule data;
+    private SealBatchModule data;
 
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class SealBatchModule extends BaseSignObject {
-		/**
-		 * 印章id
-		 */
-		private String sealId;
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class SealBatchModule extends BaseSignObject {
+        /**
+         * 印章id
+         */
+        private String sealId;
 
-		/**
-		 * 删除的结果 true操作成功 false操作失败
-		 */
-		private boolean result;
-	}
+        /**
+         * 删除的结果 true操作成功 false操作失败
+         */
+        private boolean result;
+    }
 }

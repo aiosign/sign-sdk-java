@@ -8,7 +8,7 @@ package com.github.aiosign.base;
  * @since 2020/5/12
  */
 public enum ResponseCode {
-    GATEWAY_ERROR,API_ERROR;
+    GATEWAY_ERROR, API_ERROR;
     private String code;
     private String message;
 }

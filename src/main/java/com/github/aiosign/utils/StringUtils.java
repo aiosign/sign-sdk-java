@@ -87,6 +87,7 @@ public abstract class StringUtils {
         }
         return result;
     }
+
     /**
      * Trim <i>all</i> whitespace from the given {@code String}:
      * leading, trailing, and in between characters.
@@ -236,7 +237,7 @@ public abstract class StringUtils {
      * @param str the {@code CharSequence} to check (may be {@code null})
      * @return {@code true} if the {@code CharSequence} is not {@code null} and has length
      */
-    public static boolean hasLength( CharSequence str) {
+    public static boolean hasLength(CharSequence str) {
         return (str != null && str.length() > 0);
     }
 
@@ -251,7 +252,7 @@ public abstract class StringUtils {
      * length is greater than 0, and it does not contain whitespace only
      * @see Character#isWhitespace
      */
-    public static boolean hasText( String str) {
+    public static boolean hasText(String str) {
         return (str != null && !str.isEmpty() && containsText(str));
     }
 

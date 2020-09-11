@@ -14,14 +14,14 @@ import java.io.Serializable;
 @Data
 public class ContractInfo implements Serializable {
 
-	/**
-	 * 第几页合同信息
-	 */
-	private int number;
+    /**
+     * 第几页合同信息
+     */
+    private int number;
 
-	/**
-	 * 图片文件id
-	 */
-	private String imageFileId;
+    /**
+     * 图片文件id
+     */
+    private String imageFileId;
 
 }

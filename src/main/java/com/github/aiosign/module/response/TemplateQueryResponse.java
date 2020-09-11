@@ -17,50 +17,51 @@ import java.time.LocalDateTime;
 @Data
 public class TemplateQueryResponse extends AbstractSignResponse {
 
-	private TemplateQueryModule data;
-	/**
-	 * 模本签名参数
-	 */
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class TemplateQueryModule extends BaseSignObject {
-		/**
-		 * 模板id
-		 */
-		private String templateId;
+    private TemplateQueryModule data;
 
-		/**
-		 * 模板名字
-		 */
-		private String name;
+    /**
+     * 模本签名参数
+     */
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class TemplateQueryModule extends BaseSignObject {
+        /**
+         * 模板id
+         */
+        private String templateId;
 
-		/**
-		 * 创建时间
-		 */
-		private LocalDateTime createTime;
+        /**
+         * 模板名字
+         */
+        private String name;
 
-		/**
-		 * 文件id
-		 */
-		private String fileId;
+        /**
+         * 创建时间
+         */
+        private LocalDateTime createTime;
 
-		/**
-		 * 签名域，签名域信息
-		 */
-		private String signParams;
+        /**
+         * 文件id
+         */
+        private String fileId;
 
-		/**
-		 * 文字域，文字域信息
-		 */
-		private String textParams;
-		/**
-		 * 模板状态 1正常0锁定
-		 */
-		private String status;
-		/**
-		 * 模板描述信息
-		 */
-		private String description;
-	}
+        /**
+         * 签名域，签名域信息
+         */
+        private String signParams;
+
+        /**
+         * 文字域，文字域信息
+         */
+        private String textParams;
+        /**
+         * 模板状态 1正常0锁定
+         */
+        private String status;
+        /**
+         * 模板描述信息
+         */
+        private String description;
+    }
 
 }

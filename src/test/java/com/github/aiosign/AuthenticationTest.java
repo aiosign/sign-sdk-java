@@ -1,5 +1,6 @@
 package com.github.aiosign;
 
+import com.github.aiosign.base.FileItem;
 import com.github.aiosign.bean.Picture;
 import com.github.aiosign.enums.CertifyType;
 import com.github.aiosign.enums.PictureType;
@@ -7,6 +8,8 @@ import com.github.aiosign.module.request.*;
 import com.github.aiosign.module.response.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+
+import java.io.File;
 
 /**
  * @author 侯存路
@@ -44,10 +47,10 @@ public class AuthenticationTest extends AbstractSignTest {
     public void blankFourEnCeryQuery() {
 
         AuthenticationBlankFourEnCeryQueryRequest request = new AuthenticationBlankFourEnCeryQueryRequest();
-        request.setIdcard("身份证号");
-        request.setRealname("姓名");
-        request.setMobile("手机号");
-        request.setBankcard("银行卡");
+        request.setIdcard("370126199410075616");
+        request.setRealname("魏帅");
+        request.setMobile("15864010711");
+        request.setBankcard("6212261602023398458");
 
         AuthenticationBlankFourEnCeryQueryResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
@@ -69,6 +72,26 @@ public class AuthenticationTest extends AbstractSignTest {
         request.setOpername("企业法人");
 
         AuthenticationEnterpriseThreeQueryResponse execute = signClient.execute(request);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+
+    }
+
+
+    /**
+     * 企业四要素认证
+     */
+    @Test
+    public void enterpriseFourElementsQuery() {
+
+        SJBEntFourRequest request = new SJBEntFourRequest();
+        request.setName("马宇1");
+        request.setIdcard("211021196703110011");
+        request.setEntname("山东国盾网信息科技有限公司");
+        request.setEntmark("91370100MA3C9NHDXT");
+
+        SJBEntFourResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());
@@ -130,6 +153,96 @@ public class AuthenticationTest extends AbstractSignTest {
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());
 
+    }
+
+
+    /**
+     * 企业打款
+     */
+    @Test
+    public void enterprisePay() {
+
+        EnterprisePayReq request = new EnterprisePayReq();
+        request.setKeyType("123");
+        request.setKey("123");
+        request.setName("123");
+        request.setUsrName("123");
+        request.setAccountNo("123");
+        request.setAccountBank("123");
+        request.setAccountCity("123");
+        request.setAccountProvince("123");
+
+        EnterprisePayResponse execute = signClient.execute(request);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+
+    }
+
+
+    /**
+     * 企业打款校验
+     */
+    @Test
+    public void ChinaPayEnterprisePayValidReq() {
+
+        ChinaPayEnterprisePayValidReq request = new ChinaPayEnterprisePayValidReq();
+        request.setAccountNo("企业银行账户");
+        request.setAmount("金额");
+        request.setOrderId("打款流水Id");
+
+        ChinaPayEnterprisePayValidResponse execute = signClient.execute(request);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+
+    }
+
+
+    /**
+     * 获取百度身份验证-语音验证数据
+     */
+    @Test
+    public void voiceVerificationData() {
+        BaiduSessionCodeRequest request = new BaiduSessionCodeRequest();
+        BaiduSessionCodeResponse execute = signClient.execute(request);
+
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
+
+    /**
+     * 获取百度身份验证-语音验证数据
+     */
+    @Test
+    public void baiDuAiFaceVideoVerify() {
+        BaiDuAiFaceVideoVerifyRequest request = new BaiDuAiFaceVideoVerifyRequest();
+        request.setFile(new FileItem(new File("E:\\9623ef8f85030bf1f041c8beb62ba2af.jpeg")));
+        request.setSessionId("123");
+
+        BaiDuAiFaceVideoVerifyRequestResponse execute = signClient.execute(request);
+
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+    }
+
+
+    /**
+     * 获取百度身份验证-验证
+     */
+    @Test
+    public void baiDuAiFaceCertifyVerify() {
+        BaiDuAiFaceCertifyVerifyRequest request = new BaiDuAiFaceCertifyVerifyRequest();
+        request.setIdCardNumber("string");
+        request.setName("string");
+        request.setImage("string");
+        request.setImageType("string");
+
+        BaiDuAiFaceCertifyVerifyResponse execute = signClient.execute(request);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
     }
 
 

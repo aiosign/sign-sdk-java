@@ -71,13 +71,14 @@ public class FileTest extends AbstractSignTest {
 
     /**
      * 下载文件
+     *
      * @throws FileNotFoundException
      */
     @Test
     public void downloadFile() throws FileNotFoundException {
-        String baseUri="file/download";
-        String fileId="ceafec7cdfaf4f3b8f7af21966a137e9";
-        FileOutputStream out=new FileOutputStream("contract.pdf");
-        signClient.download(baseUri,fileId,out);
+        String baseUri = "file/download";
+        String fileId = "ceafec7cdfaf4f3b8f7af21966a137e9";
+        FileOutputStream out = new FileOutputStream("contract.pdf");
+        signClient.download(baseUri, fileId, out);
     }
 }

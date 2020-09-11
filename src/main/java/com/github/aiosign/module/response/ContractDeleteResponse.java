@@ -15,20 +15,20 @@ import lombok.EqualsAndHashCode;
 @Data
 public class ContractDeleteResponse extends AbstractSignResponse {
 
-	private ContractDeleteModule data;
+    private ContractDeleteModule data;
 
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class ContractDeleteModule extends BaseSignObject {
-		/**
-		 * 合同id
-		 */
-		private String contractId;
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class ContractDeleteModule extends BaseSignObject {
+        /**
+         * 合同id
+         */
+        private String contractId;
 
-		/**
-		 * 删除的结果 true操作成功 false操作失败
-		 */
-		private boolean result;
-	}
+        /**
+         * 删除的结果 true操作成功 false操作失败
+         */
+        private boolean result;
+    }
 
 }

@@ -17,7 +17,9 @@ public enum HttpMethod {
     GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE;
 
 
-    /** Constant <code>MAPPINGS</code> */
+    /**
+     * Constant <code>MAPPINGS</code>
+     */
     private static final Map<String, HttpMethod> MAPPINGS = new HashMap<>(16);
 
     static {
@@ -33,7 +35,7 @@ public enum HttpMethod {
      * @param method 请求方法
      * @return a {@link HttpMethod} object.
      */
-	public static HttpMethod resolve(String method) {
+    public static HttpMethod resolve(String method) {
         return (method != null ? MAPPINGS.get(method) : null);
     }
 
@@ -45,7 +47,7 @@ public enum HttpMethod {
      * @return a boolean.
      */
     public boolean matches(String method) {
-		return (this == resolve(method));
-	}
+        return (this == resolve(method));
+    }
 
 }

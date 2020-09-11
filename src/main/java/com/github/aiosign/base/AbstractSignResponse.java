@@ -18,11 +18,11 @@ public abstract class AbstractSignResponse implements Serializable {
     /**
      * 网关成功状态码
      */
-    public static final String SUCCESS_GATEWAY="1000";
+    public static final String SUCCESS_GATEWAY = "1000";
     /**
      * api成功的状态码
      */
-    public static final String SUCCESS_API="0";
+    public static final String SUCCESS_API = "0";
     /**
      * 网关返回状态码 【必填】
      */
@@ -46,10 +46,10 @@ public abstract class AbstractSignResponse implements Serializable {
      * @return a boolean.
      */
     @JsonIgnore
-    public boolean isSuccess(){
-        boolean present= StringUtils.hasText(returnCode)&&StringUtils.hasText(resultCode);
-        boolean success=returnCode.equals(SUCCESS_GATEWAY)&&resultCode.equals(SUCCESS_API);
-        return present&&success;
+    public boolean isSuccess() {
+        boolean present = StringUtils.hasText(returnCode) && StringUtils.hasText(resultCode);
+        boolean success = returnCode.equals(SUCCESS_GATEWAY) && resultCode.equals(SUCCESS_API);
+        return present && success;
     }
 
     /**
@@ -57,8 +57,8 @@ public abstract class AbstractSignResponse implements Serializable {
      *
      * @return a boolean.
      */
-    public boolean isGatewaySuccess(){
-        return StringUtils.hasText(returnCode)&&returnCode.equals(SUCCESS_GATEWAY);
+    public boolean isGatewaySuccess() {
+        return StringUtils.hasText(returnCode) && returnCode.equals(SUCCESS_GATEWAY);
     }
 
     /**
@@ -66,7 +66,7 @@ public abstract class AbstractSignResponse implements Serializable {
      *
      * @return a boolean.
      */
-    public boolean isApiSuccess(){
-        return StringUtils.hasText(resultCode)&&returnCode.equals(SUCCESS_GATEWAY);
+    public boolean isApiSuccess() {
+        return StringUtils.hasText(resultCode) && returnCode.equals(SUCCESS_GATEWAY);
     }
 }

@@ -12,21 +12,22 @@ import lombok.EqualsAndHashCode;
 @Data
 public class TemplateLockResponse extends AbstractSignResponse {
 
-	private TemplateLockModule data;
-	/**
-	 * 模本签名参数
-	 */
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class TemplateLockModule extends BaseSignObject {
-		/**
-		 * 模板id
-		 */
-		private String templateId;
+    private TemplateLockModule data;
 
-		/**
-		 * 锁定或解锁的结果 true操作成功 false操作失败
-		 */
-		private boolean result;
-	}
+    /**
+     * 模本签名参数
+     */
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class TemplateLockModule extends BaseSignObject {
+        /**
+         * 模板id
+         */
+        private String templateId;
+
+        /**
+         * 锁定或解锁的结果 true操作成功 false操作失败
+         */
+        private boolean result;
+    }
 }

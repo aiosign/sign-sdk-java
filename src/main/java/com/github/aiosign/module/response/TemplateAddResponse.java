@@ -15,16 +15,17 @@ import lombok.EqualsAndHashCode;
 @Data
 public class TemplateAddResponse extends AbstractSignResponse {
 
-	private TemplateAddModule data;
-	/**
-	 * 模本签名参数
-	 */
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class TemplateAddModule extends BaseSignObject {
-		/**
-		 * 模板id
-		 */
-		private String templateId;
-	}
+    private TemplateAddModule data;
+
+    /**
+     * 模本签名参数
+     */
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class TemplateAddModule extends BaseSignObject {
+        /**
+         * 模板id
+         */
+        private String templateId;
+    }
 }

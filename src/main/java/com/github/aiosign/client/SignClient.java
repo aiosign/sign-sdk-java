@@ -26,16 +26,18 @@ public interface SignClient {
 
     /**
      * 相关业务接口组合
+     *
      * @param <T>
      */
     <T extends AbstractSignResponse> T execute(AbstractComposeRequest<T> composeRequest);
 
     /**
      * 下载文件
-     * @param baseUri 接口uri地址
-     * @param fileId 文件id
+     *
+     * @param baseUri      接口uri地址
+     * @param fileId       文件id
      * @param outputStream 输出流
      */
-    void download(String baseUri,String fileId, OutputStream outputStream);
+    void download(String baseUri, String fileId, OutputStream outputStream);
 
 }

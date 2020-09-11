@@ -21,11 +21,11 @@ public class RequestInfo<T extends AbstractSignResponse> implements Serializable
     /**
      * 请求方法
      */
-    private HttpMethod method=HttpMethod.POST;
+    private HttpMethod method = HttpMethod.POST;
     /**
      * 是否需要token
      */
-    private boolean needToken=true;
+    private boolean needToken = true;
     /**
      * 请求头类型
      */
@@ -45,26 +45,26 @@ public class RequestInfo<T extends AbstractSignResponse> implements Serializable
     /**
      * query参数
      */
-    private Map<String,String> params=new HashMap<>(16);
+    private Map<String, String> params = new HashMap<>(16);
     /**
      * 文件上传的参数
      */
-    private Map<String,FileItem> fileParams=new HashMap<>(4);
+    private Map<String, FileItem> fileParams = new HashMap<>(4);
 
     /**
      * 对参数进行检验
      */
-    public void check(){
-        Assert.notNull(method,"请求方法不能为空");
-        Assert.notNull(contentType,"请求头类型不能为空");
-        Assert.notNull(responseType,"返回值类型不能为空");
-        Assert.hasText(apiUri,"请求地址不能为空");
-        if(contentType.equals(ContentType.JSON)){
-            Assert.notNull(requestBody,"请求体不能为空");
-        }else if(contentType.equals(ContentType.FORM_URLENCODED)){
-            Assert.notEmpty(params,"query参数不能为空");
-        }else if(contentType.equals(ContentType.MULTIPART)){
-            Assert.notEmpty(fileParams,"文件上传的参数不能为空");
+    public void check() {
+        Assert.notNull(method, "请求方法不能为空");
+        Assert.notNull(contentType, "请求头类型不能为空");
+        Assert.notNull(responseType, "返回值类型不能为空");
+        Assert.hasText(apiUri, "请求地址不能为空");
+        if (contentType.equals(ContentType.JSON)) {
+            Assert.notNull(requestBody, "请求体不能为空");
+        } else if (contentType.equals(ContentType.FORM_URLENCODED)) {
+            Assert.notEmpty(params, "query参数不能为空");
+        } else if (contentType.equals(ContentType.MULTIPART)) {
+            Assert.notEmpty(fileParams, "文件上传的参数不能为空");
         }
     }
 }

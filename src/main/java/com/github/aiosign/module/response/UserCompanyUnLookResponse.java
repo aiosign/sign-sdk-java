@@ -13,21 +13,22 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class UserCompanyUnLookResponse  extends AbstractSignResponse {
+public class UserCompanyUnLookResponse extends AbstractSignResponse {
 
-	private UserCompanyUnLookModule data;
-	/**
-	 * 用户解锁返回数据
-	 */
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class UserCompanyUnLookModule extends BaseSignObject {
-		/**
-		 * 企业用户id
-		 */
-		private String userId;
+    private UserCompanyUnLookModule data;
 
-		private Boolean result;
-	}
+    /**
+     * 用户解锁返回数据
+     */
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class UserCompanyUnLookModule extends BaseSignObject {
+        /**
+         * 企业用户id
+         */
+        private String userId;
+
+        private Boolean result;
+    }
 
 }

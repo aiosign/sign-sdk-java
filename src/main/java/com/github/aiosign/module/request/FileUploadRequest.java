@@ -43,19 +43,20 @@ public class FileUploadRequest extends AbstractSignRequest<FileUploadResponse> {
 
     @Override
     public RequestInfo<FileUploadResponse> getRequestInfo() {
-        RequestInfo<FileUploadResponse> requestInfo=new RequestInfo<>();
+        RequestInfo<FileUploadResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.MULTIPART);
         requestInfo.setApiUri("/v1/file/upload");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(FileUploadResponse.class);
+
         Map<String, FileItem> map = new HashMap<>(2);
-        map.put("file",fileItem);
+        map.put("file", fileItem);
         requestInfo.setFileParams(map);
         Map<String, String> params = requestInfo.getParams();
-        params.put("file_name",fileName);
-        params.put("file_type",fileType);
-        params.put("user_id",userId);
+        params.put("file_name", fileName);
+        params.put("file_type", fileType);
+        params.put("user_id", userId);
         return requestInfo;
     }
 }

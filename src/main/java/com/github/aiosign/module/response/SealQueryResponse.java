@@ -13,51 +13,51 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class SealQueryResponse  extends AbstractSignResponse {
+public class SealQueryResponse extends AbstractSignResponse {
 
 
-	private BatchTemplateModule data;
+    private BatchTemplateModule data;
 
-	/**
-	 * 模本签名参数
-	 */
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class BatchTemplateModule extends BaseSignObject {
-		/**
-		 * 用户id
-		 */
-		private String userId;
+    /**
+     * 模本签名参数
+     */
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class BatchTemplateModule extends BaseSignObject {
+        /**
+         * 用户id
+         */
+        private String userId;
 
-		/**
-		 * 印章名字
-		 */
-		private String sealName;
+        /**
+         * 印章名字
+         */
+        private String sealName;
 
-		/**
-		 * 印章类型
-		 */
-		private String sealType;
+        /**
+         * 印章类型
+         */
+        private String sealType;
 
-		/**
-		 * 印章文件id
-		 */
-		private String fileId;
+        /**
+         * 印章文件id
+         */
+        private String fileId;
 
-		/**
-		 * 印章规格
-		 */
-		private String size;
+        /**
+         * 印章规格
+         */
+        private String size;
 
-		/**
-		 * 印章状态
-		 */
-		private String status;
-		/**
-		 * 印章状态
-		 */
-		private String description;
-	}
+        /**
+         * 印章状态
+         */
+        private String status;
+        /**
+         * 印章状态
+         */
+        private String description;
+    }
 
 
 }

@@ -6,11 +6,13 @@ import com.github.aiosign.bean.SignParam;
 import com.github.aiosign.bean.TextParam;
 import com.github.aiosign.module.request.*;
 import com.github.aiosign.module.response.BatchTemplateResponse;
+import com.github.aiosign.module.response.DirectSignResponse;
 import com.github.aiosign.module.response.MeetingSignResponse;
 import com.github.aiosign.module.response.SignResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -62,9 +64,9 @@ public class SignTest extends AbstractSignTest {
         // 签章信息
         singleTemplateRequest.setSignField(signFields);
         SignResponse execute = signClient.execute(singleTemplateRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -113,9 +115,9 @@ public class SignTest extends AbstractSignTest {
         batchTemplateRequest.setBatchTemplates(customSignFieldsList);
 
         BatchTemplateResponse execute = signClient.execute(batchTemplateRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -148,9 +150,9 @@ public class SignTest extends AbstractSignTest {
         commonSignRequest.setUserId("00716661208384163840");
 
         SignResponse execute = signClient.execute(commonSignRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -174,9 +176,9 @@ public class SignTest extends AbstractSignTest {
         // 用户id
         keywordSignRequest.setUserId("00716661208384163840");
         SignResponse execute = signClient.execute(keywordSignRequest);
-        log.info("响应状态：{}",execute.getResultCode());
-        log.info("响应信息：{}",execute.getResultMessage());
-        log.info("响应数据：{}",execute.getData());
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 
     /**
@@ -203,6 +205,42 @@ public class SignTest extends AbstractSignTest {
         signDetail.setSignLeft(100);
         meetingSignRequest.setSignDetails(Collections.singletonList(signDetail));
         MeetingSignResponse execute = signClient.execute(meetingSignRequest);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
+    /**
+     * 一部签署
+     */
+    @Test
+    public void directSign() {
+        DirectSignRequest directSignRequest = new DirectSignRequest();
+        //用户类型
+        directSignRequest.setUserType("1");
+        //用户名称
+        directSignRequest.setUserName("测试人");
+        //身份证号码
+        directSignRequest.setIdNumber("371525199309870986");
+        //base64合同文件
+        directSignRequest.setContractFileContent("a9e4847465044ddd8709a3b577ce4f72234");
+        List<DirectSignRequest.SignDetail> signFields = new ArrayList<>();
+        DirectSignRequest.SignDetail signDetail = new DirectSignRequest.SignDetail();
+        //base64 印章文件
+        signDetail.setSealFileContent("47465044ddd8709a3b577ce4f72234");
+        //签章需要的x坐标
+        signDetail.setHorizontal(40.0);
+        //签章需要的y坐标
+        signDetail.setVertical(40.0);
+        //签章页数
+        signDetail.setPageNum(1);
+        //印章高度
+        signDetail.setSealHeight(50.0);
+        //印章宽度
+        signDetail.setSealWidth(50.0);
+        signFields.add(signDetail);
+        directSignRequest.setSignFields(signFields);
+        DirectSignResponse execute = signClient.execute(directSignRequest);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());

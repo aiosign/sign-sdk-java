@@ -48,8 +48,8 @@ import java.util.function.Supplier;
  * @author Sam Brannen
  * @author Colin Sampaleanu
  * @author Rob Harrop
- * @since 1.1.2
  * @version $Id: $Id
+ * @since 1.1.2
  */
 public abstract class Assert {
 
@@ -422,8 +422,8 @@ public abstract class Assert {
      * Assert that an array contains elements; that is, it must not be
      * {@code null} and must contain at least one element.
      *
-     * @deprecated as of 4.3.7, in favor of {@link #notEmpty(Object[], String)}
      * @param array an array of {@link java.lang.Object} objects.
+     * @deprecated as of 4.3.7, in favor of {@link #notEmpty(Object[], String)}
      */
     @Deprecated
     public static void notEmpty(Object[] array) {
@@ -475,8 +475,8 @@ public abstract class Assert {
     /**
      * Assert that an array contains no {@code null} elements.
      *
-     * @deprecated as of 4.3.7, in favor of {@link #noNullElements(Object[], String)}
      * @param array an array of {@link java.lang.Object} objects.
+     * @deprecated as of 4.3.7, in favor of {@link #noNullElements(Object[], String)}
      */
     @Deprecated
     public static void noNullElements(Object[] array) {
@@ -491,7 +491,7 @@ public abstract class Assert {
      * @param collection the collection to check
      * @param message    the exception message to use if the assertion fails
      * @throws java.lang.IllegalArgumentException if the collection is {@code null} or
-     *                                  contains no elements
+     *                                            contains no elements
      */
     public static void notEmpty(Collection<?> collection, String message) {
         if (CollectionUtils.isEmpty(collection)) {
@@ -510,7 +510,7 @@ public abstract class Assert {
      * @param messageSupplier a supplier for the exception message to use if the
      *                        assertion fails
      * @throws java.lang.IllegalArgumentException if the collection is {@code null} or
-     *                                  contains no elements
+     *                                            contains no elements
      * @since 5.0
      */
     public static void notEmpty(Collection<?> collection, Supplier<String> messageSupplier) {
@@ -523,8 +523,8 @@ public abstract class Assert {
      * Assert that a collection contains elements; that is, it must not be
      * {@code null} and must contain at least one element.
      *
-     * @deprecated as of 4.3.7, in favor of {@link #notEmpty(Collection, String)}
      * @param collection a {@link java.util.Collection} object.
+     * @deprecated as of 4.3.7, in favor of {@link #notEmpty(Collection, String)}
      */
     @Deprecated
     public static void notEmpty(Collection<?> collection) {
@@ -570,8 +570,8 @@ public abstract class Assert {
      * Assert that a Map contains entries; that is, it must not be {@code null}
      * and must contain at least one entry.
      *
-     * @deprecated as of 4.3.7, in favor of {@link #notEmpty(Map, String)}
      * @param map a {@link java.util.Map} object.
+     * @deprecated as of 4.3.7, in favor of {@link #notEmpty(Map, String)}
      */
     @Deprecated
     public static void notEmpty(Map<?, ?> map) {

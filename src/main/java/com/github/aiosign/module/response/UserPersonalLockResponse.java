@@ -15,19 +15,19 @@ import lombok.EqualsAndHashCode;
 @Data
 public class UserPersonalLockResponse extends AbstractSignResponse {
 
-	private UserPersonalLockModule data;
+    private UserPersonalLockModule data;
 
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class UserPersonalLockModule extends BaseSignObject{
-		/**
-		 * 用户id
-		 */
-		private String userId;
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class UserPersonalLockModule extends BaseSignObject {
+        /**
+         * 用户id
+         */
+        private String userId;
 
-		/**
-		 * 锁定或解锁的结果 true操作成功 false操作失败
-		 */
-		private boolean result;
-	}
+        /**
+         * 锁定或解锁的结果 true操作成功 false操作失败
+         */
+        private boolean result;
+    }
 }

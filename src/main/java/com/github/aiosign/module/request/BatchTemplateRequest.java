@@ -27,15 +27,15 @@ import java.util.List;
 @NoArgsConstructor
 public class BatchTemplateRequest extends AbstractSignRequest<BatchTemplateResponse> {
 
-	/**
-	 * 模板id
-	 */
-	private String templateId;
+    /**
+     * 模板id
+     */
+    private String templateId;
 
-	/**
-	 * 批量签章参数
-	 */
-	private List<CustomSignFields> batchTemplates;
+    /**
+     * 批量签章参数
+     */
+    private List<CustomSignFields> batchTemplates;
 
 	@Override
 	@JsonIgnore

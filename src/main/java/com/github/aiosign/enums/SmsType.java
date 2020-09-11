@@ -1,11 +1,8 @@
 package com.github.aiosign.enums;
 
-import com.github.aiosign.utils.StringUtils;
-
-
 /**
  * @author 侯存路
- * @description 短信验证类型
+ * 短信验证类型
  * @since 2020/8/10 15:59
  */
 public enum SmsType {

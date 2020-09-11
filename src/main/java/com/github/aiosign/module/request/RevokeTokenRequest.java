@@ -25,6 +25,7 @@ public class RevokeTokenRequest extends AbstractSignRequest<RevokeTokenResponse>
      * 需要回收的token值
      */
     private String token;
+
     /**
      * 返回请求的必要参数信息
      *
@@ -32,8 +33,8 @@ public class RevokeTokenRequest extends AbstractSignRequest<RevokeTokenResponse>
      */
     @Override
     public RequestInfo<RevokeTokenResponse> getRequestInfo() {
-        RequestInfo<RevokeTokenResponse> requestInfo=new RequestInfo<>();
-        requestInfo.setParams(Collections.singletonMap("token",token));
+        RequestInfo<RevokeTokenResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setParams(Collections.singletonMap("token", token));
         requestInfo.setResponseType(RevokeTokenResponse.class);
         requestInfo.setNeedToken(false);
         requestInfo.setMethod(HttpMethod.POST);

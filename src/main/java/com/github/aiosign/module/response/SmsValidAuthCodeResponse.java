@@ -4,8 +4,6 @@ import com.github.aiosign.base.AbstractSignResponse;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.List;
-
 /**
  * @author 侯存路
  * @description

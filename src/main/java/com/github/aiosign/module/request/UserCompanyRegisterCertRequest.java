@@ -54,6 +54,4 @@ public class UserCompanyRegisterCertRequest extends AbstractComposeRequest<UserC
     }
 
 
-
-
 }

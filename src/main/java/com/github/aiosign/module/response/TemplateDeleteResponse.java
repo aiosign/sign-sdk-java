@@ -16,22 +16,23 @@ import lombok.EqualsAndHashCode;
 public class TemplateDeleteResponse extends AbstractSignResponse {
 
 
-	private TemplateDeleteModule data;
-	/**
-	 * 模本签名参数
-	 */
-	@EqualsAndHashCode(callSuper = true)
-	@Data
-	public static class TemplateDeleteModule extends BaseSignObject {
-		/**
-		 * 模板id
-		 */
-		private String templateId;
+    private TemplateDeleteModule data;
 
-		/**
-		 * 删除的结果 true操作成功 false操作失败
-		 */
-		private boolean result;
-	}
+    /**
+     * 模本签名参数
+     */
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class TemplateDeleteModule extends BaseSignObject {
+        /**
+         * 模板id
+         */
+        private String templateId;
+
+        /**
+         * 删除的结果 true操作成功 false操作失败
+         */
+        private boolean result;
+    }
 
 }

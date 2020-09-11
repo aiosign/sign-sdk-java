@@ -54,8 +54,6 @@ public class UserPersonalRegisterCertRequest extends AbstractComposeRequest<User
     }
 
 
-
-
     private void setReturnCode(UserPersonalRegisterCertResponse registerCertResponse, AbstractSignResponse signResponse) {
         registerCertResponse.setReturnCode(signResponse.getReturnCode());
         registerCertResponse.setResultMessage(signResponse.getResultMessage());

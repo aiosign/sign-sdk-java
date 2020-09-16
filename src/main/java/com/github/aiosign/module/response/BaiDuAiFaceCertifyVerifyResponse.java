@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 
 /**
  * @author 侯存路
- * @description
  * @since 2020/8/18 9:58
  */
 @EqualsAndHashCode(callSuper = true)

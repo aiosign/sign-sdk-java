@@ -13,9 +13,12 @@ import java.io.Serializable;
  */
 public abstract class AbstractComposeRequest<T extends AbstractSignResponse> implements Serializable {
 
-
     /**
-     * 执行相关业务
+     * 执行交易
+     *
+     * @param signClient
+     * @param <T>
+     * @return
      */
     public abstract <T extends AbstractSignResponse> T execute(SignClient signClient);
 

@@ -95,15 +95,18 @@ public class TemplateTest extends AbstractSignTest {
      */
     @Test
     public void fill() {
-      SignClient signClient = new DefaultSignClient("http://192.168.17.23:32286", "728283996928757760",
+        SignClient signClient = new DefaultSignClient("http://192.168.17.23:32286", "728283996928757760",
                 "GgorGhRTdTSWSubpPV");
         TemplateFillRequest templateFillRequest = new TemplateFillRequest();
         // 模板id
         templateFillRequest.setTemplateId("e939a7bbb7a9dc26d4e14f1f4c28d20b");
         templateFillRequest.setUserId("00727604780889427968");
         templateFillRequest.setName("测试合同");
-        List<TextParam> textParams=new ArrayList<>();
-        textParams.add(new TextParam("year","2020"));
+        List<TextParam> textParams = new ArrayList<>();
+        TextParam textParam = new TextParam();
+        textParam.setKey("year");
+        textParam.setValue("2020");
+        textParams.add(textParam);
         templateFillRequest.setSimpleFormFields(textParams);
         TemplateFillResponse execute = signClient.execute(templateFillRequest);
         log.info("响应状态：{}", execute.getResultCode());

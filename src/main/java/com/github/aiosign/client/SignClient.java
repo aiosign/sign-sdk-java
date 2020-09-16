@@ -25,9 +25,11 @@ public interface SignClient {
 
 
     /**
-     * 相关业务接口组合
+     * 组合接口
      *
+     * @param composeRequest
      * @param <T>
+     * @return
      */
     <T extends AbstractSignResponse> T execute(AbstractComposeRequest<T> composeRequest);
 

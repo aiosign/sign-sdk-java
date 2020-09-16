@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author 侯存路
- * @description
  * @since 2020/8/10 15:50
  */
 @EqualsAndHashCode(callSuper = true)

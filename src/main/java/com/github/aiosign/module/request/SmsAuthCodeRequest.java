@@ -6,7 +6,6 @@ import com.github.aiosign.base.RequestInfo;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
 import com.github.aiosign.module.response.SmsAuthCodeResponse;
-import com.github.aiosign.module.response.SmsBatchResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,7 +15,6 @@ import java.util.List;
 
 /**
  * @author 侯存路
- * @description
  * @since 2020/8/11 8:56
  */
 @EqualsAndHashCode(callSuper = true)

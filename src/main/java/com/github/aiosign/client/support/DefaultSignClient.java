@@ -195,7 +195,6 @@ public class DefaultSignClient implements SignClient {
 
     /**
      * 重写hashcode方法，只要是appid和appsecret相同，其hashcode值就相同
-     *
      * @return
      */
     @Override

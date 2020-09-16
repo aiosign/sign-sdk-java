@@ -4,6 +4,8 @@ import com.github.aiosign.bean.CustomSignFields;
 import com.github.aiosign.bean.SignFields;
 import com.github.aiosign.bean.SignParam;
 import com.github.aiosign.bean.TextParam;
+import com.github.aiosign.client.SignClient;
+import com.github.aiosign.client.support.DefaultSignClient;
 import com.github.aiosign.module.request.*;
 import com.github.aiosign.module.response.BatchTemplateResponse;
 import com.github.aiosign.module.response.DirectSignResponse;

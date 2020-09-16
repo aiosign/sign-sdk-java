@@ -1,6 +1,8 @@
 package com.github.aiosign;
 
 import com.github.aiosign.base.FileItem;
+import com.github.aiosign.client.SignClient;
+import com.github.aiosign.client.support.DefaultSignClient;
 import com.github.aiosign.module.request.FileUploadRequest;
 import com.github.aiosign.module.response.FileUploadResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -76,9 +78,22 @@ public class FileTest extends AbstractSignTest {
      */
     @Test
     public void downloadFile() throws FileNotFoundException {
-        String baseUri = "file/download";
+        String baseUri = "/v1/file/download";
         String fileId = "ceafec7cdfaf4f3b8f7af21966a137e9";
         FileOutputStream out = new FileOutputStream("contract.pdf");
+        signClient.download(baseUri, fileId, out);
+    }
+
+    /**
+     * 下载文件存证报告
+     *
+     * @throws FileNotFoundException
+     */
+    @Test
+    public void downloadReport() throws FileNotFoundException {
+        String baseUri = "/v1/file/downloadReport";
+        String fileId = "5a743d994e45e729961cb520fef590ce";
+        FileOutputStream out = new FileOutputStream("report.pdf");
         signClient.download(baseUri, fileId, out);
     }
 }

@@ -37,7 +37,7 @@ public class QueryBindContractRequest extends AbstractSignRequest<QueryBindContr
     public RequestInfo<QueryBindContractResponse> getRequestInfo() {
         RequestInfo<QueryBindContractResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("bind_contract/query_bind_contract");
+        requestInfo.setApiUri("/v1/bind_contract/query_bind_contract");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(QueryBindContractResponse.class);

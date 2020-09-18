@@ -26,7 +26,7 @@ public class BaiduSessionCodeRequest extends AbstractSignRequest<BaiduSessionCod
     public RequestInfo<BaiduSessionCodeResponse> getRequestInfo() {
         RequestInfo<BaiduSessionCodeResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("authentication/baidu/session-code");
+        requestInfo.setApiUri("/v1/authentication/baidu/session-code");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(BaiduSessionCodeResponse.class);

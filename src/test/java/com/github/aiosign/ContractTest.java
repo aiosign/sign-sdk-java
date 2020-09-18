@@ -108,4 +108,10 @@ public class ContractTest extends AbstractSignTest {
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());
     }
+
+    @Test
+    public void ScanContractAdd() {
+        ScanContractAddRequest req = new ScanContractAddRequest();
+
+    }
 }

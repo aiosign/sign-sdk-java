@@ -45,7 +45,7 @@ public class ChinaPayEnterprisePayValidReq extends AbstractSignRequest<ChinaPayE
     public RequestInfo<ChinaPayEnterprisePayValidResponse> getRequestInfo() {
         RequestInfo<ChinaPayEnterprisePayValidResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("authentication/enterprise-pay-valid");
+        requestInfo.setApiUri("/v1/authentication/enterprise-pay-valid");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(ChinaPayEnterprisePayValidResponse.class);

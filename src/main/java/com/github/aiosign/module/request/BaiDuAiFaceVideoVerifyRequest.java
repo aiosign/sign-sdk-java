@@ -43,7 +43,7 @@ public class BaiDuAiFaceVideoVerifyRequest extends AbstractSignRequest<BaiDuAiFa
     public RequestInfo<BaiDuAiFaceVideoVerifyRequestResponse> getRequestInfo() {
         RequestInfo<BaiDuAiFaceVideoVerifyRequestResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.MULTIPART);
-        requestInfo.setApiUri("authentication/baidu/video-verify");
+        requestInfo.setApiUri("/v1/authentication/baidu/video-verify");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(BaiDuAiFaceVideoVerifyRequestResponse.class);

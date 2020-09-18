@@ -47,7 +47,7 @@ public class SJBEntFourRequest extends AbstractSignRequest<SJBEntFourResponse> {
     public RequestInfo<SJBEntFourResponse> getRequestInfo() {
         RequestInfo<SJBEntFourResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("authentication/entFour");
+        requestInfo.setApiUri("/v1/authentication/entFour");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(SJBEntFourResponse.class);

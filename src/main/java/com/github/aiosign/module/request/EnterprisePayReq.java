@@ -63,7 +63,7 @@ public class EnterprisePayReq extends AbstractSignRequest<EnterprisePayResponse>
     public RequestInfo<EnterprisePayResponse> getRequestInfo() {
         RequestInfo<EnterprisePayResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("authentication/enterprise-pay");
+        requestInfo.setApiUri("/v1/authentication/enterprise-pay");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(EnterprisePayResponse.class);

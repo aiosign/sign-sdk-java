@@ -44,7 +44,7 @@ public class BaiDuAiFaceCertifyVerifyRequest extends AbstractSignRequest<BaiDuAi
     public RequestInfo<BaiDuAiFaceCertifyVerifyResponse> getRequestInfo() {
         RequestInfo<BaiDuAiFaceCertifyVerifyResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("authentication/baidu/certify-verify");
+        requestInfo.setApiUri("/v1/authentication/baidu/certify-verify");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(BaiDuAiFaceCertifyVerifyResponse.class);

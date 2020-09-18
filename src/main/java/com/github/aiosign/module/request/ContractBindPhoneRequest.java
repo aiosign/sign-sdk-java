@@ -37,7 +37,7 @@ public class ContractBindPhoneRequest extends AbstractSignRequest<ContractBindPh
     public RequestInfo<ContractBindPhoneResponse> getRequestInfo() {
         RequestInfo<ContractBindPhoneResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("bind_contract/bind_contract_phone");
+        requestInfo.setApiUri("/v1/bind_contract/bind_contract_phone");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(ContractBindPhoneResponse.class);

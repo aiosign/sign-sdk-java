@@ -223,7 +223,7 @@ public class SignTest extends AbstractSignTest {
     public void directSign() throws IOException {
         DirectSignRequest directSignRequest = new DirectSignRequest();
         //用户类型
-        directSignRequest.setUserType("1");
+        directSignRequest.setUserType(1);
         //用户名称
         directSignRequest.setUserName("测试人");
         //身份证号码

@@ -118,14 +118,14 @@
     </build>
     <distributionManagement>
         <repository>
-            <id>sonatype-nexus-staging</id>
+            <id>maven-releases</id>
             <name>Nexus Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+            <url>http://119.163.197.218:8061/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <id>maven-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://119.163.197.218:8061/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 </project>

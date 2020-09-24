@@ -1,7 +1,9 @@
 package com.github.aiosign;
 
 import com.github.aiosign.module.request.CertQueryRequest;
+import com.github.aiosign.module.request.CertRenewalRequest;
 import com.github.aiosign.module.request.UserIdentityRequest;
+import com.github.aiosign.module.response.CertRenewalResponse;
 import com.github.aiosign.module.response.UserCertPrepareResponse;
 import com.github.aiosign.module.response.UserCertResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +26,20 @@ public class CertTest extends AbstractSignTest {
         // 用户id
         userIdentityRequest.setUserId("00716661208384163840");
         UserCertPrepareResponse execute = signClient.execute(userIdentityRequest);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
+    /**
+     * 证书续期
+     */
+    @Test
+    public void renewal() {
+        CertRenewalRequest certRenewalRequest = new CertRenewalRequest();
+        //用户id
+        certRenewalRequest.setUserId("00716661208384163840");
+        CertRenewalResponse execute = signClient.execute(certRenewalRequest);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());

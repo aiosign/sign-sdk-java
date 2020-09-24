@@ -34,7 +34,7 @@ public class DirectSignRequest extends AbstractSignRequest<DirectSignResponse> {
     /**
      * 用户类型,1个人，2企业
      */
-    private String userType;
+    private Integer userType;
 
     /**
      * 证件号（个人对应身份证号，企业对应社会统一信用代码）

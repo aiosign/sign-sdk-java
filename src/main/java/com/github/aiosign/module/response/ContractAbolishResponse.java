@@ -28,7 +28,7 @@ public class ContractAbolishResponse extends AbstractSignResponse {
         /**
          * 文件ID
          */
-        private boolean fileId;
+        private String fileId;
         /**
          * 删除的结果 true操作成功 false操作失败
          */

@@ -180,5 +180,20 @@ public class ContractTest extends AbstractSignTest {
         log.info("响应数据：{}", execute.getData());
     }
 
+    /**
+     * 合同废除
+     */
+    @Test
+    public void ContractAbolish() {
+        ContractAbolishRequest req = new ContractAbolishRequest();
+        req.setSignId("06b0250f17974ee59051eb179f8a0b00");
+        req.setUserId("00729742538705620992");
+
+        ContractAbolishResponse execute = signClient.execute(req);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
 
 }

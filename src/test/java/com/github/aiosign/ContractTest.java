@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -112,6 +113,72 @@ public class ContractTest extends AbstractSignTest {
     @Test
     public void ScanContractAdd() {
         ScanContractAddRequest req = new ScanContractAddRequest();
+        // 合同id
+        req.setContractId("c11d5a7f8b61ac5ce24d351094f868c1");
+        req.setUserId("00739767865657937920");
+        // 签章备注
+        req.setRemark("测试普通签章");
+        // 签章信息集合
+        ScanContractAddRequest.SignParams signParam = new ScanContractAddRequest.SignParams();
+        // 印章id
+        signParam.setSealId("9268bdcb7127a7e58d5bb17be03f9d41");
+        // 第几页
+        signParam.setPageNumber(1);
+        // 水平横坐标
+        signParam.setHorizontal(20.9);
+        // 垂直纵坐标
+        signParam.setVertical(28.8);
+        // 印章宽度
+        signParam.setWidth(40.0);
+        // 印章高度
+        signParam.setHeight(40.0);
+        req.setFields(Arrays.asList(signParam));
+        req.setUrl("http://www.baidu.com");
+        req.setQrCodeHeight(100);
+        req.setQrCodeWidth(100);
 
+        req.setExpireTime("2020-09-18 20:30:00");
+
+        ScanContractAddResponse execute = signClient.execute(req);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
+
+    @Test
+    public void EventCertScanContractAdd() {
+        EventCertScanContractAddRequest req = new EventCertScanContractAddRequest();
+        // 合同id
+        req.setContractId("c11d5a7f8b61ac5ce24d351094f868c1");
+        req.setUserId("00739767865657937920");
+        // 签章备注
+        req.setRemark("测试普通签章");
+        // 签章信息集合
+        EventCertScanContractAddRequest.SignParams signParam = new EventCertScanContractAddRequest.SignParams();
+        // 印章id
+        signParam.setSealId("9268bdcb7127a7e58d5bb17be03f9d41");
+        // 第几页
+        signParam.setPageNumber(1);
+        // 水平横坐标
+        signParam.setHorizontal(20.9);
+        // 垂直纵坐标
+        signParam.setVertical(28.8);
+        // 印章宽度
+        signParam.setWidth(40.0);
+        // 印章高度
+        signParam.setHeight(40.0);
+        req.setFields(Arrays.asList(signParam));
+        req.setUrl("http://www.baidu.com");
+        req.setQrCodeHeight(100);
+        req.setQrCodeWidth(100);
+
+        req.setExpireTime("2020-09-18 20:30:00");
+
+        ScanContractAddResponse execute = signClient.execute(req);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
+
 }

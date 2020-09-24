@@ -38,6 +38,8 @@ public class SmsTest extends AbstractSignTest {
         singleRequest.setSmsType(SmsType.sign_finish);
 
         SmsSingleResponse execute = signClient.execute(singleRequest);
+        SmsSingleResponse.SmsModule data = execute.getData();
+        data.getPhone();
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
 

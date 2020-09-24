@@ -34,6 +34,11 @@ public class SealTest extends AbstractSignTest {
         // 描述
         sealAddRequest.setDescription("测试");
         SealResponse execute = signClient.execute(sealAddRequest);
+        SealResponse.SealModule data = execute.getData();
+        //
+        data.getSealId();
+
+
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());

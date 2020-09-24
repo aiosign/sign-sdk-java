@@ -22,7 +22,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ScanContractAddRequest extends AbstractSignRequest<ScanContractAddResponse> {
+public class EventCertScanContractAddRequest extends AbstractSignRequest<ScanContractAddResponse> {
     /**
      * 合同id
      */
@@ -104,7 +104,7 @@ public class ScanContractAddRequest extends AbstractSignRequest<ScanContractAddR
     public RequestInfo<ScanContractAddResponse> getRequestInfo() {
         RequestInfo<ScanContractAddResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("/v1/scan/contract/add");
+        requestInfo.setApiUri("/v1/scan/event_cert_contract/add");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(ScanContractAddResponse.class);

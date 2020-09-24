@@ -255,4 +255,9 @@ public class SignTest extends AbstractSignTest {
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());
     }
+
+    @Test
+    public void ScanContractSign(){
+
+    }
 }

@@ -6,12 +6,24 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 添加扫描信息结果相应
+ *
  * @author WeiShuai
  * @Date 2020/9/18 0018 下午 02:53
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ScanContractAddResponse extends AbstractSignResponse {
-    private String prepareId;
-    private String qr;
+    /**
+     * 相应data
+     */
+    private ScanContractAddResponseData data;
+
+    /**
+     * 相应body
+     */
+    @Data
+    public class ScanContractAddResponseData {
+        private String prepareId;
+        private String qr;
+    }
 }

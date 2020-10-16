@@ -21,8 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthenticationAliPayQueryRequest extends AbstractSignRequest<AuthenticationAliPayQueryResponse> {
 
-
-    private String certiftyId;
+    private String certifyId;
 
 
     @Override

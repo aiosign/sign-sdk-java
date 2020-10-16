@@ -2,6 +2,7 @@ package com.github.aiosign;
 
 import com.github.aiosign.module.request.*;
 import com.github.aiosign.module.response.SealBatchResponse;
+import com.github.aiosign.module.response.SealInfosResponse;
 import com.github.aiosign.module.response.SealQueryResponse;
 import com.github.aiosign.module.response.SealResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -92,6 +93,19 @@ public class SealTest extends AbstractSignTest {
         SealIdentityRequest sealIdentityRequest = new SealIdentityRequest(); // 印章id
         sealIdentityRequest.setSealId("a9e48474650448709a3b577ce4f72234");
         SealQueryResponse execute = signClient.execute(sealIdentityRequest);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
+    /**
+     * 获取用户所有印章
+     */
+    @Test
+    public void queryUserSealInfos() {
+        SealInfosRequest sealInfosRequest = new SealInfosRequest();
+        sealInfosRequest.setUserId("00765245060136194048");//用户ID
+        SealInfosResponse execute = signClient.execute(sealInfosRequest);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());

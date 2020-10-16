@@ -13,9 +13,11 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
+ * 实人认证 请求参数 已弃用
  * @author 侯存路
  * @since 2020/8/11 10:55
  */
+@Deprecated
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor

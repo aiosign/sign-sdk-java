@@ -57,9 +57,14 @@ public class EventCertMeetingSignRequest extends AbstractSignRequest<MeetingSign
         private Integer pageNum;
 
         /**
-         * 印章规格
+         * 印章宽度
          */
-        private String signSize;
+        private Integer signWidth;
+
+        /**
+         * 高度
+         */
+        private Integer signHeight;
 
         /**
          * 签署距离合同上方距离
@@ -70,7 +75,6 @@ public class EventCertMeetingSignRequest extends AbstractSignRequest<MeetingSign
          * 签署距离合同左方距离
          */
         private Integer signLeft;
-
     }
 
     @Override
@@ -78,7 +82,7 @@ public class EventCertMeetingSignRequest extends AbstractSignRequest<MeetingSign
     public RequestInfo<MeetingSignResponse> getRequestInfo() {
         RequestInfo<MeetingSignResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("/v1/event_cert_sign/single");
+        requestInfo.setApiUri("/v1/event_cert_sign/meeting/single");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(MeetingSignResponse.class);

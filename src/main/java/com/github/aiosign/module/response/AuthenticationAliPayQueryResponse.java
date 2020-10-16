@@ -24,7 +24,7 @@ public class AuthenticationAliPayQueryResponse extends AbstractSignResponse {
         /**
          * 认证结果
          */
-        private String queryResult;
+        private String query_result;
 
     }
 

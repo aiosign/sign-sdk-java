@@ -100,9 +100,10 @@ public class AuthenticationTest extends AbstractSignTest {
 
 
     /**
-     * 实人认证
+     * 实人认证 已弃用
      */
     @Test
+    @Deprecated
     public void realReople() {
 
         AuthenticationRPMinRequest request = new AuthenticationRPMinRequest();
@@ -129,7 +130,7 @@ public class AuthenticationTest extends AbstractSignTest {
         AuthenticationAliPayCertifyRequest request = new AuthenticationAliPayCertifyRequest();
         request.setIdCardNum("123456");
         request.setName("名称");
-        request.setCertifytype(CertifyType.CERT_PHOTO);
+        request.setCertifyType(CertifyType.CERT_PHOTO);
 
         AuthenticationAliPayCertifyResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
@@ -146,7 +147,7 @@ public class AuthenticationTest extends AbstractSignTest {
     public void selectAlipay() {
 
         AuthenticationAliPayQueryRequest request = new AuthenticationAliPayQueryRequest();
-        request.setCertiftyId("123456");
+        request.setCertifyId("123456");
 
         AuthenticationAliPayQueryResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
@@ -245,5 +246,44 @@ public class AuthenticationTest extends AbstractSignTest {
         log.info("响应信息：{}", execute.getResultMessage());
     }
 
+    /**
+     * 获取可识别类型
+     */
+    @Test
+    public void queryOCRType() {
+        OCRTypeListRequest request = new OCRTypeListRequest();
+        OCRTypeListResponse execute = signClient.execute(request);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
+    /**
+     * 识别银行卡号
+     */
+    @Test
+    public void ocrBankCard() {
+        OCRBankCardRequest request = new OCRBankCardRequest();
+        request.setImage("4AAQSkZJRgABAQAASABIAAD/4QBARXhpZgAATU0AKgAAAA");//base64银行卡图片
+        OCRBankCardResponse execute = signClient.execute(request);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
+    /**
+     * 证件识别
+     */
+    @Test
+    public void ocrObject() {
+        OCRObjectRequest request = new OCRObjectRequest();
+        request.setCardType("2");//识别类型
+        request.setFileBase64("4AAQSkZJRgABAQAASABIAAD/4QBARXhpZgAATU0AKgAAAA");
+        request.setFileName("身份证正面.png");
+        OCRObjectResponse execute = signClient.execute(request);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
 
 }

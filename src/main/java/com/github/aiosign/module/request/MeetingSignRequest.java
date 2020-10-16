@@ -57,9 +57,14 @@ public class MeetingSignRequest extends AbstractSignRequest<MeetingSignResponse>
 		private Integer pageNum;
 
 		/**
-		 * 印章规格
+		 * 印章宽度
 		 */
-		private String signSize;
+		private Integer signWidth;
+
+		/**
+		 * 高度
+		 */
+		private Integer signHeight;
 
 		/**
 		 * 签署距离合同上方距离
@@ -78,7 +83,7 @@ public class MeetingSignRequest extends AbstractSignRequest<MeetingSignResponse>
 	public RequestInfo<MeetingSignResponse> getRequestInfo() {
 		RequestInfo<MeetingSignResponse> requestInfo = new RequestInfo<>();
 		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("/v1/sign/single");
+		requestInfo.setApiUri("/v1/sign/meeting/single");
 		requestInfo.setMethod(HttpMethod.POST);
 		requestInfo.setNeedToken(true);
 		requestInfo.setResponseType(MeetingSignResponse.class);

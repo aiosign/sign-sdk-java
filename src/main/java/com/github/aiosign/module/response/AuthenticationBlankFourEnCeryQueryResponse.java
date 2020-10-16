@@ -21,7 +21,9 @@ public class AuthenticationBlankFourEnCeryQueryResponse extends AbstractSignResp
     @Data
     public static class AuthenticationBlankFourEnCeryQueryModel extends BaseSignObject {
 
-        private String orderid;
+        private String jobid;
+
+        private String orderId;
 
         private String res;
 

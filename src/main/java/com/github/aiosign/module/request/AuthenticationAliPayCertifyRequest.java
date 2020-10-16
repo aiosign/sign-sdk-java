@@ -36,7 +36,7 @@ public class AuthenticationAliPayCertifyRequest extends AbstractSignRequest<Auth
     /**
      * 认证模式
      */
-    private CertifyType certifytype;
+    private CertifyType certifyType;
 
 
     @Override
@@ -44,7 +44,7 @@ public class AuthenticationAliPayCertifyRequest extends AbstractSignRequest<Auth
     public RequestInfo<AuthenticationAliPayCertifyResponse> getRequestInfo() {
         RequestInfo<AuthenticationAliPayCertifyResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
-        requestInfo.setApiUri("/v1/authentication/alipay-result-start");
+        requestInfo.setApiUri("/v1/authentication/alipay-certify-start");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
         requestInfo.setResponseType(AuthenticationAliPayCertifyResponse.class);

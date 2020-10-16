@@ -4,8 +4,6 @@ import com.github.aiosign.bean.CustomSignFields;
 import com.github.aiosign.bean.SignFields;
 import com.github.aiosign.bean.SignParam;
 import com.github.aiosign.bean.TextParam;
-import com.github.aiosign.client.SignClient;
-import com.github.aiosign.client.support.DefaultSignClient;
 import com.github.aiosign.module.request.*;
 import com.github.aiosign.module.response.BatchTemplateResponse;
 import com.github.aiosign.module.response.DirectSignResponse;
@@ -203,8 +201,10 @@ public class SignTest extends AbstractSignTest {
         signDetail.setUserId("00716661208384163840");
         // 页码
         signDetail.setPageNum(1);
-        // 规格
-        signDetail.setSignSize("10");
+        // 印章高度
+        signDetail.setSignHeight(40);
+        // 印章宽度
+        signDetail.setSignWidth(40);
         // 签署距离合同上方距离
         signDetail.setSignTop(100);
         // 签署距离合同左方距离
@@ -228,13 +228,13 @@ public class SignTest extends AbstractSignTest {
         directSignRequest.setUserName("测试人");
         //身份证号码
         directSignRequest.setIdNumber("371525199309870986");
-        String contractPath="/Users/modificial/Downloads/1.pdf";
+        String contractPath = "/Users/modificial/Downloads/1.pdf";
         byte[] bytes = Files.readAllBytes(Paths.get(contractPath));
         //base64合同文件
         directSignRequest.setContractFileContent(Base64.getEncoder().encodeToString(bytes));
         List<DirectSignRequest.SignDetail> signFields = new ArrayList<>();
         DirectSignRequest.SignDetail signDetail = new DirectSignRequest.SignDetail();
-        String sealPath="/Users/modificial/Downloads/出证专用章.png";
+        String sealPath = "/Users/modificial/Downloads/出证专用章.png";
         byte[] sealBytes = Files.readAllBytes(Paths.get(sealPath));
         //base64 印章文件
         signDetail.setSealFileContent(Base64.getEncoder().encodeToString(sealBytes));
@@ -257,7 +257,7 @@ public class SignTest extends AbstractSignTest {
     }
 
     @Test
-    public void ScanContractSign(){
+    public void ScanContractSign() {
 
     }
 }

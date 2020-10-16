@@ -20,7 +20,6 @@ public class AuthenticationEncryQueryResponse extends AbstractSignResponse {
     @EqualsAndHashCode(callSuper = true)
     @Data
     public static class AuthenticationEncryQueryModel extends BaseSignObject {
-
         /**
          * 名字
          */
@@ -28,13 +27,11 @@ public class AuthenticationEncryQueryResponse extends AbstractSignResponse {
         /**
          * 身份证号
          */
-        private String idCard;
+        private String id_card;
         /**
          * 手机号
          */
         private String phone;
-
-
         /**
          * 状态
          */

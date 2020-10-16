@@ -2,11 +2,8 @@ package com.github.aiosign.module.response;
 
 import com.github.aiosign.base.AbstractSignResponse;
 import com.github.aiosign.base.BaseSignObject;
-import com.github.aiosign.enums.CertifyType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.time.LocalDateTime;
 
 /**
  * @author 侯存路
@@ -25,11 +22,6 @@ public class AuthenticationAliPayCertifyResponse extends AbstractSignResponse {
     public static class AuthenticationAliPayCertifyModel extends BaseSignObject {
 
         /**
-         * uuid
-         */
-        private String id;
-
-        /**
          * 证书id
          */
         private String certifyId;
@@ -38,34 +30,6 @@ public class AuthenticationAliPayCertifyResponse extends AbstractSignResponse {
          * 路径
          */
         private String url;
-        /**
-         * 应用ID
-         */
-        private String appId;
-        /**
-         * 用户身份证证件号码
-         */
-        private String idCardNum;
-        /**
-         * 用户名称
-         */
-        private String name;
-        /**
-         * 认证模式
-         */
-        private CertifyType certifyType;
-        /**
-         * 认证结果
-         */
-        private String result;
-
-
-        /**
-         * 检测时间
-         */
-        private LocalDateTime createTime;
-
-        private LocalDateTime updateTime;
     }
 
 

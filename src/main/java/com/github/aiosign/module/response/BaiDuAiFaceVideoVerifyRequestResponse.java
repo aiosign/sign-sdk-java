@@ -26,6 +26,8 @@ public class BaiDuAiFaceVideoVerifyRequestResponse extends AbstractSignResponse 
 
         public String score;
 
+        public float maxspoofing;
+        
         public Map<String, String> thresholds;
 
         public BaiduSessionCodeModelCode code;
@@ -37,7 +39,7 @@ public class BaiDuAiFaceVideoVerifyRequestResponse extends AbstractSignResponse 
         @Data
         public static class BaiduSessionCodeModelPicList extends BaseSignObject {
 
-            public String face_id;
+            public String spoofing;
 
             public String face_token;
 

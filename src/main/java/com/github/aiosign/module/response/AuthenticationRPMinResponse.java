@@ -7,9 +7,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
+ * 实人认证 响应参数 已弃用
  * @author 侯存路
  * @since 2020/8/11 10:56
  */
+@Deprecated
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class AuthenticationRPMinResponse extends AbstractSignResponse {

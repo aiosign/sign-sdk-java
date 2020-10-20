@@ -1,12 +1,11 @@
 package com.github.aiosign;
 
 import com.github.aiosign.module.request.*;
-import com.github.aiosign.module.response.SealBatchResponse;
-import com.github.aiosign.module.response.SealInfosResponse;
-import com.github.aiosign.module.response.SealQueryResponse;
-import com.github.aiosign.module.response.SealResponse;
+import com.github.aiosign.module.response.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+
+import java.util.List;
 
 /**
  * @author yangyouwang
@@ -106,6 +105,22 @@ public class SealTest extends AbstractSignTest {
         SealInfosRequest sealInfosRequest = new SealInfosRequest();
         sealInfosRequest.setUserId("00765245060136194048");//用户ID
         SealInfosResponse execute = signClient.execute(sealInfosRequest);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
+    /**
+     * 根据用户、印章类型获取印章信息
+     */
+    @Test
+    public void querySealInfosByUserOrType() {
+        SealInfosByUserOrTypeRequest request = new SealInfosByUserOrTypeRequest();
+        request.setUserIds("00765245060136194048,00745413246592897024");//用户ID，以逗号分隔
+        request.setSealTypes("02,99,05");//印章类型，以逗号分隔
+        request.setPageNum(1);//数据页码
+        request.setPageSize(10);//数据长度
+        SealInfosByUserOrTypeResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());

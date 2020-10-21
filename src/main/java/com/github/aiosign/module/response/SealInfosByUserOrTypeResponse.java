@@ -41,6 +41,10 @@ public class SealInfosByUserOrTypeResponse extends AbstractSignResponse {
          */
         private String fileId;
         /**
+         * 文件状态 1 paas 2 私有 3 共有
+         */
+        private String fileResourceStatus;
+        /**
          * 用户ID
          */
         private String userId;
@@ -52,5 +56,6 @@ public class SealInfosByUserOrTypeResponse extends AbstractSignResponse {
          * 用户名称
          */
         private String userName;
+
     }
 }

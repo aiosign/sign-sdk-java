@@ -188,7 +188,18 @@ public class ContractTest extends AbstractSignTest {
         ContractAbolishRequest req = new ContractAbolishRequest();
         req.setSignId("06b0250f17974ee59051eb179f8a0b00");
         req.setUserId("00729742538705620992");
-
+        //自定义作废参数
+        ContractAbolishRequest.SignParams field=new ContractAbolishRequest.SignParams();
+        //印章高度
+        field.setHeight(120.0);
+        //印章宽度
+        field.setWidth(120.0);
+        //水平横坐标
+        field.setHorizontal(30.0);
+        //垂直纵坐标
+        field.setVertical(30.0);
+        field.setPageNumber(3);
+        req.setField(field);
         ContractAbolishResponse execute = signClient.execute(req);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());

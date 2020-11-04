@@ -11,6 +11,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * 合同废除接口
  *
@@ -31,6 +33,33 @@ public class ContractAbolishRequest extends AbstractSignRequest<ContractAbolishR
      * 用户id
      */
     private String userId;
+
+    private SignParams field;
+
+    @Data
+    public static class SignParams implements Serializable {
+
+        /**
+         * 页码
+         */
+        private Integer pageNumber;
+        /**
+         * 水平横坐标
+         */
+        private Double horizontal;
+        /**
+         * 垂直纵坐标
+         */
+        private Double vertical;
+        /**
+         * 印章宽度
+         */
+        private Double width;
+        /**
+         * 印章高度
+         */
+        private Double height;
+    }
 
     @Override
     @JsonIgnore

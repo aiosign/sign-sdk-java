@@ -1,14 +1,8 @@
 package com.github.aiosign;
 
 
-import com.github.aiosign.module.request.UserInfoRequest;
-import com.github.aiosign.module.request.UserPersonalLockRequest;
-import com.github.aiosign.module.request.UserPersonalRegisterRequest;
-import com.github.aiosign.module.request.UserPersonalUnLockRequest;
-import com.github.aiosign.module.response.UserInfoResponse;
-import com.github.aiosign.module.response.UserPersonalLockResponse;
-import com.github.aiosign.module.response.UserPersonalRegisterResponse;
-import com.github.aiosign.module.response.UserPersonalUnLockResponse;
+import com.github.aiosign.module.request.*;
+import com.github.aiosign.module.response.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -82,6 +76,18 @@ public class UserPersonalTest extends AbstractSignTest {
         // 用户id
         userInfoRequest.setUserId("00716661208384163840");
         UserInfoResponse execute = signClient.execute(userInfoRequest);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
+    /**
+     * 注销用户
+     */
+    @Test
+    public void removeUser() {
+        UserPersonalRemoveRequest userPersonalRemoveRequest = new UserPersonalRemoveRequest("00716661208384163840");
+        UserPersonalRemoveResponse execute = signClient.execute(userPersonalRemoveRequest);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());

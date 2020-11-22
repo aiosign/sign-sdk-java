@@ -19,15 +19,12 @@ import java.util.Optional;
 import static com.github.aiosign.utils.WebUtils.downLoadFromUrl;
 
 /**
- * 默认的签章客户端实现
- *
- * @author modificial
- * @version $Id: $Id
- * @since 2020/5/11
+ * @author WeiShuai
+ * @Date 2020/11/22 0022 下午 03:45
  */
 @Data
 @Slf4j
-public class DefaultSignClient implements SignClient {
+public abstract class ProxyAbstractSignClient implements SignClient {
     /**
      * 默认连接超时时间
      */
@@ -86,12 +83,12 @@ public class DefaultSignClient implements SignClient {
      * @param appSecret   应用秘钥
      * @param checkResult a boolean.
      */
-    public DefaultSignClient(String rootUri, String proxyHost, Integer proxyPort, String appId, String appSecret, boolean checkResult) {
+    public ProxyAbstractSignClient(String rootUri, String proxyHost, Integer proxyPort, String appId, String appSecret, boolean checkResult) {
         this(rootUri, CONNECT_TIME_OUT, READ_TIME_OUT, proxyHost, proxyPort, appId, appSecret, checkResult);
     }
 
 
-    public DefaultSignClient(String rootUri, Integer connectTimeOut, Integer readTimeOut, String proxyHost, int proxyPort, String appId, String appSecret, boolean checkResult) {
+    public ProxyAbstractSignClient(String rootUri, Integer connectTimeOut, Integer readTimeOut, String proxyHost, int proxyPort, String appId, String appSecret, boolean checkResult) {
         this.rootUri = rootUri;
         this.connectTimeOut = connectTimeOut;
         this.readTimeOut = readTimeOut;
@@ -109,7 +106,7 @@ public class DefaultSignClient implements SignClient {
      * @param appId     应用id
      * @param appSecret 应用秘钥
      */
-    public DefaultSignClient(String rootUri, String appId, String appSecret) {
+    public ProxyAbstractSignClient(String rootUri, String appId, String appSecret) {
         this(rootUri, null, 0, appId, appSecret, false);
     }
 
@@ -156,8 +153,18 @@ public class DefaultSignClient implements SignClient {
             put(urlTokenKey, token);
             put("fileId", fileId);
         }});
+        // 更变为代理数据
+        uriBuild = builderCustomParams(uriBuild);
         downLoadFromUrl(uriBuild, outputStream);
     }
+
+    /**
+     * 更变url参数
+     *
+     * @param apiUrl 原始url
+     * @return 更变后URL
+     */
+    public abstract String builderCustomParams(String apiUrl);
 
     /**
      * 发起请求并获取结果
@@ -179,6 +186,9 @@ public class DefaultSignClient implements SignClient {
                 put(urlTokenKey, token);
             }});
         }
+        // 加载自定义 url参数 及信息
+        apiUrl = builderCustomParams(apiUrl);
+        // 解析请求方式
         switch (requestInfo.getMethod()) {
             case POST:
                 if (requestInfo.getContentType().equals(ContentType.JSON)) {
@@ -238,7 +248,7 @@ public class DefaultSignClient implements SignClient {
         if (obj == null || obj.getClass() != this.getClass()) {
             return false;
         }
-        DefaultSignClient other = (DefaultSignClient) obj;
+        ProxyAbstractSignClient other = (ProxyAbstractSignClient) obj;
         return this.appSecret.equals(other.appSecret) && this.appId.equals(other.appId);
     }
 

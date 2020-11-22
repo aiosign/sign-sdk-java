@@ -6,7 +6,6 @@ import com.github.aiosign.base.*;
 import com.github.aiosign.client.SignClient;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.utils.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,7 +25,6 @@ import static com.github.aiosign.utils.WebUtils.downLoadFromUrl;
  * @since 2020/5/11
  */
 @Data
-@AllArgsConstructor
 @Slf4j
 public class DefaultSignClient implements SignClient {
     /**
@@ -53,6 +51,7 @@ public class DefaultSignClient implements SignClient {
      * 代理的主机地址 【选填】
      */
     private String proxyHost;
+
     /**
      * 代理的端口号 【选填】
      */
@@ -65,10 +64,16 @@ public class DefaultSignClient implements SignClient {
      * 应用秘钥
      */
     private String appSecret;
+
     /**
      * 是否需要校验返回结果
      */
     private boolean checkResult;
+    /**
+     * urlTokenKey
+     */
+    private String urlTokenKey = "access_token";
+
 
     /**
      * 构造器
@@ -82,6 +87,18 @@ public class DefaultSignClient implements SignClient {
      */
     public DefaultSignClient(String rootUri, String proxyHost, Integer proxyPort, String appId, String appSecret, boolean checkResult) {
         this(rootUri, CONNECT_TIME_OUT, READ_TIME_OUT, proxyHost, proxyPort, appId, appSecret, checkResult);
+    }
+
+
+    public DefaultSignClient(String rootUri, Integer connectTimeOut, Integer readTimeOut, String proxyHost, int proxyPort, String appId, String appSecret, boolean checkResult) {
+        this.rootUri = rootUri;
+        this.connectTimeOut = connectTimeOut;
+        this.readTimeOut = readTimeOut;
+        this.proxyHost = proxyHost;
+        this.proxyPort = proxyPort;
+        this.appId = appId;
+        this.appSecret = appSecret;
+        this.checkResult = checkResult;
     }
 
     /**
@@ -154,7 +171,7 @@ public class DefaultSignClient implements SignClient {
             if (StringUtils.isEmpty(token)) {
                 throw new RuntimeException("获取token失败");
             }
-            apiUrl = apiUrl.concat("?access_token=").concat(token);
+            apiUrl = apiUrl.concat("?" + urlTokenKey + "=").concat(token);
         }
         switch (requestInfo.getMethod()) {
             case POST:
@@ -195,6 +212,7 @@ public class DefaultSignClient implements SignClient {
 
     /**
      * 重写hashcode方法，只要是appid和appsecret相同，其hashcode值就相同
+     *
      * @return
      */
     @Override
@@ -228,7 +246,7 @@ public class DefaultSignClient implements SignClient {
      */
     private String uriBuild(String uri, String fileId, String token) {
         StringBuilder sb = new StringBuilder(uri);
-        sb.append("?").append("access_token");
+        sb.append("?").append(urlTokenKey);
         sb.append("=").append(token);
         sb.append("&").append("fileId").append("=").append(fileId);
         return sb.toString();

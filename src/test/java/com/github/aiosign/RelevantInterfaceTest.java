@@ -1,6 +1,7 @@
 package com.github.aiosign;
 
 import com.github.aiosign.base.FileItem;
+import com.github.aiosign.client.support.DefaultSignClient;
 import com.github.aiosign.module.request.*;
 import com.github.aiosign.module.response.*;
 import lombok.extern.slf4j.Slf4j;
@@ -129,7 +130,7 @@ public class RelevantInterfaceTest extends AbstractSignTest {
     @Test
     public void fileUploadAndTemplateCreation() {
         TemplateAddAndFileRequest request = new TemplateAddAndFileRequest();
-        FileItem fileItem = new FileItem(new File("C:\\Users\\Administrator\\Documents\\房屋合同.pdf"));
+        FileItem fileItem = new FileItem(new File("C:\\Users\\Administrator\\Desktop\\PaaS\\滨州项目\\阿里巴巴Java开发手册终极版v1.3.0.pdf"));
         request.setFileItem(fileItem);
         request.setFileName("测试合同");
         request.setName("测试模板");
@@ -147,13 +148,16 @@ public class RelevantInterfaceTest extends AbstractSignTest {
      */
     @Test
     public void fileUploadAndContractCreation() {
+
+        signClient =  new DefaultSignClient("https://unknow.sdguodun.com:8000/api","722890774874312704","DRDAQOKvmWHSILgSTJ");
+
         ContractAddAndFileRequest request = new ContractAddAndFileRequest();
         request.setDescription("描述");
-        FileItem fileItem = new FileItem(new File("C:\\Users\\Administrator\\Desktop\\房屋合同.pdf"));
+        FileItem fileItem = new FileItem(new File("E:\\微信备份\\WeChat Files\\shuai513470\\FileStorage\\File\\2020-11\\票种核定.pdf"));
         request.setFileItem(fileItem);
         request.setFileName("测试合同");
         request.setName("测试合同");
-        request.setUserId("00715229845080657920");
+        request.setUserId("10773494534931369984");
         ContractAddAndFileResponse response = signClient.execute(request);
         log.info("响应状态：{}", response.getResultCode());
         log.info("响应信息：{}", response.getResultMessage());

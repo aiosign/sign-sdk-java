@@ -42,4 +42,12 @@ public interface SignClient {
      */
     void download(String baseUri, String fileId, OutputStream outputStream);
 
+    /**
+     * 获取token
+     *
+     * @return
+     */
+    String getToken();
+
+
 }

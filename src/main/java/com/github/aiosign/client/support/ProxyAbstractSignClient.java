@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.github.aiosign.base.*;
 import com.github.aiosign.client.SignClient;
 import com.github.aiosign.enums.ContentType;
+import com.github.aiosign.module.request.TokenRequest;
+import com.github.aiosign.module.response.TokenResponse;
 import com.github.aiosign.utils.*;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -252,5 +254,14 @@ public abstract class ProxyAbstractSignClient implements SignClient {
         return this.appSecret.equals(other.appSecret) && this.appId.equals(other.appId);
     }
 
+    @Override
+    public String getToken() {
+        TokenRequest tokenRequest = new TokenRequest(this.getAppId(), this.getAppSecret());
+        TokenResponse response = this.execute(tokenRequest);
+        if (response.isSuccess()) {
+            return response.getData().getAccessToken();
+        }
+        return null;
+    }
 
 }

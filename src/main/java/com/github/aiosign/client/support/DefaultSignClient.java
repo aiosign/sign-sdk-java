@@ -254,4 +254,12 @@ public class DefaultSignClient implements SignClient {
         }
         return null;
     }
+
+    @Override
+    public String downloadFileURL(String fileId) {
+        return URLUtil.appendUrl(this.rootUri, new HashMap<String, Object>() {{
+            put(urlTokenKey, getToken());
+            put("fileId", fileId);
+        }});
+    }
 }

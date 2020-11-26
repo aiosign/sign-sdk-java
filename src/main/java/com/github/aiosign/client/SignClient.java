@@ -43,6 +43,11 @@ public interface SignClient {
     void download(String baseUri, String fileId, OutputStream outputStream);
 
     /**
+     * 组装下载地址
+     */
+    String downloadFileURL(String fileId);
+
+    /**
      * 获取token
      *
      * @return

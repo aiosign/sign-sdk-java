@@ -10,16 +10,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * 合同添加返回值
+ * v2合同添加返回值
  *
  * @author modificial
  * @since 2020/4/2
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ContractQueryResponse extends AbstractSignResponse {
-
-    private ContractQueryModule data;
+public class ContractQueryV2Response extends AbstractSignResponse {
+    private ContractQueryResponse.ContractQueryModule data;
 
     @EqualsAndHashCode(callSuper = true)
     @Data
@@ -53,12 +52,15 @@ public class ContractQueryResponse extends AbstractSignResponse {
          * 合同状态：0，删除；1，无效；2，生效；3，废除
          */
         private String status;
-
         /**
          * 完结状态
          */
-        private String isFinish;
+        private  String isFinish;
 
+        /**
+         * 签署状态
+         */
+        private String signStatus;
 
         /**
          * 合同页数

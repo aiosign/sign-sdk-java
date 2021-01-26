@@ -25,7 +25,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommonSignRequest extends AbstractSignRequest<SignResponse> {
-
+    /**
+     * 自定义签署ID
+     */
+    private String signId;
     /**
      * 合同id
      */

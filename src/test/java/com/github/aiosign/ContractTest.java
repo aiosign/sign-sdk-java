@@ -59,7 +59,7 @@ public class ContractTest extends AbstractSignTest {
     public void queryV2() {
         ContractQueryV2Request contractQueryV2Request = new ContractQueryV2Request();
         // 合同id
-        contractQueryV2Request.setContractId("c45e88eab763e38407621fd7e8319d23");
+        contractQueryV2Request.setContractId("00befe60a8090229585ebc0f263c358a");
         ContractQueryV2Response execute = signClient.execute(contractQueryV2Request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());

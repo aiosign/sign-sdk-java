@@ -15,4 +15,9 @@ public class CustomSignFields extends SignFields {
      * 自定义参数，原路返回
      */
     private String customId;
+
+    /**
+     * 自定义签署ID
+     */
+    private String signId;
 }

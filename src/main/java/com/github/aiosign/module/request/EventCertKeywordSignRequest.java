@@ -25,6 +25,11 @@ import lombok.NoArgsConstructor;
 public class EventCertKeywordSignRequest extends AbstractSignRequest<SignResponse> {
 
 	/**
+	 * 自定义签署ID
+	 */
+	private String signId;
+
+	/**
 	 * 合同id
 	 */
 	private String contractId;

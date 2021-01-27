@@ -30,7 +30,7 @@ public class CommonSignRequest extends AbstractSignRequest<SignResponse> {
      */
     private String signId;
     /**
-     * 是否完结合同
+     * 是否完结合同，1完结，0未完结，默认是0
      */
     private Integer isContractFinish = 0;
     /**

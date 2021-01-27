@@ -42,7 +42,7 @@ public class SignCheckTest extends AbstractSignTest {
     public void fileV2() {
         FileCheckV2Request fileCheckRequest = new FileCheckV2Request();
         // 文件id
-        FileItem fileItem = new FileItem(new File("/Users/modificial/Downloads/1.pdf"));
+        FileItem fileItem = new FileItem(new File("D:\\contract\\我的合同.pdf"));
         fileCheckRequest.setFileItem(fileItem);
         SignCheckV2Response execute = signClient.execute(fileCheckRequest);
         log.info("响应状态：{}", execute.getResultCode());
@@ -56,7 +56,7 @@ public class SignCheckTest extends AbstractSignTest {
     public void file() {
         FileCheckRequest fileCheckRequest = new FileCheckRequest();
         // 文件id
-        FileItem fileItem = new FileItem(new File("C:\\Users\\Administrator\\Downloads\\wallpaper\\SW-2FBAA3CF876BA6B08A5699E0CEFE9C28.jpg"));
+        FileItem fileItem = new FileItem(new File("D:\\contract\\签署完成合同.pdf"));
         fileCheckRequest.setFileItem(fileItem);
         SignCheckResponse execute = signClient.execute(fileCheckRequest);
         log.info("响应状态：{}", execute.getResultCode());

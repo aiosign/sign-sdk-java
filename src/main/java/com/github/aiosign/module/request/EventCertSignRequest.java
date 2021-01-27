@@ -27,6 +27,11 @@ import java.util.List;
 public class EventCertSignRequest extends AbstractSignRequest<SignResponse> {
 
 	/**
+	 * 自定义签署ID
+	 */
+	private String signId;
+
+	/**
 	 * 合同id
 	 */
 	private String contractId;

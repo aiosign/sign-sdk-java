@@ -25,6 +25,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SingleTemplateRequest extends AbstractSignRequest<SignResponse> {
     /**
+     * 自定义签署ID
+     */
+    private String signId;
+    /**
      * 模板id
      */
     private String templateId;

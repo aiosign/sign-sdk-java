@@ -23,7 +23,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KeywordSignRequest  extends AbstractSignRequest<SignResponse> {
-
+	/**
+	 * 自定义签署ID
+	 */
+	private String signId;
 	/**
 	 * 合同id
 	 */

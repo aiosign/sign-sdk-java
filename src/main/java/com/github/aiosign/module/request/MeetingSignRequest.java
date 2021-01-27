@@ -25,72 +25,76 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MeetingSignRequest extends AbstractSignRequest<MeetingSignResponse> {
-	/**
-	 * 自定义签署ID
-	 */
-	private String signId;
-	/**
-	 * 合同id
-	 */
-	private String contractId;
+    /**
+     * 自定义签署ID
+     */
+    private String signId;
+    /**
+     * 是否完结合同
+     */
+    private Integer isContractFinish = 0;
+    /**
+     * 合同id
+     */
+    private String contractId;
 
-	/**
-	 * 签章详细信息
-	 */
-	private List<SignDetail> signDetails;
+    /**
+     * 签章详细信息
+     */
+    private List<SignDetail> signDetails;
 
-	/**
-	 * 签章详细参数
-	 */
-	@Data
-	public static class SignDetail implements Serializable {
-		/**
-		 * 用户id
-		 */
-		private String userId;
+    /**
+     * 签章详细参数
+     */
+    @Data
+    public static class SignDetail implements Serializable {
+        /**
+         * 用户id
+         */
+        private String userId;
 
-		/**
-		 * 印章id
-		 */
-		private String sealId;
+        /**
+         * 印章id
+         */
+        private String sealId;
 
-		/**
-		 * 页码
-		 */
-		private Integer pageNum;
+        /**
+         * 页码
+         */
+        private Integer pageNum;
 
-		/**
-		 * 印章宽度
-		 */
-		private Integer signWidth;
+        /**
+         * 印章宽度
+         */
+        private Integer signWidth;
 
-		/**
-		 * 高度
-		 */
-		private Integer signHeight;
+        /**
+         * 高度
+         */
+        private Integer signHeight;
 
-		/**
-		 * 签署距离合同上方距离
-		 */
-		private Integer signTop;
+        /**
+         * 签署距离合同上方距离
+         */
+        private Integer signTop;
 
-		/**
-		 * 签署距离合同左方距离
-		 */
-		private Integer signLeft;
+        /**
+         * 签署距离合同左方距离
+         */
+        private Integer signLeft;
 
-	}
+    }
 
-	@Override
-	@JsonIgnore
-	public RequestInfo<MeetingSignResponse> getRequestInfo() {
-		RequestInfo<MeetingSignResponse> requestInfo = new RequestInfo<>();
-		requestInfo.setContentType(ContentType.JSON);
-		requestInfo.setApiUri("/v1/sign/meeting/single");
-		requestInfo.setMethod(HttpMethod.POST);
-		requestInfo.setNeedToken(true);
-		requestInfo.setResponseType(MeetingSignResponse.class);
-		requestInfo.setRequestBody(this);
-		return requestInfo;
-	}
+    @Override
+    @JsonIgnore
+    public RequestInfo<MeetingSignResponse> getRequestInfo() {
+        RequestInfo<MeetingSignResponse> requestInfo = new RequestInfo<>();
+        requestInfo.setContentType(ContentType.JSON);
+        requestInfo.setApiUri("/v1/sign/meeting/single");
+        requestInfo.setMethod(HttpMethod.POST);
+        requestInfo.setNeedToken(true);
+        requestInfo.setResponseType(MeetingSignResponse.class);
+        requestInfo.setRequestBody(this);
+        return requestInfo;
+    }
 }

@@ -30,6 +30,11 @@ public class EventCertKeywordSignRequest extends AbstractSignRequest<SignRespons
 	private String signId;
 
 	/**
+	 * 是否完结合同
+	 */
+	private Integer isContractFinish = 0;
+
+	/**
 	 * 合同id
 	 */
 	private String contractId;

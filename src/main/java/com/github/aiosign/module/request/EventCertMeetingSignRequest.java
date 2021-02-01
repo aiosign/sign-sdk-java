@@ -89,6 +89,11 @@ public class EventCertMeetingSignRequest extends AbstractSignRequest<MeetingSign
          * 签署距离合同左方距离
          */
         private Integer signLeft;
+
+        /**
+         * 旋转角度，精确1位小数
+         */
+        private Double rotate = 0.0D;
     }
 
     @Override

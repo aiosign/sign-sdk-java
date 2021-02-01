@@ -88,6 +88,11 @@ public class MeetingSignRequest extends AbstractSignRequest<MeetingSignResponse>
          */
         private Integer signLeft;
 
+        /**
+         * 旋转角度，精确1位小数
+         */
+        private Double rotate = 0.0D;
+
     }
 
     @Override

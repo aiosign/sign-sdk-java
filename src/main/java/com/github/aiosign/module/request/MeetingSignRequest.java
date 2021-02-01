@@ -59,6 +59,11 @@ public class MeetingSignRequest extends AbstractSignRequest<MeetingSignResponse>
         private String sealId;
 
         /**
+         * 签章模式，1单个电子签章，3骑缝章,默认是1，单个电子签章
+         */
+        private Integer layout = 1;
+
+        /**
          * 页码
          */
         private Integer pageNum;

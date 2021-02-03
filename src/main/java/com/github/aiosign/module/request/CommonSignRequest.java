@@ -30,6 +30,10 @@ public class CommonSignRequest extends AbstractSignRequest<SignResponse> {
      */
     private String signId;
     /**
+     * 是否完结合同，1完结，0未完结，默认是0
+     */
+    private Integer isContractFinish = 0;
+    /**
      * 合同id
      */
     private String contractId;
@@ -88,6 +92,11 @@ public class CommonSignRequest extends AbstractSignRequest<SignResponse> {
          * 印章高度，精确1位小数
          */
         private Double rotate = 0.0D;
+
+        /**
+         * 签章模式，1单个电子签章，3骑缝章,默认是1，单个电子签章
+         */
+        private Integer layout = 1;
 
     }
 

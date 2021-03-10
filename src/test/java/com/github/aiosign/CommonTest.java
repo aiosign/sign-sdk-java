@@ -27,8 +27,6 @@ public class CommonTest extends AbstractSignTest {
      */
     @Test
     public void callApiReturnObject() {
-//        SignClient signClient = new DefaultSignClient("https://open.aiosign.com/api", "731266365780545536",
-//                "UqhqrggjBErJKUeyaV");
         SignClient signClient = new DefaultSignClient("http://172.30.162.251:8888/api","745678846409986048","CwHyZlnqmsCnOaCSsP");
         //请求参数 具体请看调用Api请求参数
         HashMap<String, String> requestBody = new HashMap<>(2);

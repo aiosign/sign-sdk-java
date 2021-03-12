@@ -18,7 +18,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ContractQueryV2Response extends AbstractSignResponse {
-    private ContractQueryResponse.ContractQueryModule data;
+    private ContractQueryV2Response.ContractQueryModule data;
 
     @EqualsAndHashCode(callSuper = true)
     @Data

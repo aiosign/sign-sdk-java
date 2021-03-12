@@ -64,6 +64,15 @@ public class ContractTest extends AbstractSignTest {
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());
+        if (execute.isSuccess()) {
+            ContractQueryV2Response.ContractQueryModule contractQueryModule = execute.getData();
+            if (contractQueryModule != null) {
+                log.info("合同签署状态：{}", contractQueryModule.getSignStatus());
+            }
+        }
+        else {
+            //进行其他业务
+        }
     }
 
     /**

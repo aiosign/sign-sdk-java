@@ -23,8 +23,8 @@ public abstract class AbstractSignTest {
      */
     @Before
     public void init() {
-        signClient = new DefaultSignClient("http://192.168.1.206:8000/api", "729742355062214656",
-                "VBXdvJLpOBjViUEPRt");
+        signClient = new DefaultSignClient("http://192.168.1.184:8000/api", "746028945497542656",
+                "YTIZxASqAnUiZqCywn");
     }
 
     /**

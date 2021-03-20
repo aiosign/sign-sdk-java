@@ -31,6 +31,11 @@ public class KeywordSignRequest extends AbstractSignRequest<SignResponse> {
      * 是否完结合同，1完结，0未完结，默认是0
      */
     private Integer isContractFinish = 0;
+
+    /**
+     * 是否渲染页面，0否，1是，默认是0
+     */
+    private Integer isRender = 0;
     /**
      * 合同id
      */

@@ -28,6 +28,15 @@ public class ScanContractAddRequest extends AbstractSignRequest<ScanContractAddR
      */
     private String contractId;
     /**
+     * 是否完结合同，1完结，0未完结，默认是0
+     */
+    private Integer isContractFinish = 0;
+
+    /**
+     * 是否渲染页面，0否，1是，默认是0
+     */
+    private Integer isRender = 0;
+    /**
      * 用户id
      */
     private String userId;
@@ -96,6 +105,16 @@ public class ScanContractAddRequest extends AbstractSignRequest<ScanContractAddR
          * 印章宽度，精确1位小数
          */
         private Double width;
+
+        /**
+         * 印章高度，精确1位小数
+         */
+        private Double rotate = 0.0D;
+
+        /**
+         * 签章模式，1单个电子签章，3骑缝章,默认是1，单个电子签章
+         */
+        private Integer layout = 1;
     }
 
 

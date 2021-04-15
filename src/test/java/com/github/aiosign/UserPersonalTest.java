@@ -40,6 +40,32 @@ public class UserPersonalTest extends AbstractSignTest {
     }
 
     /**
+     * 获取个人用户ID以及注册
+     */
+    @Test
+    public void registerOrQuery() {
+        UserPersonalRegisterOrQueryRequest request = new UserPersonalRegisterOrQueryRequest();
+        // 姓名
+        request.setUserName("测试001");
+        // 地区编码
+        request.setAreaCode("370101");
+        // 手机号
+        request.setPhone("15684532141");
+        // 证件类型
+        request.setIdType("111");
+        // 证件号
+        request.setIdNumber("371525199309870986");
+        // 邮箱地址
+        request.setMail("1562310354@qq.com");
+        //申请证书方式，0不申请（默认）;1同步申请；2异步申请
+        request.setCertApplyType(1);
+        UserPersonalRegisterOrQueryResponse execute = signClient.execute(request);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
+    /**
      * 用户锁定
      */
     @Test

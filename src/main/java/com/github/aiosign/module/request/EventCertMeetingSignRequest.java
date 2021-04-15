@@ -5,7 +5,7 @@ import com.github.aiosign.base.AbstractSignRequest;
 import com.github.aiosign.base.RequestInfo;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
-import com.github.aiosign.module.response.MeetingSignResponse;
+import com.github.aiosign.module.response.SignResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,7 +24,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventCertMeetingSignRequest extends AbstractSignRequest<MeetingSignResponse> {
+public class EventCertMeetingSignRequest extends AbstractSignRequest<SignResponse> {
 
     /**
      * 自定义签署ID
@@ -103,13 +103,13 @@ public class EventCertMeetingSignRequest extends AbstractSignRequest<MeetingSign
 
     @Override
     @JsonIgnore
-    public RequestInfo<MeetingSignResponse> getRequestInfo() {
-        RequestInfo<MeetingSignResponse> requestInfo = new RequestInfo<>();
+    public RequestInfo<SignResponse> getRequestInfo() {
+        RequestInfo<SignResponse> requestInfo = new RequestInfo<>();
         requestInfo.setContentType(ContentType.JSON);
         requestInfo.setApiUri("/v1/event_cert_sign/meeting/single");
         requestInfo.setMethod(HttpMethod.POST);
         requestInfo.setNeedToken(true);
-        requestInfo.setResponseType(MeetingSignResponse.class);
+        requestInfo.setResponseType(SignResponse.class);
         requestInfo.setRequestBody(this);
         return requestInfo;
     }

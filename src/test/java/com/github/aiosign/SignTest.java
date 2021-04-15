@@ -210,7 +210,7 @@ public class SignTest extends AbstractSignTest {
         // 签署距离合同左方距离
         signDetail.setSignLeft(100);
         meetingSignRequest.setSignDetails(Collections.singletonList(signDetail));
-        MeetingSignResponse execute = signClient.execute(meetingSignRequest);
+        SignResponse execute = signClient.execute(meetingSignRequest);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());
@@ -259,5 +259,35 @@ public class SignTest extends AbstractSignTest {
     @Test
     public void ScanContractSign() {
 
+    }
+
+    /**
+     * 授权签章
+     */
+    @Test
+    public void AuthSign() {
+        AuthSignRequest request = new AuthSignRequest();
+        //合同ID
+        request.setContractId("1fd162f81b9e9e2364b287549670595c");
+        //授权人ID
+        request.setAuthUserId("10822386355627249664");
+        //签署信息
+        List<AuthSignRequest.SignDetail> signDetails = new ArrayList<>();
+        AuthSignRequest.SignDetail signDetail = new AuthSignRequest.SignDetail();
+        //签署页码
+        signDetail.setPageNum(1);
+        //印章ID
+        signDetail.setSealId("3d2d7ee8ed72b1b3bdea8c09d80bf8cb");
+        signDetail.setUserId("00821065058230095872");
+        signDetail.setSignLeft(10);
+        signDetail.setSignTop(10);
+        signDetail.setSignHeight(50.0);
+        signDetail.setSignWidth(50.0);
+        signDetails.add(signDetail);
+        request.setSignDetails(signDetails);
+        SignResponse execute = signClient.execute(request);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
     }
 }

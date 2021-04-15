@@ -26,7 +26,7 @@ public class DirectSignV2Response extends AbstractSignResponse {
         /**
          * 签署结果
          */
-        private Boolean signState;
+        private Boolean signSatate;
         /**
          * 签署信息
          */

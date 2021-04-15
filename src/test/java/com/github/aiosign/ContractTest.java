@@ -8,6 +8,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author yangyouwang
@@ -69,8 +71,7 @@ public class ContractTest extends AbstractSignTest {
             if (contractQueryModule != null) {
                 log.info("合同签署状态：{}", contractQueryModule.getSignStatus());
             }
-        }
-        else {
+        } else {
             //进行其他业务
         }
     }
@@ -212,7 +213,7 @@ public class ContractTest extends AbstractSignTest {
         req.setSignId("06b0250f17974ee59051eb179f8a0b00");
         req.setUserId("00729742538705620992");
         //自定义作废参数
-        ContractAbolishRequest.SignParams field=new ContractAbolishRequest.SignParams();
+        ContractAbolishRequest.SignParams field = new ContractAbolishRequest.SignParams();
         //印章高度
         field.setHeight(120.0);
         //印章宽度
@@ -238,7 +239,7 @@ public class ContractTest extends AbstractSignTest {
         req.setSignId("06b0250f17974ee59051eb179f8a0b00");
         req.setUserId("00729742538705620992");
         //自定义作废参数
-        ContractAbolishV2Request.SignParams field=new ContractAbolishV2Request.SignParams();
+        ContractAbolishV2Request.SignParams field = new ContractAbolishV2Request.SignParams();
         //印章高度
         field.setHeight(120.0);
         //印章宽度
@@ -248,7 +249,7 @@ public class ContractTest extends AbstractSignTest {
         //垂直纵坐标
         field.setVertical(30.0);
         field.setPageNumber(3);
-        List<ContractAbolishV2Request.SignParams> fields=new ArrayList<>();
+        List<ContractAbolishV2Request.SignParams> fields = new ArrayList<>();
         fields.add(field);
         req.setFields(fields);
         ContractAbolishResponse execute = signClient.execute(req);
@@ -257,5 +258,26 @@ public class ContractTest extends AbstractSignTest {
         log.info("响应数据：{}", execute.getData());
     }
 
+    /**
+     * 合同多页渲染
+     */
+    @Test
+    public void ContractMultiRender() {
+        ContractMultiRenderRequest request = new ContractMultiRenderRequest();
+        //合同ID
+        request.setContractId("1fd162f81b9e9e2364b287549670595c");
+        //渲染页码
+        List<Integer> pageNums = Stream.of(1,2,3).collect(Collectors.toList());
+        request.setPageNums(pageNums);
+        ContractMultiRenderResponse execute = signClient.execute(request);
+        log.info("响应状态：{}", execute.getResultCode());
+        log.info("响应信息：{}", execute.getResultMessage());
+        log.info("响应数据：{}", execute.getData());
+    }
+
+    @Test
+    public void ContractTest() {
+        //验证数据以及数据合法性
+    }
 
 }

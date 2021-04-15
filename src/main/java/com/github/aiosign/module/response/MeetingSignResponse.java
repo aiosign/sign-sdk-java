@@ -6,11 +6,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 会签返回参数
+ * 会签返回参数 废弃
  *
  * @author modificial
  * @since 2020/4/3
  */
+@Deprecated
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class MeetingSignResponse extends AbstractSignResponse {

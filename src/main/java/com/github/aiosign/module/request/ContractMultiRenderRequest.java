@@ -9,6 +9,8 @@ import com.github.aiosign.module.response.ContractMultiRenderResponse;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 /**
  * 多页渲染合同
  *
@@ -26,7 +28,7 @@ public class ContractMultiRenderRequest extends AbstractSignRequest<ContractMult
     /**
      * 渲染页码，以","分隔
      */
-    private String pageNums;
+    private List<Integer> pageNums;
 
     @Override
     @JsonIgnore

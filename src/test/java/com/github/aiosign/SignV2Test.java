@@ -4,6 +4,7 @@ import com.github.aiosign.module.request.DirectSignV2Request;
 import com.github.aiosign.module.response.DirectSignV2Response;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,12 +50,10 @@ public class SignV2Test extends AbstractSignTest {
         companyInfo.setSealHeight(70);
         companyInfoList.add(companyInfo);
         request.setCompanyInfo(companyInfoList);
-
         //发起一步签署
         DirectSignV2Response execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", execute.getData());
-
     }
 }

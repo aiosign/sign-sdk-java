@@ -75,7 +75,8 @@ public class DefaultSignClient implements SignClient {
     /**
      * urlTokenKey
      */
-    private String urlTokenKey = "access_token";
+    // private String urlTokenKey = "access_token";
+    private String urlTokenKey = "token";
 
 
     /**

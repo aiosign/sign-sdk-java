@@ -2,7 +2,11 @@ package com.github.aiosign.base;
 
 import com.github.aiosign.utils.MineUtils;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 
 /**
  * 文件元数据。
@@ -61,7 +65,7 @@ public class FileItem {
     /**
      * <p>Getter for the field <code>fileName</code>.</p>
      *
-     * @return a {@link java.lang.String} object.
+     * @return a {@link String} object.
      */
     public String getFileName() {
         if (this.fileName == null && this.file != null && this.file.exists()) {
@@ -73,8 +77,8 @@ public class FileItem {
     /**
      * <p>Getter for the field <code>mimeType</code>.</p>
      *
-     * @return a {@link java.lang.String} object.
-     * @throws java.io.IOException if any.
+     * @return a {@link String} object.
+     * @throws IOException if any.
      */
     public String getMimeType() throws IOException {
         if (this.mimeType == null) {
@@ -83,33 +87,63 @@ public class FileItem {
         return this.mimeType;
     }
 
+    // /**
+    //  * <p>Getter for the field <code>content</code>.</p>
+    //  *
+    //  * @return an array of {@link byte} objects.
+    //  * @throws java.io.IOException if any.
+    //  */
+    // public byte[] getContent() throws IOException {
+    //     if (this.content == null && this.file != null && this.file.exists()) {
+    //         InputStream in = null;
+    //         ByteArrayOutputStream out = null;
+    //
+    //         try {
+    //             in = new FileInputStream(this.file);
+    //             out = new ByteArrayOutputStream();
+    //             int ch;
+    //             while ((ch = in.read()) != -1) {
+    //                 out.write(ch);
+    //             }
+    //             this.content = out.toByteArray();
+    //         } finally {
+    //             if (out != null) {
+    //                 out.close();
+    //             }
+    //             if (in != null) {
+    //                 in.close();
+    //             }
+    //         }
+    //     }
+    //     byte[] content = this.content;
+    //     if (null != content && content.length > 0) {
+    //         return content;
+    //     }
+    //     throw new RuntimeException("获取文件流失败,请检查文件是否存在");
+    // }
+
     /**
+     * 使用NIO方式
      * <p>Getter for the field <code>content</code>.</p>
      *
      * @return an array of {@link byte} objects.
-     * @throws java.io.IOException if any.
+     * @throws IOException if any.
      */
     public byte[] getContent() throws IOException {
         if (this.content == null && this.file != null && this.file.exists()) {
-            InputStream in = null;
-            ByteArrayOutputStream out = null;
+            //获取文件输入流
+            FileInputStream inputStream = new FileInputStream(this.file);
+            //从文件输入流获取通道
+            FileChannel inputStreamChannel = inputStream.getChannel();
 
-            try {
-                in = new FileInputStream(this.file);
-                out = new ByteArrayOutputStream();
-                int ch;
-                while ((ch = in.read()) != -1) {
-                    out.write(ch);
-                }
-                this.content = out.toByteArray();
-            } finally {
-                if (out != null) {
-                    out.close();
-                }
-                if (in != null) {
-                    in.close();
-                }
-            }
+            //创建一个byteBuffer，小文件所以就直接一次读取，不分多次循环了
+            ByteBuffer byteBuffer = ByteBuffer.allocate((int)this.file.length());
+            this.content = byteBuffer.array();
+            //把输入流通道的数据读取到缓冲区
+            inputStreamChannel.read(byteBuffer);
+            //关闭通道
+            inputStream.close();
+            inputStreamChannel.close();
         }
         byte[] content = this.content;
         if (null != content && content.length > 0) {

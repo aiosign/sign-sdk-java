@@ -2,12 +2,14 @@ package com.github.aiosign.utils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Zhu Dunfeng
  * @date 2023/5/23
  */
-public class SealSizeUtils {
+public class SealUtils {
     /**
      * 转换印章实际大小到像素值
      * 换算规则:  val*(720/254)
@@ -37,4 +39,15 @@ public class SealSizeUtils {
         bigDecimalVal= bigDecimalVal.divide(rate,RoundingMode.HALF_UP);
         return bigDecimalVal.doubleValue();
     }
+
+    /**
+     * 判断电子印章与实物印章是否一致
+     * @param formType 印章形态 4,5,6为一致
+     * @return 是否一致
+     */
+    public static Boolean checkSealFormType(String formType){
+        List<String> legalFormTypeList = Arrays.asList("4", "5", "6");
+        return legalFormTypeList.contains(formType);
+    }
+
 }

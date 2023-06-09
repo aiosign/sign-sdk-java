@@ -1,20 +1,19 @@
 package com.github.aiosign.csh;
 
 import cn.hutool.crypto.SmUtil;
+import com.alibaba.fastjson.JSON;
 import com.github.aiosign.AbstractSignTest;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
 import com.github.aiosign.module.request.CommonRequest;
+import com.github.aiosign.module.response.CheckAccreditSealResWrapper;
 import com.github.aiosign.module.response.CommonResponse;
+import com.github.aiosign.utils.SealUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * 城商行定制
@@ -60,7 +59,7 @@ public class AccreditSealCshTest extends AbstractSignTest {
         CommonResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
+        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
     }
 
     /**
@@ -92,40 +91,11 @@ public class AccreditSealCshTest extends AbstractSignTest {
         request.setMethod(HttpMethod.POST);// 请求方法
         request.setRequestBody(requestBody);// 请求体
         CommonResponse execute = signClient.execute(request);
+        CheckAccreditSealResWrapper checkAccreditSealResWrapper = new CheckAccreditSealResWrapper(signClient, execute);
+        checkAccreditSealResWrapper.wrapper();
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
-        // 解析响应数据
-        HashMap<String, String> response = (HashMap<String, String>) execute.getData();
-        // 核验授权信息接口获取到企业id，然后传入获取用户签章接口继续查看当前企业印章信息
-        String companyUserId = response.get("company_id");
-
-        HashMap<String, String> sealRequestBody = new HashMap<>(2);
-        sealRequestBody.put("user_id",companyUserId);
-
-        CommonRequest sealRequest = new CommonRequest();
-        sealRequest.setApiUri("/v1/seal/getSealInfos"); // 请求Api地址
-        sealRequest.setNeedToken(true);// 是否需要token
-        sealRequest.setContentType(ContentType.JSON);// 请求头类型
-        sealRequest.setMethod(HttpMethod.POST);// 请求方法
-        sealRequest.setRequestBody(sealRequestBody);// 请求体
-
-        CommonResponse sealExecute = signClient.execute(request);
-        log.info("响应状态：{}", sealExecute.getResultCode());
-        log.info("响应信息：{}", sealExecute.getResultMessage());
-        log.info("响应数据：{}", sealExecute.getData());
-
-        List<HashMap<String, String>> sealInfoModuleList = (List<HashMap<String, String>>) execute.getData();
-        sealInfoModuleList.forEach(map -> {
-            String sealId = map.get("seal_id");
-            String size = map.get("size");
-            System.out.printf("sealInfo: sealId:%s -> size:%s", sealId, size);
-            List<String> collect = Arrays.asList(size.trim().split("\\*"));
-            String width = collect.get(0);
-            String high = collect.get(0);
-            // 计算后的尺寸
-            System.out.printf("width:%s,high:%s\n", width, high);
-        });
+        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
     }
 
 }

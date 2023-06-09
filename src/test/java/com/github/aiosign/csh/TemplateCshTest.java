@@ -1,5 +1,6 @@
 package com.github.aiosign.csh;
 
+import com.alibaba.fastjson.JSON;
 import com.github.aiosign.AbstractSignTest;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
@@ -44,7 +45,7 @@ public class TemplateCshTest extends AbstractSignTest {
         CommonResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
+        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
     }
 
     /**
@@ -65,7 +66,7 @@ public class TemplateCshTest extends AbstractSignTest {
         CommonResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
+        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
     }
 
     /**
@@ -73,7 +74,6 @@ public class TemplateCshTest extends AbstractSignTest {
      */
     @Test
     public void lock() {
-        TemplateLockRequest templateLockRequest = new TemplateLockRequest();
         HashMap<String, Object> templateLockRequestBody = new HashMap<>();
         // 模板id
         templateLockRequestBody.put("template_id","e939a7bbb7a9dc26d4e14f1f4c28d20b");
@@ -87,7 +87,7 @@ public class TemplateCshTest extends AbstractSignTest {
         CommonResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
+        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
     }
 
     /**
@@ -109,6 +109,6 @@ public class TemplateCshTest extends AbstractSignTest {
         CommonResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
+        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
     }
 }

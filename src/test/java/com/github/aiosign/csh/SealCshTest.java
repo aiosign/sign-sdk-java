@@ -1,5 +1,6 @@
 package com.github.aiosign.csh;
 
+import com.alibaba.fastjson.JSON;
 import com.github.aiosign.AbstractSignTest;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
@@ -41,29 +42,7 @@ public class SealCshTest extends AbstractSignTest {
         CommonResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
+        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
     }
 
-    /**
-     * 8.3.2.电子印章申领
-     */
-    @Test
-    public void applyForSeal() {
-        HashMap<String, String> requestBody = new HashMap<>(3);
-        requestBody.put("user_name", "a2878c359b8d6b1e0fab04205fc7d870");
-        requestBody.put("credit_code", "a2878c359b8d6b1e0fab04205fc7d870");
-        requestBody.put("area_code", "450100");
-
-        CommonRequest request = new CommonRequest();
-        request.setApiUri("/v1/seal/apply-seal-en"); // 请求Api地址
-        request.setNeedToken(true);// 是否需要token
-        request.setContentType(ContentType.JSON);// 请求头类型
-        request.setMethod(HttpMethod.POST);// 请求方法
-        request.setRequestBody(requestBody);// 请求体
-
-        CommonResponse execute = signClient.execute(request);
-        log.info("响应状态：{}", execute.getResultCode());
-        log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
-    }
 }

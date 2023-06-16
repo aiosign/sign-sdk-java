@@ -79,6 +79,13 @@ public class SignCshTest extends AbstractSignTest {
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
+        HashMap<String, Object> signModule = (HashMap<String, Object>) execute.getData();
+        boolean signState = (boolean) signModule.get("sign_state");
+        if(!signState){
+            //失败原因
+            String reason = String.valueOf(signModule.get("reason"));
+            log.info("失败原因:{}",reason);
+        }
     }
 
 
@@ -136,6 +143,13 @@ public class SignCshTest extends AbstractSignTest {
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
+        HashMap<String, Object> signModule = (HashMap<String, Object>) execute.getData();
+        boolean signState = (boolean) signModule.get("sign_state");
+        if(!signState){
+            //失败原因
+            String reason = String.valueOf(signModule.get("reason"));
+            log.info("失败原因:{}",reason);
+        }
     }
 
     /**
@@ -175,6 +189,13 @@ public class SignCshTest extends AbstractSignTest {
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
+        HashMap<String, Object> signModule = (HashMap<String, Object>) execute.getData();
+        boolean signState = (boolean) signModule.get("sign_state");
+        if(!signState){
+            //失败原因
+            String reason = String.valueOf(signModule.get("reason"));
+            log.info("失败原因:{}",reason);
+        }
     }
 
     /**
@@ -193,6 +214,8 @@ public class SignCshTest extends AbstractSignTest {
         HashMap<String, Object> requestBody = new HashMap<>();
         // 1.写入需要使用的模板id
         requestBody.put("template_id", templateId);
+
+        List<HashMap<String, Object>> batchTemplates = new ArrayList<>();
         // 创建隐藏域信息
         HashMap<String, Object> custSignField = new HashMap<>();
 
@@ -210,7 +233,8 @@ public class SignCshTest extends AbstractSignTest {
         custSignField.put("text_params", textParams);
 
         // 放入签名域与文字域信息
-        requestBody.put("batch_templates", custSignField);
+        batchTemplates.add(custSignField);
+        requestBody.put("batch_templates", batchTemplates);
         // 执行签章
         CommonRequest request = new CommonRequest();
         request.setApiUri("/v1/event_cert_sign/template/batch");// 请求Api地址
@@ -222,6 +246,16 @@ public class SignCshTest extends AbstractSignTest {
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
+        HashMap<String, Object> signModule = (HashMap<String, Object>) execute.getData();
+        List<HashMap<String, Object>> signInfos = (List<HashMap<String, Object>>) signModule.get("sign_infos");
+        for (HashMap<String, Object> signInfo : signInfos) {
+            boolean signState = (boolean) signInfo.get("sign_state");
+            if(!signState){
+                //失败原因
+                String reason = String.valueOf(signInfo.get("reason"));
+                log.info("失败原因:{}",reason);
+            }
+        }
     }
 
 
@@ -233,7 +267,6 @@ public class SignCshTest extends AbstractSignTest {
         String sealId = "";
         String userId = "";
 
-        EventCertKeywordSignRequest eventCertKeywordSignRequest = new EventCertKeywordSignRequest();
         HashMap<String, Object> requestBody = new HashMap<>();
         requestBody.put("sign_id", signId);
         requestBody.put("is_contract_finish", 0);
@@ -264,6 +297,13 @@ public class SignCshTest extends AbstractSignTest {
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
         log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
+        HashMap<String, Object> signModule = (HashMap<String, Object>) execute.getData();
+        boolean signState = (boolean) signModule.get("sign_state");
+        if(!signState){
+            //失败原因
+            String reason = String.valueOf(signModule.get("reason"));
+            log.info("失败原因:{}",reason);
+        }
 
     }
 

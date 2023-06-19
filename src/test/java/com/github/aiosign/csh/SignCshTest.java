@@ -5,7 +5,6 @@ import com.github.aiosign.AbstractSignTest;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
 import com.github.aiosign.module.request.CommonRequest;
-import com.github.aiosign.module.request.EventCertKeywordSignRequest;
 import com.github.aiosign.module.response.CommonResponse;
 import com.github.aiosign.utils.SealUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -28,66 +27,6 @@ import java.util.Map;
  */
 @Slf4j
 public class SignCshTest extends AbstractSignTest {
-    /**
-     * 普通签章
-     */
-    @Test
-    public void eventCertSign1() {
-        HashMap<String, Object> requestBody = new HashMap<>();
-        // 自定义签署ID
-        requestBody.put("sign_id", "111");
-        // 是否完结合同
-        requestBody.put("is_contract_finish", 0);
-        // 是否渲染页面
-        requestBody.put("is_render", 0);
-        // 合同id
-        requestBody.put("contract_id", "1fd162f81b9e9e2364b287549670595c");
-        // 签章备注
-        requestBody.put("remark", "测试");
-
-        ArrayList<Map<String, Object>> signParamList = new ArrayList<>();
-        HashMap<String, Object> signParams = new HashMap<>();
-        signParams.put("seal_id", "a9e48474650448709a3b577ce4f72234");
-        // 页码
-        signParams.put("page_number", 1);
-        // 水平横坐标
-        signParams.put("horizontal", 100D);
-        // 垂直纵坐标
-        signParams.put("vertical", 100D);
-        // 印章宽度(使用工具类转为像素)
-        signParams.put("width", SealUtils.transitionSizeToPixel(40D));
-        // 印章高度(使用工具类转为像素)
-        signParams.put("height", SealUtils.transitionSizeToPixel(40D));
-        // 印章旋转角度
-        signParams.put("rotate", 0.0D);
-        // 签章模式
-        signParams.put("layout", 1);
-
-        signParamList.add(signParams);
-        // 签章信息集合
-        requestBody.put("fields", signParamList);
-        // 用户id
-        requestBody.put("user_id", "10144942136450173440");
-
-        CommonRequest request = new CommonRequest();
-        request.setApiUri("/v1/event_cert_sign/common");// 请求Api地址
-        request.setNeedToken(true);// 是否需要token
-        request.setContentType(ContentType.JSON);// 请求头类型
-        request.setMethod(HttpMethod.POST);// 请求方法
-        request.setRequestBody(requestBody);// 请求体
-        CommonResponse execute = signClient.execute(request);
-        log.info("响应状态：{}", execute.getResultCode());
-        log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
-        HashMap<String, Object> signModule = (HashMap<String, Object>) execute.getData();
-        boolean signState = (boolean) signModule.get("sign_state");
-        if(!signState){
-            //失败原因
-            String reason = String.valueOf(signModule.get("reason"));
-            log.info("失败原因:{}",reason);
-        }
-    }
-
 
     /**
      * 会议综合签章

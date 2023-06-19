@@ -385,6 +385,46 @@ public class WebUtils {
     }
 
     /**
+     * 从网络Url中下载文件
+     *
+     * @param urlStr 下载的url地址
+     * @return {@code byte[]} 文件二进制流
+     */
+    public static byte[] downLoadFromUrl(String urlStr) {
+        HttpURLConnection conn = null;
+        InputStream inputStream = null;
+        try {
+            URL url = new URL(urlStr);
+            conn = (HttpURLConnection) url.openConnection();
+            //设置超时间为3秒
+            conn.setConnectTimeout(3 * 1000);
+            //防止屏蔽程序抓取而返回403错误
+            conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+            //得到输入流
+            inputStream = conn.getInputStream();
+            //获取自己数组
+            byte[] getData = readInputStream(inputStream);
+            log.info("info:" + urlStr + " download success");
+            return getData;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(inputStream!=null){
+                    inputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if(conn!=null){
+                conn.disconnect();
+            }
+        }
+        log.info("info:" + urlStr + " download fail");
+        return null;
+    }
+
+    /**
      * 从输入流中获取字节数组
      *
      * @param inputStream

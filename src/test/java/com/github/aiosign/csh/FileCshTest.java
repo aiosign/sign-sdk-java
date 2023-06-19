@@ -13,6 +13,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -92,9 +93,23 @@ public class FileCshTest extends AbstractSignTest {
     @Test
     public void downloadFile() throws FileNotFoundException {
         String baseUri = "/v1/file/download";
-        String fileId = "ceafec7cdfaf4f3b8f7af21966a137e9";
+        // String fileId = "ceafec7cdfaf4f3b8f7af21966a137e9";
+        String fileId = "df5bbadf4986425f9e4018d80e73b9cc";
         FileOutputStream out = new FileOutputStream("contract.pdf");
-        signClient.download(baseUri, fileId, out);
+        byte[] fileBytes = signClient.download(baseUri, fileId);
+        try {
+            out.write(fileBytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -105,9 +120,22 @@ public class FileCshTest extends AbstractSignTest {
     @Test
     public void downloadReport() throws FileNotFoundException {
         String baseUri = "/v1/file/downloadReport";
-        String fileId = "5a743d994e45e729961cb520fef590ce";
-        FileOutputStream out = new FileOutputStream("report.pdf");
-        signClient.download(baseUri, fileId, out);
+        String fileId = "43a53ed66ca34361821d2ab137e02824";
+        FileOutputStream out = new FileOutputStream("E:\\worktwo\\csh\\三方签署测试pdf\\report.pdf");
+        byte[] fileBytes = signClient.download(baseUri, fileId);
+        try {
+            out.write(fileBytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

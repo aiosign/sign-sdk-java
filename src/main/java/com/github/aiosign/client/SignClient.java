@@ -43,6 +43,15 @@ public interface SignClient {
     void download(String baseUri, String fileId, OutputStream outputStream);
 
     /**
+     * 下载文件
+     *
+     * @param baseUri      接口uri地址
+     * @param fileId       文件id
+     * @return {@code byte[]} 二进制文件流
+     */
+    byte[] download(String baseUri, String fileId);
+
+    /**
      * 组装下载地址
      */
     String downloadFileURL(String fileId);

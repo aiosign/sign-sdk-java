@@ -162,6 +162,22 @@ public class DefaultSignClient implements SignClient {
         downLoadFromUrl(uriBuild, outputStream);
     }
 
+    /**
+     * 下载文件
+     *
+     * @param fileId       文件id
+     */
+    @Override
+    public byte[] download(String baseUri, String fileId) {
+        String apiUrl = rootUri + baseUri;
+        String token = TokenManager.getToken(this);
+        String uriBuild = URLUtil.appendUrl(apiUrl, new HashMap<String, Object>(2) {{
+            put(urlTokenKey, token);
+            put("fileId", fileId);
+        }});
+        return downLoadFromUrl(uriBuild);
+    }
+
 
     /**
      * 发起请求并获取结果

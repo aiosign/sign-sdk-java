@@ -11,6 +11,7 @@ import com.github.aiosign.utils.*;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
@@ -148,7 +149,7 @@ public abstract class ProxyAbstractSignClient implements SignClient {
      * @param outputStream 输出流
      */
     @Override
-    public void download(String baseUri, String fileId, OutputStream outputStream) {
+    public void download(String baseUri, String fileId, OutputStream outputStream) throws FileNotFoundException {
         String apiUrl = rootUri + baseUri;
         String token = TokenManager.getToken(this);
         String uriBuild = URLUtil.appendUrl(apiUrl, new HashMap<String, Object>(2) {{
@@ -158,6 +159,22 @@ public abstract class ProxyAbstractSignClient implements SignClient {
         // 更变为代理数据
         uriBuild = builderCustomParams(uriBuild);
         downLoadFromUrl(uriBuild, outputStream);
+    }
+
+    /**
+     * 下载文件
+     *
+     * @param fileId       文件id
+     */
+    @Override
+    public byte[] download(String baseUri, String fileId) throws FileNotFoundException {
+        String apiUrl = rootUri + baseUri;
+        String token = TokenManager.getToken(this);
+        String uriBuild = URLUtil.appendUrl(apiUrl, new HashMap<String, Object>(2) {{
+            put(urlTokenKey, token);
+            put("fileId", fileId);
+        }});
+        return downLoadFromUrl(uriBuild);
     }
 
     /**

@@ -52,9 +52,9 @@ public class SealCshTest extends AbstractSignTest {
     @Test
     public void applySeal() {
         // AESKey为密钥，对接时下发
-        final String AESKey = "U6rmwyUKmPU7zCML";
+        final String AESKey = "TEnlK4mfLGhzKOWI";
         HashMap<String, String> requestBody = new HashMap<>(2);
-        String areaCode="450100";
+        String areaCode="370000";
         //企业名称（密）
         requestBody.put("user_name", AESUtils.encrypt(AESKey,"测试山东国盾网"));
         //企业社会信用代码（密）

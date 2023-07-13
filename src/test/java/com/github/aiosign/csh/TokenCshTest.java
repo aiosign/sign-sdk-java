@@ -26,7 +26,7 @@ public class TokenCshTest extends AbstractSignTest {
         requestBody.put("grant_type","client_credentials");
         CommonRequest request = new CommonRequest();
         request.setApiUri("/v1/oauth/token");// 请求Api地址
-        request.setNeedToken(true);// 是否需要token
+        request.setNeedToken(false);// 是否需要token
         request.setContentType(ContentType.JSON);// 请求头类型
         request.setMethod(HttpMethod.POST);// 请求方法
         request.setRequestBody(requestBody);// 请求体

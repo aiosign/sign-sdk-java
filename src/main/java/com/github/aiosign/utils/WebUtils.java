@@ -1,6 +1,9 @@
 package com.github.aiosign.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.aiosign.base.FileItem;
+import com.github.aiosign.module.response.CommonResponse;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.net.ssl.*;
@@ -14,6 +17,7 @@ import java.security.cert.X509Certificate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -54,10 +58,10 @@ public class WebUtils {
 
             socketFactory = ctx.getSocketFactory();
         } catch (Exception e) {
-            //ignore
+            // ignore
         }
         verifier = (hostname, session) -> {
-            return false; //不允许URL的主机名和服务器的标识主机名不匹配的情况
+            return false; // 不允许URL的主机名和服务器的标识主机名不匹配的情况
         };
 
     }
@@ -353,23 +357,13 @@ public class WebUtils {
     }
 
     /**
-     * 从网络Url中下载文件
-     *
-     * @param urlStr 下载的url地址
+     * 写入字节数组到输出流中
+     * @param bytes 文件字节数组
+     * @param out 输出流
      */
-    public static void downLoadFromUrl(String urlStr, OutputStream out) {
+    private static void writeBytesToStream(byte[] bytes,OutputStream out){
         try {
-            URL url = new URL(urlStr);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            //设置超时间为3秒
-            conn.setConnectTimeout(3 * 1000);
-            //防止屏蔽程序抓取而返回403错误
-            conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-            //得到输入流
-            InputStream inputStream = conn.getInputStream();
-            //获取自己数组
-            byte[] getData = readInputStream(inputStream);
-            out.write(getData);
+            out.write(bytes);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -381,7 +375,55 @@ public class WebUtils {
                 e.printStackTrace();
             }
         }
-        log.info("info:" + urlStr + " download success");
+    }
+
+    /**
+     * 从网络Url中下载文件
+     *
+     * @param urlStr 下载的url地址
+     */
+    public static void downLoadFromUrl(String urlStr, OutputStream out) throws FileNotFoundException {
+        byte[] getData = null;
+        try {
+            URL url = new URL(urlStr);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            // 设置超时间为3秒
+            conn.setConnectTimeout(3 * 1000);
+            // 防止屏蔽程序抓取而返回403错误
+            conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+            // 得到输入流
+            InputStream inputStream = conn.getInputStream();
+            // 获取自己数组
+            getData = readInputStream(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // 合同的大小不可能小于2KB
+        if (!Objects.isNull(getData) && getData.length > 2048) {
+            // 2048到正无穷
+            log.info("info:" + urlStr + " download success");
+            writeBytesToStream(getData, out);
+        } else if (!Objects.isNull(getData) && getData.length > 0) {
+            // 0-2048
+            CommonResponse commonResponse = null;
+            try {
+                ObjectMapper objectMapper = ObjectMapperHolder.INSTANCE.getInstance();
+                String result = new String(getData, StandardCharsets.UTF_8);
+                objectMapper.readTree(result);
+                commonResponse = objectMapper.readValue(result, CommonResponse.class);
+            } catch (IOException e) {
+                log.warn("返回的数据不是json,且小于2KB");
+            }
+            if (!Objects.isNull(commonResponse) && !"0".equals(commonResponse.getResultCode())) {
+                log.error("info:" + urlStr + " download fail");
+                throw new FileNotFoundException(commonResponse.getResultMessage());
+            }
+            log.info("info:" + urlStr + " download success");
+            writeBytesToStream(getData,out);
+        }else {
+            log.info("info:" + urlStr + " download fail");
+            writeBytesToStream(getData,out);
+        }
     }
 
     /**
@@ -390,38 +432,63 @@ public class WebUtils {
      * @param urlStr 下载的url地址
      * @return {@code byte[]} 文件二进制流
      */
-    public static byte[] downLoadFromUrl(String urlStr) {
+    public static byte[] downLoadFromUrl(String urlStr) throws FileNotFoundException {
         HttpURLConnection conn = null;
         InputStream inputStream = null;
+        byte[] getData = null;
         try {
             URL url = new URL(urlStr);
             conn = (HttpURLConnection) url.openConnection();
-            //设置超时间为3秒
+            // 设置超时间为3秒
             conn.setConnectTimeout(3 * 1000);
-            //防止屏蔽程序抓取而返回403错误
+            // 防止屏蔽程序抓取而返回403错误
             conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-            //得到输入流
+            // 得到输入流
             inputStream = conn.getInputStream();
-            //获取自己数组
-            byte[] getData = readInputStream(inputStream);
-            log.info("info:" + urlStr + " download success");
-            return getData;
+            // 获取自己数组
+            getData = readInputStream(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
-                if(inputStream!=null){
+                if (inputStream != null) {
                     inputStream.close();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if(conn!=null){
+            if (conn != null) {
                 conn.disconnect();
             }
         }
-        log.info("info:" + urlStr + " download fail");
-        return null;
+        // 合同的大小不可能小于2KB
+        if (!Objects.isNull(getData) && getData.length > 2048) {
+            // 在2048到无穷
+            log.info("info:" + urlStr + " download success");
+            return getData;
+        } else if (!Objects.isNull(getData) && getData.length > 0) {
+            CommonResponse commonResponse = null;
+            try {
+                ObjectMapper objectMapper = ObjectMapperHolder.INSTANCE.getInstance();
+                String result = new String(getData, StandardCharsets.UTF_8);
+                objectMapper.readTree(result);
+                commonResponse = objectMapper.readValue(result, CommonResponse.class);
+            } catch (IOException e) {
+                log.warn("返回的数据不是json,且小于2KB");
+            }
+            if (!Objects.isNull(commonResponse) && !"0".equals(commonResponse.getResultCode())) {
+                // 在0-2048且有异常信息
+                log.error("info:" + urlStr + " download fail");
+                throw new FileNotFoundException(commonResponse.getResultMessage());
+            }
+            // 在0-2048且无异常
+            log.info("info:" + urlStr + " download success");
+            return getData;
+        } else {
+            // 0
+            log.info("info:" + urlStr + " download fail");
+            return getData;
+        }
     }
 
     /**
@@ -492,7 +559,7 @@ public class WebUtils {
                 connHttps = (HttpsURLConnection) url.openConnection();
             }
             if (!serverTrusted) {
-                //设置不校验服务端证书的SSLContext
+                // 设置不校验服务端证书的SSLContext
                 connHttps.setSSLSocketFactory(socketFactory);
                 connHttps.setHostnameVerifier(verifier);
             }
@@ -583,8 +650,8 @@ public class WebUtils {
      */
     protected static String getResponseAsString(HttpURLConnection conn) throws IOException {
         String charset = getResponseCharset(conn.getContentType());
-        //此时设置KeepAlive超时所需数据结构才刚初始化完整，可以通过反射修改
-        //同时也不宜将修改时机再滞后，因为可能后续连接缓存类已经消费了默认的KeepAliveTimeout值，再修改已经无效
+        // 此时设置KeepAlive超时所需数据结构才刚初始化完整，可以通过反射修改
+        // 同时也不宜将修改时机再滞后，因为可能后续连接缓存类已经消费了默认的KeepAliveTimeout值，再修改已经无效
         setKeepAliveTimeout(conn);
         InputStream es = conn.getErrorStream();
         if (es == null) {
@@ -761,7 +828,7 @@ public class WebUtils {
             keepAliveTimeoutField.setAccessible(true);
             keepAliveTimeoutField.setInt(httpClient, keepAliveTimeout);
         } catch (Throwable ignored) {
-            //设置KeepAlive超时只是一种优化辅助手段，设置失败不应阻塞主链路，设置失败不应影响功能
+            // 设置KeepAlive超时只是一种优化辅助手段，设置失败不应阻塞主链路，设置失败不应影响功能
         }
     }
 

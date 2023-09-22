@@ -1,6 +1,5 @@
 package com.github.aiosign.utils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.aiosign.base.FileItem;
 import com.github.aiosign.module.response.CommonResponse;
@@ -381,22 +380,38 @@ public class WebUtils {
      * 从网络Url中下载文件
      *
      * @param urlStr 下载的url地址
+     * @param connectionTimeout 连接超时时间
      */
-    public static void downLoadFromUrl(String urlStr, OutputStream out) throws FileNotFoundException {
+    public static void downLoadFromUrl(String urlStr, OutputStream out, int connectionTimeout) throws FileNotFoundException {
         byte[] getData = null;
+        HttpURLConnection conn = null;
+        InputStream inputStream = null;
         try {
             URL url = new URL(urlStr);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn = (HttpURLConnection) url.openConnection();
             // 设置超时间为3秒
-            conn.setConnectTimeout(3 * 1000);
+            // conn.setConnectTimeout(3 * 1000);
+            // 统一设置连接时间
+            conn.setConnectTimeout(connectionTimeout);
             // 防止屏蔽程序抓取而返回403错误
             conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
             // 得到输入流
-            InputStream inputStream = conn.getInputStream();
+            inputStream = conn.getInputStream();
             // 获取自己数组
             getData = readInputStream(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if(conn != null){
+                conn.disconnect();
+            }
         }
         // 合同的大小不可能小于2KB
         if (!Objects.isNull(getData) && getData.length > 2048) {
@@ -430,9 +445,10 @@ public class WebUtils {
      * 从网络Url中下载文件
      *
      * @param urlStr 下载的url地址
+     * @param connectionTimeout 连接超时时间
      * @return {@code byte[]} 文件二进制流
      */
-    public static byte[] downLoadFromUrl(String urlStr) throws FileNotFoundException {
+    public static byte[] downLoadFromUrl(String urlStr, int connectionTimeout) throws FileNotFoundException {
         HttpURLConnection conn = null;
         InputStream inputStream = null;
         byte[] getData = null;
@@ -440,7 +456,9 @@ public class WebUtils {
             URL url = new URL(urlStr);
             conn = (HttpURLConnection) url.openConnection();
             // 设置超时间为3秒
-            conn.setConnectTimeout(3 * 1000);
+            // conn.setConnectTimeout(3 * 1000);
+            // 统一设置连接时间
+            conn.setConnectTimeout(connectionTimeout);
             // 防止屏蔽程序抓取而返回403错误
             conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
             // 得到输入流

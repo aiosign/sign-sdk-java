@@ -158,7 +158,7 @@ public abstract class ProxyAbstractSignClient implements SignClient {
         }});
         // 更变为代理数据
         uriBuild = builderCustomParams(uriBuild);
-        downLoadFromUrl(uriBuild, outputStream);
+        downLoadFromUrl(uriBuild, outputStream, connectTimeOut);
     }
 
     /**
@@ -174,7 +174,7 @@ public abstract class ProxyAbstractSignClient implements SignClient {
             put(urlTokenKey, token);
             put("fileId", fileId);
         }});
-        return downLoadFromUrl(uriBuild);
+        return downLoadFromUrl(uriBuild, connectTimeOut);
     }
 
     /**

@@ -160,7 +160,7 @@ public class DefaultSignClient implements SignClient {
             put(urlTokenKey, token);
             put("fileId", fileId);
         }});
-        downLoadFromUrl(uriBuild, outputStream);
+        downLoadFromUrl(uriBuild, outputStream, connectTimeOut);
     }
 
     /**
@@ -176,7 +176,7 @@ public class DefaultSignClient implements SignClient {
             put(urlTokenKey, token);
             put("fileId", fileId);
         }});
-        return downLoadFromUrl(uriBuild);
+        return downLoadFromUrl(uriBuild, connectTimeOut);
     }
 
 

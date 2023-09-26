@@ -42,11 +42,11 @@ public class SealUtils {
 
     /**
      * 判断电子印章与实物印章是否一致
-     * @param formType 印章形态 4,5,6为一致
+     * @param formType 印章形态 5,6为一致
      * @return 是否一致
      */
     public static Boolean checkSealFormType(String formType){
-        List<String> legalFormTypeList = Arrays.asList("4", "5", "6");
+        List<String> legalFormTypeList = Arrays.asList("5", "6");
         return legalFormTypeList.contains(formType);
     }
 

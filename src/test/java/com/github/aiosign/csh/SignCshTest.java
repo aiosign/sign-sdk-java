@@ -1,12 +1,12 @@
 package com.github.aiosign.csh;
 
+import com.alibaba.fastjson.JSON;
 import com.github.aiosign.AbstractSignTest;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
 import com.github.aiosign.module.request.CommonRequest;
-import com.github.aiosign.module.request.EventCertKeywordSignRequest;
 import com.github.aiosign.module.response.CommonResponse;
-import com.github.aiosign.utils.SealSizeUtils;
+import com.github.aiosign.utils.SealUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -27,59 +27,6 @@ import java.util.Map;
  */
 @Slf4j
 public class SignCshTest extends AbstractSignTest {
-    /**
-     * 普通签章
-     */
-    @Test
-    public void eventCertSign1() {
-        HashMap<String, Object> requestBody = new HashMap<>();
-        // 自定义签署ID
-        requestBody.put("sign_id", "111");
-        // 是否完结合同
-        requestBody.put("is_contract_finish", 0);
-        // 是否渲染页面
-        requestBody.put("is_render", 0);
-        // 合同id
-        requestBody.put("contract_id", "1fd162f81b9e9e2364b287549670595c");
-        // 签章备注
-        requestBody.put("remark", "测试");
-
-        ArrayList<Map<String, Object>> signParamList = new ArrayList<>();
-        HashMap<String, Object> signParams = new HashMap<>();
-        signParams.put("seal_id", "a9e48474650448709a3b577ce4f72234");
-        // 页码
-        signParams.put("page_number", 1);
-        // 水平横坐标
-        signParams.put("horizontal", 100D);
-        // 垂直纵坐标
-        signParams.put("vertical", 100D);
-        // 印章宽度(使用工具类转为像素)
-        signParams.put("width", SealSizeUtils.transitionSizeToPixel(40D));
-        // 印章高度(使用工具类转为像素)
-        signParams.put("height", SealSizeUtils.transitionSizeToPixel(40D));
-        // 印章旋转角度
-        signParams.put("rotate", 0.0D);
-        // 签章模式
-        signParams.put("layout", 1);
-
-        signParamList.add(signParams);
-        // 签章信息集合
-        requestBody.put("fields", signParamList);
-        // 用户id
-        requestBody.put("user_id", "10144942136450173440");
-
-        CommonRequest request = new CommonRequest();
-        request.setApiUri("/v1/event_cert_sign/common");// 请求Api地址
-        request.setNeedToken(true);// 是否需要token
-        request.setContentType(ContentType.JSON);// 请求头类型
-        request.setMethod(HttpMethod.POST);// 请求方法
-        request.setRequestBody(requestBody);// 请求体
-        CommonResponse execute = signClient.execute(request);
-        log.info("响应状态：{}", execute.getResultCode());
-        log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
-    }
-
 
     /**
      * 会议综合签章
@@ -101,8 +48,8 @@ public class SignCshTest extends AbstractSignTest {
         authSignDetail.put("sign_user_id","10822386355627249664");
         authSignDetail.put("layout",1);
         authSignDetail.put("page_number",1);
-        authSignDetail.put("width",SealSizeUtils.transitionSizeToPixel(50.0));
-        authSignDetail.put("heignt",SealSizeUtils.transitionSizeToPixel(50.0));
+        authSignDetail.put("width", SealUtils.transitionSizeToPixel(50.0));
+        authSignDetail.put("heignt", SealUtils.transitionSizeToPixel(50.0));
         authSignDetail.put("horizontal",100);
         authSignDetail.put("vertical",200);
         authSignDetail.put("rotate",0.0D);
@@ -120,8 +67,8 @@ public class SignCshTest extends AbstractSignTest {
         signDetail.put("user_id", "00821065058230095872");
         signDetail.put("horizontal", 10);
         signDetail.put("vertical", 10);
-        signDetail.put("height", SealSizeUtils.transitionSizeToPixel(50.0));
-        signDetail.put("width", SealSizeUtils.transitionSizeToPixel(50.0));
+        signDetail.put("height", SealUtils.transitionSizeToPixel(50.0));
+        signDetail.put("width", SealUtils.transitionSizeToPixel(50.0));
         signDetails.add(signDetail);
         requestBody.put("sign_details", signDetails);
 
@@ -134,7 +81,14 @@ public class SignCshTest extends AbstractSignTest {
         CommonResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
+        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
+        HashMap<String, Object> signModule = (HashMap<String, Object>) execute.getData();
+        boolean signState = (boolean) signModule.get("sign_state");
+        if(!signState){
+            //失败原因
+            String reason = String.valueOf(signModule.get("reason"));
+            log.info("失败原因:{}",reason);
+        }
     }
 
     /**
@@ -173,7 +127,14 @@ public class SignCshTest extends AbstractSignTest {
         CommonResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
+        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
+        HashMap<String, Object> signModule = (HashMap<String, Object>) execute.getData();
+        boolean signState = (boolean) signModule.get("sign_state");
+        if(!signState){
+            //失败原因
+            String reason = String.valueOf(signModule.get("reason"));
+            log.info("失败原因:{}",reason);
+        }
     }
 
     /**
@@ -192,6 +153,8 @@ public class SignCshTest extends AbstractSignTest {
         HashMap<String, Object> requestBody = new HashMap<>();
         // 1.写入需要使用的模板id
         requestBody.put("template_id", templateId);
+
+        List<HashMap<String, Object>> batchTemplates = new ArrayList<>();
         // 创建隐藏域信息
         HashMap<String, Object> custSignField = new HashMap<>();
 
@@ -209,7 +172,8 @@ public class SignCshTest extends AbstractSignTest {
         custSignField.put("text_params", textParams);
 
         // 放入签名域与文字域信息
-        requestBody.put("batch_templates", custSignField);
+        batchTemplates.add(custSignField);
+        requestBody.put("batch_templates", batchTemplates);
         // 执行签章
         CommonRequest request = new CommonRequest();
         request.setApiUri("/v1/event_cert_sign/template/batch");// 请求Api地址
@@ -220,7 +184,17 @@ public class SignCshTest extends AbstractSignTest {
         CommonResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
+        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
+        HashMap<String, Object> signModule = (HashMap<String, Object>) execute.getData();
+        List<HashMap<String, Object>> signInfos = (List<HashMap<String, Object>>) signModule.get("sign_infos");
+        for (HashMap<String, Object> signInfo : signInfos) {
+            boolean signState = (boolean) signInfo.get("sign_state");
+            if(!signState){
+                //失败原因
+                String reason = String.valueOf(signInfo.get("reason"));
+                log.info("失败原因:{}",reason);
+            }
+        }
     }
 
 
@@ -232,7 +206,6 @@ public class SignCshTest extends AbstractSignTest {
         String sealId = "";
         String userId = "";
 
-        EventCertKeywordSignRequest eventCertKeywordSignRequest = new EventCertKeywordSignRequest();
         HashMap<String, Object> requestBody = new HashMap<>();
         requestBody.put("sign_id", signId);
         requestBody.put("is_contract_finish", 0);
@@ -244,9 +217,9 @@ public class SignCshTest extends AbstractSignTest {
         // 关键字
         requestBody.put("keyword", "联系电话");
         // 印章宽度
-        requestBody.put("width", SealSizeUtils.transitionSizeToPixel(80.0));
+        requestBody.put("width", SealUtils.transitionSizeToPixel(80.0));
         // 印章高度
-        requestBody.put("height", SealSizeUtils.transitionSizeToPixel(80.0));
+        requestBody.put("height", SealUtils.transitionSizeToPixel(80.0));
         // true：合同内所有匹配位置全部签署；false：只签署第一个匹配；默认false
         requestBody.put("sign_all", false);
         // 用户id
@@ -262,7 +235,14 @@ public class SignCshTest extends AbstractSignTest {
         CommonResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
+        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
+        HashMap<String, Object> signModule = (HashMap<String, Object>) execute.getData();
+        boolean signState = (boolean) signModule.get("sign_state");
+        if(!signState){
+            //失败原因
+            String reason = String.valueOf(signModule.get("reason"));
+            log.info("失败原因:{}",reason);
+        }
 
     }
 
@@ -279,8 +259,8 @@ public class SignCshTest extends AbstractSignTest {
         List<HashMap<String, Object>> signParams = new ArrayList<>();
         // 创建一个签名域信息
         HashMap<String, Object> e = new HashMap<>();
-        e.put("height", SealSizeUtils.transitionSizeToPixel(100d));
-        e.put("width", SealSizeUtils.transitionSizeToPixel(100d));
+        e.put("height", SealUtils.transitionSizeToPixel(100d));
+        e.put("width", SealUtils.transitionSizeToPixel(100d));
         e.put("seal_id", sealId);
         e.put("sign_key", "sign1");
         e.put("user_id", userId);

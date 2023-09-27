@@ -1,10 +1,12 @@
 package com.github.aiosign.csh;
 
+import com.alibaba.fastjson.JSON;
 import com.github.aiosign.AbstractSignTest;
 import com.github.aiosign.enums.ContentType;
 import com.github.aiosign.enums.HttpMethod;
 import com.github.aiosign.module.request.CommonRequest;
 import com.github.aiosign.module.response.CommonResponse;
+import com.github.aiosign.utils.AESUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -41,18 +43,33 @@ public class SealCshTest extends AbstractSignTest {
         CommonResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
+        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
     }
 
     /**
-     * 8.3.2.电子印章申领
+     * 电子印章申领
      */
     @Test
-    public void applyForSeal() {
-        HashMap<String, String> requestBody = new HashMap<>(3);
-        requestBody.put("user_name", "a2878c359b8d6b1e0fab04205fc7d870");
-        requestBody.put("credit_code", "a2878c359b8d6b1e0fab04205fc7d870");
-        requestBody.put("area_code", "450100");
+    public void applySeal() {
+        // AESKey为密钥，对接时下发
+        final String AESKey = "TEnlK4mfLGhzKOWI";
+        HashMap<String, Object> requestBody = new HashMap<>();
+        String areaCode = "370000";
+        // 企业名称（密）
+        requestBody.put("user_name", AESUtils.encrypt(AESKey, "测试山东国盾网"));
+        // 企业社会信用代码（密）
+        requestBody.put("credit_code", AESUtils.encrypt(AESKey, "235122212233212"));
+        // 地区编码
+        requestBody.put("area_code", areaCode);
+        // 电印章来源
+        requestBody.put("eseal_source", "0");
+        // 领章类型
+        requestBody.put("seal_type", "");
+        // user_info
+        HashMap<String, Object> userInfo = new HashMap<>();
+        userInfo.put("phone", "");
+        requestBody.put("user_info", userInfo);
+
 
         CommonRequest request = new CommonRequest();
         request.setApiUri("/v1/seal/apply-seal-en"); // 请求Api地址
@@ -64,6 +81,7 @@ public class SealCshTest extends AbstractSignTest {
         CommonResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
+        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
     }
+
 }

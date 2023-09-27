@@ -4,6 +4,7 @@ import com.github.aiosign.base.AbstractComposeRequest;
 import com.github.aiosign.base.AbstractSignRequest;
 import com.github.aiosign.base.AbstractSignResponse;
 
+import java.io.FileNotFoundException;
 import java.io.OutputStream;
 
 /**
@@ -23,6 +24,23 @@ public interface SignClient {
      */
     <T extends AbstractSignResponse> T execute(AbstractSignRequest<T> signRequest);
 
+    /**
+     * 执行http请求，并返回字节数组
+     *
+     * @param signRequest a {@link AbstractSignRequest} object.
+     * @return bytes.
+     */
+    <T extends AbstractSignResponse> byte[] executeDownload(AbstractSignRequest<T> signRequest);
+
+
+    /**
+     * 执行http请求，并返回字节数组
+     *
+     * @param signRequest a {@link AbstractSignRequest} object.
+     * @param outputStream 输出流
+     */
+    <T extends AbstractSignResponse> void executeDownload(AbstractSignRequest<T> signRequest, OutputStream outputStream);
+
 
     /**
      * 组合接口
@@ -40,7 +58,16 @@ public interface SignClient {
      * @param fileId       文件id
      * @param outputStream 输出流
      */
-    void download(String baseUri, String fileId, OutputStream outputStream);
+    void download(String baseUri, String fileId, OutputStream outputStream) throws FileNotFoundException;
+
+    /**
+     * 下载文件
+     *
+     * @param baseUri      接口uri地址
+     * @param fileId       文件id
+     * @return {@code byte[]} 二进制文件流
+     */
+    byte[] download(String baseUri, String fileId) throws FileNotFoundException;
 
     /**
      * 组装下载地址

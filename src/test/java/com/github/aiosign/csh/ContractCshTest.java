@@ -1,10 +1,11 @@
 package com.github.aiosign.csh;
 
+import com.alibaba.fastjson.JSON;
 import com.github.aiosign.AbstractSignTest;
 import com.github.aiosign.enums.ContentType;
+import com.github.aiosign.enums.ContractType;
 import com.github.aiosign.enums.HttpMethod;
 import com.github.aiosign.module.request.CommonRequest;
-import com.github.aiosign.module.request.ContractAddRequest;
 import com.github.aiosign.module.response.CommonResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -31,6 +32,8 @@ public class ContractCshTest extends AbstractSignTest {
         HashMap<String, Object> requestBody = new HashMap<>();
         // 合同名字
         requestBody.put("name","测试");
+        //合同类别 CONTRACT(合同) SIGNATURE-CARD(印鉴卡)
+        requestBody.put("contract_type", ContractType.CONTRACT.getType());
         // 文件id
         requestBody.put("file_id","16988a470f3744fc923ce25016e8b522");
         // 用户id不能为空
@@ -48,7 +51,7 @@ public class ContractCshTest extends AbstractSignTest {
         CommonResponse execute = signClient.execute(request);
         log.info("响应状态：{}", execute.getResultCode());
         log.info("响应信息：{}", execute.getResultMessage());
-        log.info("响应数据：{}", execute.getData());
+        log.info("响应数据：{}", JSON.toJSONString(execute.getData()));
     }
 
 

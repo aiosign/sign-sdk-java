@@ -113,7 +113,7 @@ public class FileCshTest extends AbstractSignTest {
     }
 
     /**
-     * 下载文件存证报告
+     * 下载文件报告
      *
      * @throws FileNotFoundException
      */
@@ -123,6 +123,44 @@ public class FileCshTest extends AbstractSignTest {
         String fileId = "43a53ed66ca34361821d2ab137e02824";
         FileOutputStream out = new FileOutputStream("E:\\worktwo\\csh\\三方签署测试pdf\\report.pdf");
         byte[] fileBytes = signClient.download(baseUri, fileId);
+        try {
+            out.write(fileBytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    /**
+     * 上传合同文件下载报告
+     */
+    @Test
+    public void uploadAndDownloadReportFileStream() throws FileNotFoundException {
+        //上传的合同文件
+        FileItem fileItem = new FileItem(new File( "D:\\gd\\ideaprojects\\sign-sdk-java\\data\\contract.pdf"));
+        CommonRequest request = new CommonRequest();
+        request.setApiUri("/v1/file/downloadReportFile");// 请求Api地址
+        request.setNeedToken(true);// 是否需要token
+        request.setContentType(ContentType.MULTIPART);// 请求头类型
+        request.setMethod(HttpMethod.POST);// 请求方法
+        Map<String, FileItem> map = new HashMap<>(2);
+        map.put("file", fileItem);
+        request.setFileParams(map);
+        Map<String, String> params = request.getParams();
+        params.put("file_name", "测试合同1.pdf");
+        params.put("file_type", "contract");
+        params.put("user_id", "10150820344036936192");
+        //下载的报告文件
+        byte[] fileBytes = signClient.executeDownload(request);
+        FileOutputStream out = new FileOutputStream("D:\\gd\\ideaprojects\\sign-sdk-java\\data\\report22.pdf");
         try {
             out.write(fileBytes);
         } catch (IOException e) {

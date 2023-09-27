@@ -24,6 +24,23 @@ public interface SignClient {
      */
     <T extends AbstractSignResponse> T execute(AbstractSignRequest<T> signRequest);
 
+    /**
+     * 执行http请求，并返回字节数组
+     *
+     * @param signRequest a {@link AbstractSignRequest} object.
+     * @return bytes.
+     */
+    <T extends AbstractSignResponse> byte[] executeDownload(AbstractSignRequest<T> signRequest);
+
+
+    /**
+     * 执行http请求，并返回字节数组
+     *
+     * @param signRequest a {@link AbstractSignRequest} object.
+     * @param outputStream 输出流
+     */
+    <T extends AbstractSignResponse> void executeDownload(AbstractSignRequest<T> signRequest, OutputStream outputStream);
+
 
     /**
      * 组合接口

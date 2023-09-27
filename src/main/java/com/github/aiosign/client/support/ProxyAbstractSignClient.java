@@ -102,6 +102,20 @@ public abstract class ProxyAbstractSignClient implements SignClient {
         this.checkResult = checkResult;
     }
 
+
+    /**
+     * 不使用代理,可设置连接时间的构造器
+     *
+     * @param rootUri           网关地址前缀
+     * @param appId             应用id
+     * @param appSecret         应用秘钥
+     * @param connectTimeOut    网络连接超时时间
+     * @param readTimeOut       网络读取超时时间(推荐与connectTimeOut一致)
+     */
+    public ProxyAbstractSignClient(String rootUri, String appId, String appSecret,  Integer connectTimeOut, Integer readTimeOut) {
+        this(rootUri, connectTimeOut, readTimeOut,null, 0, appId, appSecret, false);
+    }
+
     /**
      * 不使用代理的构造器
      *
@@ -134,6 +148,21 @@ public abstract class ProxyAbstractSignClient implements SignClient {
         throw new RuntimeException("调用api发生错误");
     }
 
+    @Override
+    public <T extends AbstractSignResponse> byte[] executeDownload(AbstractSignRequest<T> signRequest) {
+        Assert.notNull(signRequest, "请求对象不能为空");
+        RequestInfo<T> requestInfo = Optional.ofNullable(signRequest.getRequestInfo()).orElseThrow(() -> new IllegalArgumentException("参数不能为空"));
+        //对参数进行检验
+        requestInfo.check();
+        try {
+            //发起请求，解析结果
+            return requestForBytes(requestInfo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        throw new RuntimeException("调用api发生错误");
+    }
+
     /**
      * 执行相关组合业务
      */
@@ -158,7 +187,7 @@ public abstract class ProxyAbstractSignClient implements SignClient {
         }});
         // 更变为代理数据
         uriBuild = builderCustomParams(uriBuild);
-        downLoadFromUrl(uriBuild, outputStream, connectTimeOut);
+        downLoadFromUrl(uriBuild, outputStream, connectTimeOut, readTimeOut);
     }
 
     /**
@@ -174,7 +203,7 @@ public abstract class ProxyAbstractSignClient implements SignClient {
             put(urlTokenKey, token);
             put("fileId", fileId);
         }});
-        return downLoadFromUrl(uriBuild, connectTimeOut);
+        return downLoadFromUrl(uriBuild, connectTimeOut, readTimeOut);
     }
 
     /**
@@ -243,6 +272,57 @@ public abstract class ProxyAbstractSignClient implements SignClient {
             throw new RuntimeException("返回的数据不是json");
         }
         return objectMapper.readValue(result, requestInfo.getResponseType());
+    }
+
+    /**
+     * 发起请求并获取字节数组
+     *
+     * @param requestInfo
+     * @return
+     * @throws IOException
+     */
+    private <T extends AbstractSignResponse> byte[] requestForBytes(RequestInfo<T> requestInfo) throws IOException {
+        byte[] result = null;
+        String apiUrl = rootUri + requestInfo.getApiUri();
+        //如果需要传递token
+        if (requestInfo.isNeedToken()) {
+            String token = TokenManager.getToken(this);
+            if (StringUtils.isEmpty(token)) {
+                throw new RuntimeException("获取token失败");
+            }
+            apiUrl = URLUtil.appendUrl(apiUrl, new HashMap<String, Object>(1) {{
+                put(urlTokenKey, token);
+            }});
+        }
+        switch (requestInfo.getMethod()) {
+            case POST:
+                if (requestInfo.getContentType().equals(ContentType.JSON)) {
+                    ObjectMapper objectMapper = ObjectMapperHolder.INSTANCE.getInstance();
+                    Serializable requestBody = requestInfo.getRequestBody();
+                    // 关键代码
+                    objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+                    String body = objectMapper.writeValueAsString(requestBody);
+                    String sign = SignUtils.createSign(body, appSecret);
+                    result = WebUtils.doPostJson(apiUrl, body, this.connectTimeOut, this.readTimeOut, proxyHost, proxyPort, sign, byte[].class);
+                } else if (requestInfo.getContentType().equals(ContentType.FORM_URLENCODED)) {
+                    Map<String, String> params = requestInfo.getParams();
+                    result = WebUtils.doPost(apiUrl, params, "UTF-8", connectTimeOut, readTimeOut, proxyHost, proxyPort, byte[].class);
+                } else if (requestInfo.getContentType().equals(ContentType.MULTIPART)) {
+                    Map<String, String> params = requestInfo.getParams();
+                    Map<String, FileItem> fileParams = requestInfo.getFileParams();
+                    result = WebUtils.doPost(apiUrl, params, fileParams, "UTF-8", connectTimeOut, readTimeOut, proxyHost, proxyPort, byte[].class);
+                }
+                break;
+            case GET:
+                Map<String, String> params = requestInfo.getParams();
+                result = WebUtils.doGet(apiUrl, params, byte[].class);
+                break;
+            default:
+                break;
+        }
+        Assert.state(result != null && result.length > 0, "调用api失败");
+        log.info("当前请求地址为{},返回字节数组长度为{}", apiUrl, result.length);
+        return result;
     }
 
     /**

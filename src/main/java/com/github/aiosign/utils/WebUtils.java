@@ -1,7 +1,9 @@
 package com.github.aiosign.utils;
 
+import cn.hutool.core.annotation.AnnotationUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.aiosign.base.FileItem;
+import com.github.aiosign.enums.ResponseType;
 import com.github.aiosign.module.response.CommonResponse;
 import lombok.extern.slf4j.Slf4j;
 
@@ -113,13 +115,33 @@ public class WebUtils {
     public static String doPost(String url, Map<String, String> params, String charset,
                                 int connectTimeout, int readTimeout, String proxyHost,
                                 int proxyPort) throws IOException {
+       return doPost(url, params, charset, connectTimeout, readTimeout, proxyHost, proxyPort, String.class);
+    }
+
+    /**
+     * 执行HTTP POST请求，可使用代理proxy。
+     *
+     * @param url            请求地址
+     * @param params         请求参数
+     * @param charset        字符集，如UTF-8, GBK, GB2312
+     * @param connectTimeout 连接超时时间
+     * @param readTimeout    请求超时时间
+     * @param proxyHost      代理host，传null表示不使用代理
+     * @param proxyPort      代理端口，传0表示不使用代理
+     * @param clazz          返回值类型，传String.class 或 byte[].class,仅支持此两种
+     * @return 响应字符串或字节数组
+     * @throws java.io.IOException 可能会发生io异常
+     */
+    public static <R> R doPost(String url, Map<String, String> params, String charset,
+                                int connectTimeout, int readTimeout, String proxyHost,
+                                int proxyPort, Class<R> clazz) throws IOException {
         String ctype = "application/x-www-form-urlencoded;charset=" + charset;
         String query = buildQuery(params, charset);
         byte[] content = {};
         if (query != null) {
             content = query.getBytes(charset);
         }
-        return doPost(url, ctype, content, connectTimeout, readTimeout, proxyHost, proxyPort, null);
+        return doPost(url, ctype, content, connectTimeout, readTimeout, proxyHost, proxyPort, null, clazz);
     }
 
     /**
@@ -137,6 +159,25 @@ public class WebUtils {
      */
     public static String doPost(String url, String ctype, byte[] content, int connectTimeout,
                                 int readTimeout, String proxyHost, int proxyPort, String sign) {
+        return doPost(url, ctype, content, connectTimeout, readTimeout, proxyHost, proxyPort, sign, String.class);
+    }
+
+    /**
+     * 执行HTTP POST请求。
+     *
+     * @param url            请求地址
+     * @param ctype          请求类型
+     * @param content        请求字节数组
+     * @param connectTimeout 连接超时时间
+     * @param readTimeout    请求超时时间
+     * @param proxyHost      代理host，传null表示不使用代理
+     * @param proxyPort      代理端口，传0表示不使用代理
+     * @param sign           a {@link java.lang.String} object.
+     * @param clazz          a {@link java.lang.Class} String.class Or byte[].class，Only two type.
+     * @return 响应字符串或字节数组
+     */
+    public static <R> R doPost(String url, String ctype, byte[] content, int connectTimeout,
+                                int readTimeout, String proxyHost, int proxyPort, String sign, Class<R> clazz) {
         Assert.isTrue(StringUtils.hasLength(url) && (url.startsWith("http://") || url.startsWith("https://")), "url地址不合法");
         Assert.hasText(ctype, "请求头类型不能为空");
         Assert.notNull(content, "请求体数据不能为空");
@@ -144,7 +185,7 @@ public class WebUtils {
         Assert.isTrue(readTimeout > 0, "读取时间必须大于0");
         HttpURLConnection conn = null;
         OutputStream out = null;
-        String rsp = null;
+        R rsp = null;
         try {
             conn = null;
             if (!StringUtils.isEmpty(proxyHost)) {
@@ -156,7 +197,7 @@ public class WebUtils {
             conn.setReadTimeout(readTimeout);
             out = conn.getOutputStream();
             out.write(content);
-            rsp = getResponseAsString(conn);
+            rsp = getResponse(conn, clazz);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -190,8 +231,26 @@ public class WebUtils {
      * @return a {@link java.lang.String} object.
      */
     public static String doPostJson(String url, String content, int connectTimeout, int readTimeout, String proxyHost, Integer proxyPort, String sign) {
+        return doPostJson(url, content, connectTimeout, readTimeout, proxyHost, proxyPort, sign, String.class);
+    }
+
+
+    /**
+     * post请求，请求头为application/json,不使用代理
+     *
+     * @param url            a {@link java.lang.String} object.
+     * @param content        a {@link java.lang.String} object.
+     * @param connectTimeout a int.
+     * @param readTimeout    a int.
+     * @param proxyHost      a {@link java.lang.String} object.
+     * @param proxyPort      a {@link java.lang.Integer} object.
+     * @param sign           a {@link java.lang.String} object.
+     * @param clazz          a {@link java.lang.Class} String.class Or byte[].class，Only two type.
+     * @return a {@link java.lang.String} object.
+     */
+    public static <R> R doPostJson(String url, String content, int connectTimeout, int readTimeout, String proxyHost, Integer proxyPort, String sign, Class<R> clazz) {
         return doPost(url, "application/json", content.getBytes(StandardCharsets.UTF_8),
-                connectTimeout, readTimeout, proxyHost, proxyPort, sign);
+                connectTimeout, readTimeout, proxyHost, proxyPort, sign, clazz);
     }
 
     /**
@@ -212,14 +271,36 @@ public class WebUtils {
                                 Map<String, FileItem> fileParams, String charset,
                                 int connectTimeout, int readTimeout, String proxyHost,
                                 int proxyPort) throws IOException {
+        return doPost(url, params, fileParams, charset, connectTimeout, readTimeout, proxyHost, proxyPort, String.class);
+    }
+
+    /**
+     * 执行带文件上传的HTTP POST请求。
+     *
+     * @param url            请求地址
+     * @param params         文本请求参数
+     * @param fileParams     文件请求参数
+     * @param charset        字符集，如UTF-8, GBK, GB2312
+     * @param connectTimeout 连接超时时间
+     * @param readTimeout    请求超时时间
+     * @param proxyHost      代理host，传null表示不使用代理
+     * @param proxyPort      代理端口，传0表示不使用代理
+     * @param clazz          返回值类型，传String.class 或 byte[].class,仅支持此两种
+     * @return 响应字符串或字节数组
+     * @throws java.io.IOException 可能会发生io异常
+     */
+    public static <R> R doPost(String url, Map<String, String> params,
+                                Map<String, FileItem> fileParams, String charset,
+                                int connectTimeout, int readTimeout, String proxyHost,
+                                int proxyPort, Class<R> clazz) throws IOException {
         if (fileParams == null || fileParams.isEmpty()) {
-            return doPost(url, params, charset, connectTimeout, readTimeout, proxyHost, proxyPort);
+            return doPost(url, params, charset, connectTimeout, readTimeout, proxyHost, proxyPort, clazz);
         }
 
         String boundary = System.currentTimeMillis() + ""; // 随机分隔线
         HttpURLConnection conn = null;
         OutputStream out = null;
-        String rsp = null;
+        R rsp = null;
         try {
             try {
                 String ctype = "multipart/form-data;boundary=" + boundary + ";charset=" + charset;
@@ -263,7 +344,7 @@ public class WebUtils {
                 // 添加请求结束标志
                 byte[] endBoundaryBytes = ("\r\n--" + boundary + "--\r\n").getBytes(charset);
                 out.write(endBoundaryBytes);
-                rsp = getResponseAsString(conn);
+                rsp = getResponse(conn, clazz);
             } catch (IOException e) {
                 throw e;
             }
@@ -322,6 +403,24 @@ public class WebUtils {
     /**
      * 执行HTTP GET请求。
      *
+     * @param url    请求地址
+     * @param params 请求参数
+     * @param clazz 返回值类型，String.class或byte[].class
+     * @return 响应字符串或字节数组
+     */
+    public static <R> R doGet(String url, Map<String, String> params, Class<R> clazz) {
+        try {
+            return doGet(url, params, DEFAULT_CHARSET, clazz);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    /**
+     * 执行HTTP GET请求。
+     *
      * @param url     请求地址
      * @param params  请求参数
      * @param charset 字符集，如UTF-8, GBK, GB2312
@@ -329,8 +428,23 @@ public class WebUtils {
      * @throws java.io.IOException 可能会发生io异常
      */
     public static String doGet(String url, Map<String, String> params, String charset) throws IOException {
+        return doGet(url, params, charset, String.class);
+    }
+
+
+    /**
+     * 执行HTTP GET请求。
+     *
+     * @param url     请求地址
+     * @param params  请求参数
+     * @param charset 字符集，如UTF-8, GBK, GB2312
+     * @param clazz 返回值类型，String.class或byte[].class
+     * @return 响应字符串或字节数组
+     * @throws java.io.IOException 可能会发生io异常
+     */
+    public static <R> R doGet(String url, Map<String, String> params, String charset, Class<R> clazz) throws IOException {
         HttpURLConnection conn = null;
-        String rsp;
+        R rsp;
         try {
             String ctype = "application/x-www-form-urlencoded;charset=" + charset;
             String query = buildQuery(params, charset);
@@ -341,7 +455,7 @@ public class WebUtils {
             }
 
             try {
-                rsp = getResponseAsString(conn);
+                rsp = getResponse(conn, clazz);
             } catch (IOException e) {
                 throw e;
             }
@@ -381,8 +495,9 @@ public class WebUtils {
      *
      * @param urlStr 下载的url地址
      * @param connectionTimeout 连接超时时间
+     * @param readTimeout 读取超时时间（推荐和connectionTimeout一致）
      */
-    public static void downLoadFromUrl(String urlStr, OutputStream out, int connectionTimeout) throws FileNotFoundException {
+    public static void downLoadFromUrl(String urlStr, OutputStream out, int connectionTimeout, int readTimeout) throws FileNotFoundException {
         byte[] getData = null;
         HttpURLConnection conn = null;
         InputStream inputStream = null;
@@ -393,6 +508,8 @@ public class WebUtils {
             // conn.setConnectTimeout(3 * 1000);
             // 统一设置连接时间
             conn.setConnectTimeout(connectionTimeout);
+            // 统一设置网络读取时间
+            conn.setReadTimeout(readTimeout);
             // 防止屏蔽程序抓取而返回403错误
             conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
             // 得到输入流
@@ -446,9 +563,10 @@ public class WebUtils {
      *
      * @param urlStr 下载的url地址
      * @param connectionTimeout 连接超时时间
+     * @param readTimeout 读取超时时间（推荐和connectionTimeout一致）
      * @return {@code byte[]} 文件二进制流
      */
-    public static byte[] downLoadFromUrl(String urlStr, int connectionTimeout) throws FileNotFoundException {
+    public static byte[] downLoadFromUrl(String urlStr, int connectionTimeout, int readTimeout) throws FileNotFoundException {
         HttpURLConnection conn = null;
         InputStream inputStream = null;
         byte[] getData = null;
@@ -459,6 +577,8 @@ public class WebUtils {
             // conn.setConnectTimeout(3 * 1000);
             // 统一设置连接时间
             conn.setConnectTimeout(connectionTimeout);
+            // 统一设置网络读取时间
+            conn.setReadTimeout(readTimeout);
             // 防止屏蔽程序抓取而返回403错误
             conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
             // 得到输入流
@@ -517,6 +637,7 @@ public class WebUtils {
      * @throws IOException
      */
     public static byte[] readInputStream(InputStream inputStream) throws IOException {
+        Assert.notNull(inputStream,"输入流不能为空");
         byte[] buffer = new byte[1024];
         int len = 0;
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -667,13 +788,46 @@ public class WebUtils {
      * @throws java.io.IOException if any.
      */
     protected static String getResponseAsString(HttpURLConnection conn) throws IOException {
+        return getResponse(conn, String.class);
+    }
+
+    /**
+     * <p>getResponseAsBytes.</p>
+     *
+     * @param conn a {@link java.net.HttpURLConnection} object.
+     * @return a {@link byte[] } byte array.
+     * @throws java.io.IOException if any.
+     */
+    protected static byte[] getResponseAsBytes(HttpURLConnection conn) throws IOException {
+        return getResponse(conn, byte[].class);
+    }
+
+    /**
+     * <p>getResponse.</p>
+     *
+     * @param conn a {@link java.net.HttpURLConnection} object.
+     * @param clazz a {@link java.lang.Class} object.
+     * @param <R> return value type;
+     * @return a {@link R} String or bytes.
+     * @throws java.io.IOException if any.
+     */
+    protected static <R> R getResponse(HttpURLConnection conn, Class<R> clazz) throws IOException {
         String charset = getResponseCharset(conn.getContentType());
         // 此时设置KeepAlive超时所需数据结构才刚初始化完整，可以通过反射修改
         // 同时也不宜将修改时机再滞后，因为可能后续连接缓存类已经消费了默认的KeepAliveTimeout值，再修改已经无效
         setKeepAliveTimeout(conn);
         InputStream es = conn.getErrorStream();
+        byte[] result = null;
         if (es == null) {
-            return getStreamAsString(conn.getInputStream(), charset);
+            if(ResponseType.Str.getTypeReference().equals(clazz.getTypeName())){
+                return clazz.cast(getStreamAsString(conn.getInputStream(), charset));
+            }else if(ResponseType.Byte.getTypeReference().equals(clazz.getTypeName())){
+                try(InputStream inputStream = conn.getInputStream()) {
+                    result = readInputStream(inputStream);
+                }
+            }else {
+                throw new RuntimeException("不支持的返回值类型");
+            }
         } else {
             String msg = getStreamAsString(es, charset);
             if (StringUtils.isEmpty(msg)) {
@@ -684,6 +838,40 @@ public class WebUtils {
                 log.error("调用api发生错误，错误信息为{}", msg);
                 return null;
             }
+        }
+
+        if(ResponseType.Byte.getTypeReference().equals(clazz.getTypeName())){
+            String urlStr = conn.getURL().toString();
+            // 合同的大小不可能小于2KB
+            if (!ObjectUtils.isEmpty(result) && result.length > 2048) {
+                // 在2048到无穷
+                log.info("info:" + urlStr + " download success");
+                return clazz.cast(result);
+            } else if (!ObjectUtils.isEmpty(result) && result.length > 0) {
+                CommonResponse commonResponse = null;
+                try {
+                    ObjectMapper objectMapper = ObjectMapperHolder.INSTANCE.getInstance();
+                    String errStr = new String(result, StandardCharsets.UTF_8);
+                    objectMapper.readTree(errStr);
+                    commonResponse = objectMapper.readValue(errStr, CommonResponse.class);
+                } catch (IOException e) {
+                    log.warn("返回的数据不是json,且小于2KB");
+                }
+                if (!Objects.isNull(commonResponse) && !"0".equals(commonResponse.getResultCode())) {
+                    // 在0-2048且有异常信息
+                    log.error("info:" + urlStr + " download fail");
+                    throw new FileNotFoundException(commonResponse.getResultMessage());
+                }
+                // 在0-2048且无异常
+                log.info("info:" + urlStr + " download success");
+                return clazz.cast(result);
+            } else {
+                // 0
+                log.info("info:" + urlStr + " download fail");
+                return clazz.cast(result);
+            }
+        }else {
+            return null;
         }
     }
 
